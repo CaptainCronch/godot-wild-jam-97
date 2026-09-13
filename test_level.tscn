@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://djy8gc2lyt78x"]
+
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_gojnm"]
+[ext_resource type="Script" uid="uid://dnijoyskehlg3" path="res://player.gd" id="2_f7g2b"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="3_f7g2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wagxh"]
+size = Vector2(1000, 40)
+
+[node name="TestLevel" type="Node2D" unique_id=1968053387]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=2126091349]
+position = Vector2(567, 611)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1311130429]
+scale = Vector2(7.815, 0.315)
+texture = ExtResource("1_gojnm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1654642194]
+shape = SubResource("RectangleShape2D_wagxh")
+
+[node name="Player" type="Node2D" parent="." unique_id=1770403555 node_paths=PackedStringArray("body", "leg_joint", "leg_joint_2")]
+position = Vector2(567, 560)
+script = ExtResource("2_f7g2b")
+body = NodePath("Body")
+leg_joint = NodePath("BackJoint")
+leg_joint_2 = NodePath("FrontJoint")
+
+[node name="Body" type="RigidBody2D" parent="Player" unique_id=4081196]
+collision_layer = 2
+mass = 5.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/Body" unique_id=970638655]
+texture = ExtResource("1_gojnm")
+texture_offset = Vector2(27.025, 42.6)
+texture_scale = Vector2(1.75, 1.75)
+texture_rotation = 0.24958208
+polygon = PackedVector2Array(4, -20, 14, -21, 17, -26, 23, -29, 27, -30, 32, -29, 36, -26, 38, -20, 38, -13, 35, -6, 32, -3, 27, -1, 17, 4, 11, 9, 6, 9, -4, 11, -10, 9, -17, 7, -25, 2, -26, -4, -24, -10, -22, -14, -19, -18, -15, -19, -7, -21)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Body" unique_id=962581433]
+polygon = PackedVector2Array(4, -20, 14, -21, 17, -26, 23, -29, 27, -30, 32, -29, 36, -26, 38, -20, 38, -13, 35, -6, 32, -3, 27, -1, 17, 4, 11, 9, 6, 9, -4, 11, -10, 9, -17, 7, -25, 2, -26, -4, -24, -10, -22, -14, -19, -18, -15, -19, -7, -21)
+
+[node name="Leg" type="RigidBody2D" parent="Player" unique_id=1313687306]
+position = Vector2(-15, 2)
+collision_layer = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/Leg" unique_id=119430237]
+texture = ExtResource("1_gojnm")
+texture_offset = Vector2(34.85, 18.655)
+texture_scale = Vector2(2.01, 2.01)
+texture_rotation = -0.37350047
+polygon = PackedVector2Array(-13, 11, -13, 9, -14, 6, -14, 3, -13, 0, -10, -3, -6, -3, -3, -3, -1, -2, 2, 0, 3, 2, 4, 4, 4, 7, 4, 9, 4, 11, 5, 12, 7, 14, 8, 17, 10, 20, 10, 22, 7, 24, 5, 26, 2, 27, 0, 27, -3, 28, -3, 28, -3, 28, -2, 30, -1, 32, -2, 33, -8, 33, -10, 32, -12, 31, -13, 28, -14, 25, -14, 23, -12, 21, -9, 20, -7, 19, -6, 19, -7, 17, -10, 15)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Leg" unique_id=1542811412]
+polygon = PackedVector2Array(-10, -3, -3, -3, 2, 0, 4, 4, 4, 11, 7, 14, 8, 17, 10, 20, 10, 22, 5, 26, 2, 27, 0, 27, -3, 28, -1, 32, -2, 33, -8, 33, -12, 31, -14, 25, -14, 23, -12, 21, -7, 19, -6, 19, -7, 17, -10, 15, -13, 11, -13, 9, -14, 6, -14, 3, -13, 0)
+
+[node name="Leg2" type="RigidBody2D" parent="Player" unique_id=2039964933]
+position = Vector2(40, -8)
+collision_layer = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/Leg2" unique_id=1281019384]
+texture = ExtResource("1_gojnm")
+texture_offset = Vector2(34.85, 18.655)
+texture_scale = Vector2(2.01, 2.01)
+texture_rotation = -0.37350047
+polygon = PackedVector2Array(-13, 11, -13, 9, -14, 6, -14, 3, -13, 0, -10, -3, -6, -3, -3, -3, -1, -2, 2, 0, 3, 2, 4, 4, 4, 7, 4, 9, 4, 11, 5, 12, 7, 14, 8, 17, 10, 20, 10, 22, 7, 24, 5, 26, 2, 27, 0, 27, -3, 28, -3, 28, -3, 28, -2, 30, -1, 32, -2, 33, -8, 33, -10, 32, -12, 31, -13, 28, -14, 25, -14, 23, -12, 21, -9, 20, -7, 19, -6, 19, -7, 17, -10, 15)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Leg2" unique_id=1841921252]
+polygon = PackedVector2Array(-10, -3, -3, -3, 2, 0, 4, 4, 4, 11, 7, 14, 8, 17, 10, 20, 10, 22, 5, 26, 2, 27, 0, 27, -3, 28, -1, 32, -2, 33, -8, 33, -12, 31, -14, 25, -14, 23, -12, 21, -7, 19, -6, 19, -7, 17, -10, 15, -13, 11, -13, 9, -14, 6, -14, 3, -13, 0)
+
+[node name="BackJoint" type="PinJoint2D" parent="Player" unique_id=1863170970]
+position = Vector2(-19, 3)
+node_a = NodePath("../Body")
+node_b = NodePath("../Leg")
+softness = 0.01
+angular_limit_enabled = true
+angular_limit_lower = -1.553343
+angular_limit_upper = 1.553343
+script = ExtResource("3_f7g2b")
+motor_position_enabled = true
+motor_position_stiffness = 100000.0
+motor_position_damping = 10000.0
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="FrontJoint" type="PinJoint2D" parent="Player" unique_id=1822357585]
+position = Vector2(31, -8)
+node_a = NodePath("../Body")
+node_b = NodePath("../Leg2")
+softness = 0.01
+angular_limit_enabled = true
+angular_limit_lower = -1.553343
+angular_limit_upper = 1.553343
+script = ExtResource("3_f7g2b")
+motor_position_enabled = true
+motor_position_stiffness = 100000.0
+motor_position_damping = 10000.0
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
