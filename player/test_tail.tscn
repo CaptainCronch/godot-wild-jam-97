@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://21goo8mxrnyp"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://default_physics_material.tres" id="1_dy4g5"]
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="2_ox4j2"]
+
+[node name="TestTail" type="RigidBody2D" unique_id=997076432]
+collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("1_dy4g5")
+gravity_scale = 0.5
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=79614922]
+texture = ExtResource("2_ox4j2")
+texture_offset = Vector2(27.025, 42.6)
+texture_scale = Vector2(1.75, 1.75)
+texture_rotation = 0.24958208
+polygon = PackedVector2Array(25.18486, -6.0415893, 32.18486, -5.0415893, 35.18486, -1.0415891, 37.18486, 3.9584107, 36.18486, 6.9584107, 32.18486, 10.958411, 27.18486, 11.958411, 17.18486, 11.958411, 4.18486, 10.958411, -8.81514, 7.9584107, -17.81514, -0.04158914, -19.81514, -8.041589, -17.81514, -14.041589, -13.81514, -17.04159, -11.81514, -10.041589, -7.81514, -6.0415893, -0.8151398, -3.0415893, 8.18486, -3.0415893, 17.18486, -5.0415893)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1741999959]
+polygon = PackedVector2Array(25.18486, -6.0415893, 32.18486, -5.0415893, 35.18486, -1.0415891, 37.18486, 3.9584107, 36.18486, 6.9584107, 32.18486, 10.958411, 27.18486, 11.958411, 17.18486, 11.958411, 4.18486, 10.958411, -8.81514, 7.9584107, -17.81514, -0.04158914, -19.81514, -8.041589, -17.81514, -14.041589, -13.81514, -17.04159, -11.81514, -10.041589, -7.81514, -6.0415893, -0.8151398, -3.0415893, 8.18486, -3.0415893, 17.18486, -5.0415893)

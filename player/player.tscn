@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cehmoa2dw3qj0"]
+
+[ext_resource type="Script" uid="uid://dnijoyskehlg3" path="res://player/player.gd" id="1_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://brbv6c4bk75mp" path="res://player/test_body.tscn" id="2_sweqy"]
+[ext_resource type="PackedScene" uid="uid://xj4exedc2frc" path="res://player/test_head.tscn" id="3_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://cj35yvh70kyg6" path="res://player/test_leg.tscn" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="3_sweqy"]
+[ext_resource type="PackedScene" uid="uid://21goo8mxrnyp" path="res://player/test_tail.tscn" id="4_g6k8r"]
+[ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://limb_stats.gd" id="6_boad6"]
+
+[sub_resource type="Resource" id="Resource_rgyib"]
+script = ExtResource("6_boad6")
+stiffness = 100000.0
+angular_limit_lower = -1.3089969389957472
+angular_limit_upper = 0.2617993877991494
+flip_orientation = true
+key = "F"
+metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
+
+[sub_resource type="Resource" id="Resource_hg6s5"]
+script = ExtResource("6_boad6")
+angular_limit_lower = 0.0
+angular_limit_upper = 1.5707963267948966
+flip_orientation = true
+key = "F"
+metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
+
+[node name="Player" type="Node2D" unique_id=2117701955 node_paths=PackedStringArray("body", "limbs")]
+script = ExtResource("1_i3pqv")
+body = NodePath("TestBody")
+limbs = [NodePath("Leg"), NodePath("Arm")]
+
+[node name="TestBody" parent="." unique_id=997076432 instance=ExtResource("2_sweqy")]
+
+[node name="TestHead" parent="." unique_id=753567911 instance=ExtResource("3_g6k8r")]
+position = Vector2(30, -29)
+
+[node name="TestTail" parent="." unique_id=384721224 instance=ExtResource("4_g6k8r")]
+position = Vector2(-58, -6)
+
+[node name="Leg" parent="." unique_id=132918231 node_paths=PackedStringArray("limb_joint") instance=ExtResource("3_qjkh3")]
+position = Vector2(-26, 7)
+limb_joint = NodePath("../ThighJoint")
+
+[node name="Arm" parent="." unique_id=294591650 node_paths=PackedStringArray("limb_joint") instance=ExtResource("3_qjkh3")]
+position = Vector2(26, -3)
+limb_stats = SubResource("Resource_rgyib")
+bonus_stats = SubResource("Resource_hg6s5")
+limb_joint = NodePath("../ShoulderJoint")
+
+[node name="ThighJoint" type="PinJoint2D" parent="." unique_id=1977286803]
+position = Vector2(-26, 7)
+node_a = NodePath("../TestBody")
+script = ExtResource("3_sweqy")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="ShoulderJoint" type="PinJoint2D" parent="." unique_id=1352910277]
+position = Vector2(26, -3)
+node_a = NodePath("../TestBody")
+script = ExtResource("3_sweqy")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="HeadJoint" type="PinJoint2D" parent="." unique_id=2074128314]
+position = Vector2(23, -18)
+node_a = NodePath("../TestBody")
+node_b = NodePath("../TestHead")
+script = ExtResource("3_sweqy")
+motor_position_enabled = true
+motor_position_stiffness = 10000.0
+motor_position_damping = 1000.0
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="TailJoint" type="PinJoint2D" parent="." unique_id=1823727565]
+position = Vector2(-27, -3)
+node_a = NodePath("../TestBody")
+node_b = NodePath("../TestTail")
+script = ExtResource("3_sweqy")
+motor_position_enabled = true
+motor_position_stiffness = 10000.0
+motor_position_damping = 1000.0
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
