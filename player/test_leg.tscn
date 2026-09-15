@@ -8,7 +8,9 @@
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_iqkbx")
-stiffness = 100000.0
+slot = 2
+stiffness = 1000000.0
+damping = 100000.0
 angular_limit_lower = -0.5235987755982988
 angular_limit_upper = 1.0471975511965976
 key = "D"
@@ -16,51 +18,54 @@ metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="Resource" id="Resource_boad6"]
 script = ExtResource("2_iqkbx")
+slot = 2
+stiffness = 2000000.0
+damping = 100000.0
 key = "D"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="Leg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "bonus_limb")]
+[node name="TestLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "bonus_limb")]
 script = ExtResource("1_taorl")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
 bonus_joint = NodePath("LegJoint")
-limb = NodePath("Upper")
-bonus_limb = NodePath("Lower")
+limb = NodePath("Thigh")
+bonus_limb = NodePath("Calf")
 
-[node name="Upper" type="RigidBody2D" parent="." unique_id=487199005]
+[node name="Thigh" type="RigidBody2D" parent="." unique_id=487199005]
 collision_layer = 2
 mass = 0.5
 physics_material_override = ExtResource("2_j2v3v")
 
-[node name="Polygon2D" type="Polygon2D" parent="Upper" unique_id=1764561574]
+[node name="Polygon2D" type="Polygon2D" parent="Thigh" unique_id=1764561574]
 texture = ExtResource("1_jsgel")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
 texture_rotation = -0.37350047
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Upper" unique_id=829456843]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Thigh" unique_id=829456843]
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
-[node name="Lower" type="RigidBody2D" parent="." unique_id=1563005039]
+[node name="Calf" type="RigidBody2D" parent="." unique_id=1563005039]
 position = Vector2(-1, 19)
 collision_layer = 2
 mass = 0.5
 physics_material_override = ExtResource("2_j2v3v")
 
-[node name="Polygon2D" type="Polygon2D" parent="Lower" unique_id=1804474107]
+[node name="Polygon2D" type="Polygon2D" parent="Calf" unique_id=1804474107]
 texture = ExtResource("1_jsgel")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
 texture_rotation = -0.37350047
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lower" unique_id=1884480031]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Calf" unique_id=1884480031]
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
 [node name="LegJoint" type="PinJoint2D" parent="." unique_id=11654315]
 position = Vector2(-1, 19)
-node_a = NodePath("../Upper")
-node_b = NodePath("../Lower")
+node_a = NodePath("../Thigh")
+node_b = NodePath("../Calf")
 script = ExtResource("3_j2v3v")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
