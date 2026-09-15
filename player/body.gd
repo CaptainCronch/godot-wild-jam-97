@@ -15,7 +15,7 @@ var limbs: Array[Limb] = [null, null, null, null, null] ## [head, arm, leg, tail
 
 
 func _ready() -> void:
-	flip = bool(randi_range(0, 1))
+	#flip = bool(randi_range(0, 1))
 	if flip:
 		var polygon2d_polygon := polygon2d.polygon
 		for i in polygon2d.polygon.size():

@@ -25,16 +25,16 @@ angular_limit_upper = 0.7853981633974483
 key = "K"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("bonus_joint", "limb", "bonus_limb", "limb_polygon", "bonus_polygon", "limb_collider", "bonus_collider")]
+[node name="TestHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
 script = ExtResource("1_7f7ep")
 limb_stats = SubResource("Resource_wrvxj")
 bonus_stats = SubResource("Resource_picer")
-bonus_joint = NodePath("JawJoint")
 limb = NodePath("Skull")
-bonus_limb = NodePath("Jaw")
 limb_polygon = NodePath("Skull/Polygon2D")
-bonus_polygon = NodePath("Jaw/Polygon2D")
 limb_collider = NodePath("Skull/CollisionPolygon2D")
+bonus_joint = NodePath("JawJoint")
+bonus_limb = NodePath("Jaw")
+bonus_polygon = NodePath("Jaw/Polygon2D")
 bonus_collider = NodePath("Jaw/CollisionPolygon2D")
 
 [node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]

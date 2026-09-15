@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dy50fxp2fchsa"]
+
+[ext_resource type="PackedScene" uid="uid://brbv6c4bk75mp" path="res://player/test_body.tscn" id="1_2mvqj"]
+[ext_resource type="Script" uid="uid://c2h7knt173623" path="res://enemy/enemy.gd" id="1_ofsxj"]
+
+[node name="Enemy" type="Node2D" unique_id=301018322 node_paths=PackedStringArray("body")]
+script = ExtResource("1_ofsxj")
+body = NodePath("TestBody")
+
+[node name="TestBody" parent="." unique_id=1237689098 instance=ExtResource("1_2mvqj")]
+flip = true
