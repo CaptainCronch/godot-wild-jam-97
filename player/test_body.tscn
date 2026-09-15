@@ -5,9 +5,11 @@
 [ext_resource type="Script" uid="uid://ck1sch3tqmeeg" path="res://player/body.gd" id="2_pvxun"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="4_w6uit"]
 
-[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "positions", "joints")]
+[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "polygon2d", "collider", "positions", "joints")]
 script = ExtResource("2_pvxun")
 body = NodePath("Body")
+polygon2d = NodePath("Body/Polygon2D")
+collider = NodePath("Body/CollisionPolygon2D")
 positions = [NodePath("Body/HeadPos"), NodePath("Body/ArmPos"), NodePath("Body/LegPos"), NodePath("Body/TailPos"), NodePath("Body/BackPos")]
 joints = [NodePath("HeadJoint"), NodePath("ShoulderJoint"), NodePath("ThighJoint"), NodePath("TailJoint"), NodePath("BackJoint")]
 

@@ -24,13 +24,17 @@ damping = 100000.0
 key = "D"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "bonus_limb")]
+[node name="TestLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
 script = ExtResource("1_taorl")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
-bonus_joint = NodePath("LegJoint")
 limb = NodePath("Thigh")
+limb_polygon = NodePath("Thigh/Polygon2D")
+limb_collider = NodePath("Thigh/CollisionPolygon2D")
+bonus_joint = NodePath("LegJoint")
 bonus_limb = NodePath("Calf")
+bonus_polygon = NodePath("Calf/Polygon2D")
+bonus_collider = NodePath("Calf/CollisionPolygon2D")
 
 [node name="Thigh" type="RigidBody2D" parent="." unique_id=487199005]
 collision_layer = 2

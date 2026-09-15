@@ -23,12 +23,16 @@ flip_orientation = true
 key = "F"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "bonus_limb")]
+[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "limb_polygon", "limb_collider", "bonus_polygon", "bonus_collider", "bonus_limb")]
 script = ExtResource("1_hm6hm")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
 bonus_joint = NodePath("ElbowJoint")
 limb = NodePath("Shoulder")
+limb_polygon = NodePath("Shoulder/Polygon2D")
+limb_collider = NodePath("Shoulder/CollisionPolygon2D")
+bonus_polygon = NodePath("Forearm/Polygon2D")
+bonus_collider = NodePath("Forearm/CollisionPolygon2D")
 bonus_limb = NodePath("Forearm")
 
 [node name="Shoulder" type="RigidBody2D" parent="." unique_id=487199005]

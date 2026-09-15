@@ -17,10 +17,12 @@ flip_orientation = true
 key = "J"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("limb")]
+[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("limb", "limb_polygon", "limb_collider")]
 script = ExtResource("1_yqrka")
 limb_stats = SubResource("Resource_wagxh")
 limb = NodePath("Tail")
+limb_polygon = NodePath("Tail/Polygon2D")
+limb_collider = NodePath("Tail/CollisionPolygon2D")
 
 [node name="Tail" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 2
