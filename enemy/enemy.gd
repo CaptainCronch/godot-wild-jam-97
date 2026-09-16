@@ -30,8 +30,9 @@ func _ready() -> void:
 			limb.bonus_limb.set_collision_layer_value(2, false)
 			limb.bonus_limb.set_collision_layer_value(1, true)
 
+
 func _physics_process(delta: float) -> void:
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5.0).timeout
 	var limb = body.limbs.pick_random()
 	if not is_instance_valid(limb): return
 	var rng = RandomNumberGenerator.new()

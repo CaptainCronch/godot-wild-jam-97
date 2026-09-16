@@ -9,7 +9,8 @@
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_iqakq")
 slot = 1
-stiffness = 100000.0
+stiffness = 1000000.0
+damping = 100000.0
 flip_orientation = true
 key = "F"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
@@ -17,23 +18,25 @@ metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 [sub_resource type="Resource" id="Resource_boad6"]
 script = ExtResource("2_iqakq")
 slot = 1
+stiffness = 2000000.0
+damping = 100000.0
 angular_limit_lower = 0.0
 angular_limit_upper = 1.5707963267948966
 flip_orientation = true
 key = "F"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("bonus_joint", "limb", "limb_polygon", "limb_collider", "bonus_polygon", "bonus_collider", "bonus_limb")]
+[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
 script = ExtResource("1_hm6hm")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
-bonus_joint = NodePath("ElbowJoint")
 limb = NodePath("Shoulder")
 limb_polygon = NodePath("Shoulder/Polygon2D")
 limb_collider = NodePath("Shoulder/CollisionPolygon2D")
+bonus_joint = NodePath("ElbowJoint")
+bonus_limb = NodePath("Forearm")
 bonus_polygon = NodePath("Forearm/Polygon2D")
 bonus_collider = NodePath("Forearm/CollisionPolygon2D")
-bonus_limb = NodePath("Forearm")
 
 [node name="Shoulder" type="RigidBody2D" parent="." unique_id=487199005]
 collision_layer = 2

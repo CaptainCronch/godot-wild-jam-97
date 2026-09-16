@@ -11,7 +11,7 @@ slot = 3
 stiffness = 50000.0
 damping = 1000.0
 softness = 0.01
-angular_limit_lower = -0.2617993877991494
+angular_limit_lower = -0.5235987755982988
 angular_limit_upper = 0.5235987755982988
 flip_orientation = true
 key = "J"
@@ -26,9 +26,8 @@ limb_collider = NodePath("Tail/CollisionPolygon2D")
 
 [node name="Tail" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 2
-mass = 0.5
+mass = 0.1
 physics_material_override = ExtResource("1_dy4g5")
-gravity_scale = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="Tail" unique_id=79614922]
 position = Vector2(-29, -3)

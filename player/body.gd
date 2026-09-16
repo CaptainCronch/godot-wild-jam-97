@@ -1,9 +1,16 @@
 extends Node2D
 class_name Body
 
+const RIGHT_BITS := [2, 5] # [(2), (1, 3)]
+const LEFT_BITS := [4, 3] # [(3), (1, 2)]
+
 @export var body_self_righting_torque := 5000000.0
 @export var body_self_righting_range := deg_to_rad(90.0)
-@export var flip := false
+@export var flipped := false
+#@export_flags_2d_physics var right_layers := 0
+#@export_flags_2d_physics var right_masks := 0
+#@export_flags_2d_physics var left_layers := 0
+#@export_flags_2d_physics var left_masks := 0
 
 var limbs: Array[Limb] = [null, null, null, null, null] ## [head, arm, leg, tail, back], from LimbStats.Slot enum.
 
@@ -15,22 +22,10 @@ var limbs: Array[Limb] = [null, null, null, null, null] ## [head, arm, leg, tail
 
 
 func _ready() -> void:
+	body.collision_layer = LEFT_BITS[0] if flipped else RIGHT_BITS[0]
+	body.collision_mask = LEFT_BITS[1] if flipped else RIGHT_BITS[1]
+	#print("right layers: {rl}, right masks: {rm}, left layers: {ll}, left masks: {lm}, ".format({"rl": right_layers, "rm": right_masks, "ll": left_layers, "lm": left_masks}))
 	#flip = bool(randi_range(0, 1))
-	if flip:
-		var polygon2d_polygon := polygon2d.polygon
-		for i in polygon2d.polygon.size():
-			polygon2d_polygon[i].x *= -1.0
-		polygon2d.polygon = polygon2d_polygon
-		polygon2d.position.x *= -1.0
-		
-		var collider_polygon := collider.polygon
-		for i in collider.polygon.size():
-			collider_polygon[i].x *= -1.0
-		collider.polygon = collider_polygon
-		collider.position.x *= -1.0
-		
-		for marker in positions:
-			marker.position.x *= -1.0
 	
 	for i in joints.size():
 		joints[i].position = positions[i].position
@@ -53,7 +48,7 @@ func _physics_process(delta: float) -> void:
 
 func add_limb(limb_scene: PackedScene, limb_stats: LimbStats = null, bonus_stats: LimbStats = null) -> void:
 	var limb: Limb = limb_scene.instantiate()
-	if flip: limb.flip()
+	if flipped: limb.flip()
 	if is_instance_valid(limb_stats): limb.limb_stats = limb_stats
 	if is_instance_valid(bonus_stats): limb.bonus_stats = bonus_stats
 	var anchor_pos := positions[limb.limb_stats.slot].global_position
@@ -78,3 +73,24 @@ func remove_limb(slot: LimbStats.Slot) -> void:
 	limbs[slot].queue_free()
 	limbs[slot] = null
 	joints[slot].node_b = ""
+
+
+func flip() -> void:
+	flipped = not flipped
+	body.collision_layer = LEFT_BITS[0] if flipped else RIGHT_BITS[0]
+	body.collision_mask = LEFT_BITS[1] if flipped else RIGHT_BITS[1]
+	
+	var polygon2d_polygon := polygon2d.polygon
+	for i in polygon2d.polygon.size():
+		polygon2d_polygon[i].x *= -1.0
+	polygon2d.polygon = polygon2d_polygon
+	polygon2d.position.x *= -1.0
+	
+	var collider_polygon := collider.polygon
+	for i in collider.polygon.size():
+		collider_polygon[i].x *= -1.0
+	collider.polygon = collider_polygon
+	collider.position.x *= -1.0
+	
+	for marker in positions:
+		marker.position.x *= -1.0

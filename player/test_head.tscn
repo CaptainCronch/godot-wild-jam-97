@@ -39,9 +39,9 @@ bonus_collider = NodePath("Jaw/CollisionPolygon2D")
 
 [node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 2
+collision_mask = 5
 mass = 0.5
 physics_material_override = ExtResource("1_68g4h")
-gravity_scale = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="Skull" unique_id=79614922]
 position = Vector2(4.280258, -11.500553)
@@ -57,9 +57,9 @@ polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.28472
 
 [node name="Jaw" type="RigidBody2D" parent="." unique_id=1735232917]
 collision_layer = 2
+collision_mask = 5
 mass = 0.1
 physics_material_override = ExtResource("1_68g4h")
-gravity_scale = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="Jaw" unique_id=951431591]
 position = Vector2(7.280258, -12.500553)

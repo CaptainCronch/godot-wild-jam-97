@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dwr1pci5tg68a"]
 
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_4iusu"]
-[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://player/player.tscn" id="2_drsgt"]
+[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://player/creature.tscn" id="2_drsgt"]
+[ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_drsgt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1caob"]
 size = Vector2(1000, 40)
@@ -57,8 +58,11 @@ texture = ExtResource("1_4iusu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1310933293]
 shape = SubResource("RectangleShape2D_1caob")
 
-[node name="Player" parent="." unique_id=2117701955 instance=ExtResource("2_drsgt")]
+[node name="Creature" parent="." unique_id=2117701955 instance=ExtResource("2_drsgt")]
 position = Vector2(496, 403)
+
+[node name="InputComponent" parent="Creature" unique_id=697786358 node_paths=PackedStringArray("creature") instance=ExtResource("3_drsgt")]
+creature = NodePath("..")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2037722229]
 color = Color(0.6117647, 0.96862745, 0.96862745, 1)

@@ -14,7 +14,8 @@ positions = [NodePath("Body/HeadPos"), NodePath("Body/ArmPos"), NodePath("Body/L
 joints = [NodePath("HeadJoint"), NodePath("ShoulderJoint"), NodePath("ThighJoint"), NodePath("TailJoint"), NodePath("BackJoint")]
 
 [node name="Body" type="RigidBody2D" parent="." unique_id=997076432]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 3
 mass = 5.0
 physics_material_override = ExtResource("1_d7nte")
 

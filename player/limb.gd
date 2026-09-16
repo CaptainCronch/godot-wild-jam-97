@@ -20,7 +20,21 @@ var backwards := false
 @export var bonus_collider: CollisionPolygon2D
 
 
-#func _ready() -> void:
+func _ready() -> void:
+	var gravity := 1.0
+	if not limb_stats.slot == LimbStats.Slot.ARM and not limb_stats.slot == LimbStats.Slot.LEG:
+		gravity = 0.0
+	limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
+	limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
+	limb.gravity_scale = gravity
+	#if not limb_stats.slot == LimbStats.Slot.LEG and not limb_stats.slot == LimbStats.Slot.ARM:
+		#limb.collision_mask = 1
+	if not is_instance_valid(bonus_limb): return
+	bonus_limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
+	bonus_limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
+	bonus_limb.gravity_scale = gravity
+	#if not bonus_stats.slot == LimbStats.Slot.LEG and not bonus_stats.slot == LimbStats.Slot.ARM:
+		#bonus_limb.collision_mask = 1
 	#if not is_instance_valid(limb_joint): return
 	#limb_joint.node_b = limb_joint.get_path_to(limb) # Bonus limb should already be set up in the limb scene.
 
@@ -42,6 +56,8 @@ func flex(is_flexed: bool) -> void:
 
 func flip() -> void:
 	backwards = not backwards
+	limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
+	limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	
 	limb.position.x *= -1.0
 	limb_polygon.polygon = reverse_points(limb_polygon.polygon)
@@ -57,6 +73,9 @@ func flip() -> void:
 	limb_stats.angular_limit_upper = angle_holder
 	
 	if not is_instance_valid(bonus_limb): return
+	bonus_limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
+	bonus_limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
+	
 	bonus_limb.position.x *= -1.0
 	bonus_polygon.polygon = reverse_points(bonus_polygon.polygon)
 	bonus_polygon.position.x *= -1.0
@@ -69,6 +88,26 @@ func flip() -> void:
 	var bonus_holder := bonus_stats.angular_limit_lower * -1.0
 	bonus_stats.angular_limit_lower = bonus_stats.angular_limit_upper * -1.0
 	bonus_stats.angular_limit_upper = bonus_holder
+
+
+func die() -> void:
+	limb_joint.node_b = ""
+	limb_joint = null
+	reparent(get_tree().current_scene)
+	var launch := Vector2(randf_range(-200, 200), randf_range(-100, -600))
+	var spin := randf_range(-20, 20)
+	limb.linear_velocity = launch
+	limb.angular_velocity = spin
+	limb.gravity_scale = 1.0
+	if is_instance_valid(bonus_limb):
+		bonus_joint.node_a = bonus_joint.get_path_to(limb)
+		bonus_joint.node_b = bonus_joint.get_path_to(bonus_limb)
+		bonus_limb.linear_velocity = launch
+		bonus_limb.angular_velocity = spin
+		bonus_limb.gravity_scale = 1.0
+	
+	if limb_stats.slot == LimbStats.Slot.HEAD:
+		Global.camera.add_target(limb)
 
 
 func reverse_points(points: PackedVector2Array) -> PackedVector2Array:

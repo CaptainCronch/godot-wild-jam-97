@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bwl211rl7kw44"]
+
+[ext_resource type="Script" uid="uid://dl231hpfg6xc3" path="res://ai_component.gd" id="1_kivia"]
+
+[node name="AIComponent" type="Node2D" unique_id=956151775]
+script = ExtResource("1_kivia")
