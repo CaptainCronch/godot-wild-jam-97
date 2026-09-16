@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bjviy5ac43lwa"]
+
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_4xkh5"]
+[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://player/creature.tscn" id="1_7pbu7"]
+[ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://multitarget_camera_2d.tscn" id="1_whj44"]
+[ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_egen4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
+size = Vector2(128, 128)
+
+[node name="TestShop" type="Node2D" unique_id=366313725]
+script = ExtResource("1_aq468")
+
+[node name="Multitarget Camera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
+position = Vector2(576, 321)
+move_speed = 1.0
+max_zoom = 1.6
+min_zoom = 1.0
+
+[node name="Creature" parent="." unique_id=2117701955 instance=ExtResource("1_7pbu7")]
+position = Vector2(161, 445)
+
+[node name="InputComponent" parent="Creature" unique_id=697786358 instance=ExtResource("3_egen4")]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1869619769]
+position = Vector2(577, 611)
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor" unique_id=1699441697]
+texture_repeat = 2
+scale = Vector2(9.015, 0.565)
+texture = ExtResource("1_4xkh5")
+texture_offset = Vector2(0, -102.935)
+texture_scale = Vector2(9.015, 0.565)
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1693585124]
+scale = Vector2(9.015, 0.565)
+shape = SubResource("RectangleShape2D_mdtab")
+
+[node name="ShopBasket" type="StaticBody2D" parent="." unique_id=2128236359]
+position = Vector2(576, 304)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket" unique_id=2094445738]
+scale = Vector2(3.028409, 1.3413461)
+polygon = PackedVector2Array(-64, 0, -64, 64, 64, 64, 64, 0, 88, 0, 88, 104, -88, 104, -88, 0)
+
+[node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
+position = Vector2(577, 307)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1922543435]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

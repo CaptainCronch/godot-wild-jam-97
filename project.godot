@@ -24,6 +24,10 @@ Global="*uid://0wbwsr3woybg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Creatures=""
+
 [layer_names]
 
 2d_physics/layer_1="Environment"

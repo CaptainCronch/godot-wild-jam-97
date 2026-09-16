@@ -13,6 +13,7 @@ var body: Body = null
 @export var limb_collider: CollisionPolygon2D
 
 var backwards := false
+var purchasable := false
 
 @export var bonus_joint: RapierPinJoint2D ## This should be connected to the main limb (Node A).
 @export var bonus_limb: RigidBody2D ## The limb which connects to the main limb.

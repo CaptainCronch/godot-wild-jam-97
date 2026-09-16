@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://djy8gc2lyt78x"]
 
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_gojnm"]
+[ext_resource type="Script" uid="uid://dbfd68jw6rnjn" path="res://test_level.gd" id="1_lnbra"]
 [ext_resource type="Script" uid="uid://d0b1scjwbqul7" path="res://sumo_floor.gd" id="1_y646j"]
 [ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://player/creature.tscn" id="2_1c2mv"]
 [ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_4ptq8"]
 [ext_resource type="PackedScene" uid="uid://bwl211rl7kw44" path="res://enemy/ai_component.tscn" id="4_sb12i"]
-[ext_resource type="Script" uid="uid://bnymthhccjw82" path="res://multitarget_camera2d.gd" id="5_sb12i"]
 [ext_resource type="Script" uid="uid://cmlno77ror8sw" path="res://sumo_killer.gd" id="6_gbhdq"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://multitarget_camera_2d.tscn" id="7_lnbra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wagxh"]
 size = Vector2(128, 128)
@@ -14,6 +15,7 @@ size = Vector2(128, 128)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wagxh"]
 
 [node name="TestLevel" type="Node2D" unique_id=1968053387]
+script = ExtResource("1_lnbra")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=2126091349 node_paths=PackedStringArray("polygon2d", "collider")]
 position = Vector2(577, 611)
@@ -46,9 +48,8 @@ ai_comp = NodePath("AIComponent")
 
 [node name="AIComponent" parent="Creature2" unique_id=956151775 instance=ExtResource("4_sb12i")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1140586112]
+[node name="Multitarget Camera2D" parent="." unique_id=514115872 instance=ExtResource("7_lnbra")]
 position = Vector2(576, 324)
-script = ExtResource("5_sb12i")
 
 [node name="SumoKiller" type="Area2D" parent="." unique_id=2102522413]
 position = Vector2(579, 751)
