@@ -1,0 +1,311 @@
+[gd_scene format=3 uid="uid://djy8gc2lyt78x"]
+
+[ext_resource type="Script" uid="uid://dbfd68jw6rnjn" path="res://environment/test_level.gd" id="1_lnbra"]
+[ext_resource type="Script" uid="uid://d0b1scjwbqul7" path="res://environment/sumo_floor.gd" id="1_y646j"]
+[ext_resource type="Texture2D" uid="uid://dvi3ikia2jweq" path="res://environment/arena/arena_sky.png" id="2_tn8km"]
+[ext_resource type="Texture2D" uid="uid://bw1j46cxmlqcb" path="res://environment/arena/arena_wall.png" id="3_86stu"]
+[ext_resource type="Shader" uid="uid://cmmm73r8o2hvs" path="res://environment/arena/sumo_floor.gdshader" id="3_b164j"]
+[ext_resource type="Texture2D" uid="uid://cag31jra7tc3n" path="res://environment/arena/arena_stage_top.png" id="3_swk4c"]
+[ext_resource type="Texture2D" uid="uid://ddemvt5lomoe5" path="res://environment/arena/arena_mouth.png" id="4_86stu"]
+[ext_resource type="Texture2D" uid="uid://cfpnntsmnyuv2" path="res://environment/arena/arena_crowd_seats.png" id="5_nc7t1"]
+[ext_resource type="Texture2D" uid="uid://dh5mgsundfr25" path="res://environment/arena/arena_crowd.png" id="5_o87vi"]
+[ext_resource type="Script" uid="uid://cmlno77ror8sw" path="res://environment/sumo_killer.gd" id="6_gbhdq"]
+[ext_resource type="Texture2D" uid="uid://b8qvlyxtvo8n8" path="res://environment/arena/arena_crowd_face_neutral.png" id="6_xcdmj"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="7_lnbra"]
+[ext_resource type="Texture2D" uid="uid://dyb7oichd5v0f" path="res://environment/arena/arena_border_L.png" id="8_tp43x"]
+[ext_resource type="Texture2D" uid="uid://dvh172ishc3u4" path="res://environment/arena/arena_BGchains.png" id="8_v8n1k"]
+[ext_resource type="Texture2D" uid="uid://crdmkc6npia7n" path="res://environment/arena/arena_cage_chain.png" id="9_k2yc8"]
+[ext_resource type="Texture2D" uid="uid://cjxgm86kuooue" path="res://environment/arena/arena_border_R.png" id="9_v8n1k"]
+[ext_resource type="Texture2D" uid="uid://bbknahnjuffgw" path="res://environment/arena/arena_cage.png" id="10_wkdbi"]
+[ext_resource type="Texture2D" uid="uid://c12sm7mjers1c" path="res://environment/arena/arena_saw.png" id="11_m40vj"]
+[ext_resource type="Texture2D" uid="uid://qkxme62wgi7q" path="res://environment/arena/arena_cage_eyeball.png" id="11_uq5jr"]
+[ext_resource type="Script" uid="uid://dlado8xxry24m" path="res://environment/arena/eye_follow.gd" id="12_a22pp"]
+[ext_resource type="Texture2D" uid="uid://cyalcb51hjdps" path="res://environment/arena/arena_cage_pupil.png" id="12_s3507"]
+[ext_resource type="Texture2D" uid="uid://6l3osg8yiket" path="res://environment/arena/arena_stage.png" id="12_xg1ho"]
+[ext_resource type="Script" uid="uid://tvk6yknu3pr2" path="res://environment/arena/saw_spinner.gd" id="15_tc0xv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wagxh"]
+font_size = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4f0wb"]
+shader = ExtResource("3_b164j")
+shader_parameter/percentage = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wagxh"]
+size = Vector2(1428, 76)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wagxh"]
+
+[node name="TestLevel" type="Node2D" unique_id=1968053387 node_paths=PackedStringArray("left_spawn", "right_spawn", "camera", "color_rect")]
+script = ExtResource("1_lnbra")
+left_spawn = NodePath("LeftSpawn")
+right_spawn = NodePath("RightSpawn")
+camera = NodePath("MultitargetCamera2D")
+color_rect = NodePath("CanvasLayer/ColorRect")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=332931075]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=39561025]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2043890035]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.5
+offset_top = -87.5
+offset_right = 460.5
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOOOOOLLLLL"
+label_settings = SubResource("LabelSettings_wagxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parallax" type="Node2D" parent="." unique_id=1319239231]
+
+[node name="Sky" type="Parallax2D" parent="Parallax" unique_id=1141297367]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(-150.91, -426.985)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Sky" unique_id=395794387]
+texture = ExtResource("2_tn8km")
+centered = false
+
+[node name="Wall" type="Parallax2D" parent="Parallax" unique_id=1089817830]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(-206.675, 418.095)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Wall" unique_id=496759169]
+texture = ExtResource("3_86stu")
+centered = false
+
+[node name="Mouth" type="Parallax2D" parent="Parallax" unique_id=1935084275]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-384.785, -581.216)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mouth" unique_id=997360232]
+texture = ExtResource("4_86stu")
+centered = false
+
+[node name="Crowd" type="Parallax2D" parent="Parallax" unique_id=1787449933]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(1529.26, 411.53)
+
+[node name="Crowd" type="Sprite2D" parent="Parallax/Crowd" unique_id=989818740]
+position = Vector2(0, -100)
+texture = ExtResource("5_o87vi")
+centered = false
+flip_h = true
+
+[node name="Faces" type="Sprite2D" parent="Parallax/Crowd" unique_id=1482444437]
+position = Vector2(0, -82.1)
+texture = ExtResource("6_xcdmj")
+centered = false
+flip_h = true
+
+[node name="Seats" type="Sprite2D" parent="Parallax/Crowd" unique_id=1645139252]
+texture = ExtResource("5_nc7t1")
+centered = false
+flip_h = true
+
+[node name="Chains" type="Parallax2D" parent="Parallax" unique_id=877194965]
+scroll_scale = Vector2(0.7, 0.7)
+
+[node name="Decorative" type="Sprite2D" parent="Parallax/Chains" unique_id=1199082477]
+position = Vector2(0, -59.675)
+texture = ExtResource("8_v8n1k")
+centered = false
+flip_h = true
+
+[node name="CageChain" type="Sprite2D" parent="Parallax/Chains" unique_id=2067751984]
+position = Vector2(588.5, -16)
+texture = ExtResource("9_k2yc8")
+
+[node name="Cage" type="Sprite2D" parent="Parallax/Chains" unique_id=1369934634]
+position = Vector2(589.5, 344)
+texture = ExtResource("10_wkdbi")
+flip_h = true
+
+[node name="Eye" type="Sprite2D" parent="Parallax/Chains" unique_id=1681353650 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(531, 368)
+texture = ExtResource("11_uq5jr")
+script = ExtResource("12_a22pp")
+pupil_spinner = NodePath("PupilSpinner")
+pupil_position = NodePath("PupilSpinner/PupilPosition")
+pupil = NodePath("Pupil")
+
+[node name="PupilSpinner" type="Node2D" parent="Parallax/Chains/Eye" unique_id=208148382]
+
+[node name="PupilPosition" type="Node2D" parent="Parallax/Chains/Eye/PupilSpinner" unique_id=1930748474]
+position = Vector2(3.78, 0)
+
+[node name="Pupil" type="Sprite2D" parent="Parallax/Chains/Eye" unique_id=833120968]
+texture = ExtResource("12_s3507")
+
+[node name="Borders" type="Parallax2D" parent="Parallax" unique_id=1252460278]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Left" type="Sprite2D" parent="Parallax/Borders" unique_id=2030613979]
+position = Vector2(-711, -399)
+texture = ExtResource("8_tp43x")
+centered = false
+
+[node name="Right" type="Sprite2D" parent="Parallax/Borders" unique_id=1423557920]
+position = Vector2(1614, -399)
+texture = ExtResource("9_v8n1k")
+centered = false
+
+[node name="Saws" type="Parallax2D" parent="Parallax" unique_id=64014742]
+z_index = 1
+scroll_scale = Vector2(1.5, 1.5)
+script = ExtResource("15_tc0xv")
+
+[node name="Saw1" type="Sprite2D" parent="Parallax/Saws" unique_id=63294067]
+position = Vector2(330, 1080.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw2" type="Sprite2D" parent="Parallax/Saws" unique_id=1146043273]
+position = Vector2(67, 1139.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw3" type="Sprite2D" parent="Parallax/Saws" unique_id=363491809]
+position = Vector2(-204, 1026.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw4" type="Sprite2D" parent="Parallax/Saws" unique_id=1570071746]
+position = Vector2(565, 1113.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw5" type="Sprite2D" parent="Parallax/Saws" unique_id=1229302705]
+position = Vector2(794, 1172.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw6" type="Sprite2D" parent="Parallax/Saws" unique_id=47285796]
+position = Vector2(1084, 1146.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw7" type="Sprite2D" parent="Parallax/Saws" unique_id=1684210618]
+position = Vector2(1350, 1094.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw8" type="Sprite2D" parent="Parallax/Saws" unique_id=87493687]
+position = Vector2(1595, 1191.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw9" type="Sprite2D" parent="Parallax/Saws" unique_id=1406307374]
+position = Vector2(1769, 1123.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw10" type="Sprite2D" parent="Parallax/Saws" unique_id=1839875172]
+position = Vector2(2002, 1109.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw11" type="Sprite2D" parent="Parallax/Saws" unique_id=1177205103]
+position = Vector2(2209, 970.5)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw12" type="Sprite2D" parent="Parallax/Saws" unique_id=1167134968]
+position = Vector2(2322, 1215)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw13" type="Sprite2D" parent="Parallax/Saws" unique_id=335386914]
+position = Vector2(-271, 1257)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw14" type="Sprite2D" parent="Parallax/Saws" unique_id=1265236972]
+position = Vector2(255, 1337)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw15" type="Sprite2D" parent="Parallax/Saws" unique_id=545834056]
+position = Vector2(1384, 1344)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw16" type="Sprite2D" parent="Parallax/Saws" unique_id=251020750]
+position = Vector2(1912, 1382)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw17" type="Sprite2D" parent="Parallax/Saws" unique_id=255366172]
+position = Vector2(910, 1425)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw18" type="Sprite2D" parent="Parallax/Saws" unique_id=1408923353]
+position = Vector2(585, 1411)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw19" type="Sprite2D" parent="Parallax/Saws" unique_id=997503188]
+position = Vector2(-37, 1390)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw20" type="Sprite2D" parent="Parallax/Saws" unique_id=299332236]
+position = Vector2(2116, 1300)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw21" type="Sprite2D" parent="Parallax/Saws" unique_id=76472035]
+position = Vector2(1661, 1413)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw22" type="Sprite2D" parent="Parallax/Saws" unique_id=1061392077]
+position = Vector2(1199, 1378)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw23" type="Sprite2D" parent="Parallax/Saws" unique_id=1892108685]
+position = Vector2(-427, 1101)
+texture = ExtResource("11_m40vj")
+
+[node name="Saw24" type="Sprite2D" parent="Parallax/Saws" unique_id=1596306599]
+position = Vector2(2463, 1038)
+texture = ExtResource("11_m40vj")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=2126091349 node_paths=PackedStringArray("sprite", "collider")]
+position = Vector2(960, 660)
+script = ExtResource("1_y646j")
+sprite = NodePath("Shrinker")
+collider = NodePath("CollisionShape2D")
+
+[node name="Base" type="Sprite2D" parent="Floor" unique_id=191674823]
+position = Vector2(0, 305)
+texture = ExtResource("12_xg1ho")
+
+[node name="Shrinker" type="Sprite2D" parent="Floor" unique_id=1325486523]
+material = SubResource("ShaderMaterial_4f0wb")
+texture = ExtResource("3_swk4c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1654642194]
+visible = false
+shape = SubResource("RectangleShape2D_wagxh")
+
+[node name="SumoKiller" type="Area2D" parent="." unique_id=2102522413]
+z_index = 2
+position = Vector2(960, 1024)
+collision_mask = 7
+script = ExtResource("6_gbhdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SumoKiller" unique_id=1464010031]
+shape = SubResource("WorldBoundaryShape2D_wagxh")
+
+[node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("7_lnbra")]
+position = Vector2(960, 540)
+limit_left = -250
+limit_top = -150
+limit_right = 2250
+limit_bottom = 1200
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="LeftSpawn" type="Marker2D" parent="." unique_id=1642029024]
+position = Vector2(639.36, 540)
+
+[node name="RightSpawn" type="Marker2D" parent="." unique_id=1535748919]
+position = Vector2(1278.72, 540)
+
+[connection signal="body_entered" from="SumoKiller" to="SumoKiller" method="_on_body_entered"]

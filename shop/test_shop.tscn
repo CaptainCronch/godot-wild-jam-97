@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bjviy5ac43lwa"]
 
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_4xkh5"]
-[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://player/creature.tscn" id="1_7pbu7"]
+[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://creature/creature.tscn" id="1_7pbu7"]
 [ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
-[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://multitarget_camera_2d.tscn" id="1_whj44"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="1_whj44"]
 [ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_egen4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]

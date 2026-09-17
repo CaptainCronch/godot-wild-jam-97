@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Behavior" format=3 uid="uid://boxoonh0qnoxs"]
+
+[ext_resource type="Script" uid="uid://b8tf2a06dmvjx" path="res://enemy/behavior.gd" id="1_1cykr"]
+
+[resource]
+script = ExtResource("1_1cykr")
+id = "sumo_test_victory"
+limb_relax_duration = [0.5, 0.1, 0.1, 0.3, 0.0]
+limb_contract_duration = [0.3, 5.0, 5.0, 0.3, 0.0]
+randomness = [1.0, 0.0, 0.0, 0.5, 0.0]
+metadata/_custom_type_script = "uid://b8tf2a06dmvjx"

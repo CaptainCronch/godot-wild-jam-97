@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Wild Jam #97"
-run/main_scene="res://test_level.tscn"
+run/main_scene="res://environment/arena/test_level.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,22 @@ Global="*uid://0wbwsr3woybg"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://creature/": "orange",
+"res://enemy/": "yellow",
+"res://environment/": "green",
+"res://player/": "teal",
+"res://shop/": "blue"
+}
 
 [global_group]
 
@@ -39,6 +53,7 @@ Creatures=""
 2d/physics_engine="Rapier2D"
 3d/physics_engine="Jolt Physics"
 2d/default_gravity=490.0
+2d/default_angular_damp=2.0
 
 [rendering]
 
