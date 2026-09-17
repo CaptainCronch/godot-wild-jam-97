@@ -13,7 +13,6 @@ var body: Body = null
 @export var limb_collider: CollisionPolygon2D
 
 var backwards := false
-var purchasable := false
 
 @export var bonus_joint: RapierPinJoint2D ## This should be connected to the main limb (Node A).
 @export var bonus_limb: RigidBody2D ## The limb which connects to the main limb.
@@ -22,6 +21,7 @@ var purchasable := false
 
 
 func _ready() -> void:
+	limb.connect("input_event", on_input_event)
 	var gravity := 1.0
 	if not limb_stats.slot == LimbStats.Slot.ARM and \
 			not limb_stats.slot == LimbStats.Slot.LEG and \
@@ -137,3 +137,8 @@ static func setup_joint(pin_joint: RapierPinJoint2D, ## So you don't have to mes
 	
 	pin_joint.motor_position_target_angle = stats.angular_limit_lower
 	#pin_joint.motor_position_target_angle = (stats.angular_limit_lower + stats.angular_limit_upper) / 2.0
+
+func on_input_event(_viewport : Node, event : InputEvent, _idx : int) -> void:
+		print("touch!")
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			queue_free()

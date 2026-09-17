@@ -36,6 +36,7 @@ func _ready() -> void:
 
 
 func die() -> void:
+	Global.loser = body
 	died.emit(self)
 	if is_instance_valid(ai_comp): ai_comp.dead = true
 	var limbs := body.limbs

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://creature/creature.tscn" id="1_7pbu7"]
 [ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
 [ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="1_whj44"]
+[ext_resource type="Texture2D" uid="uid://c1v76dl8ae5mk" path="res://shop/shop_mockup.png" id="2_ydxqm"]
 [ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_egen4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
@@ -11,6 +12,12 @@ size = Vector2(128, 128)
 
 [node name="TestShop" type="Node2D" unique_id=366313725]
 script = ExtResource("1_aq468")
+
+[node name="ShopMockup" type="Sprite2D" parent="." unique_id=1276713185]
+self_modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(592, 247.99997)
+scale = Vector2(1.5934325, 1.5934325)
+texture = ExtResource("2_ydxqm")
 
 [node name="Multitarget Camera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
 position = Vector2(576, 321)
@@ -39,14 +46,26 @@ scale = Vector2(9.015, 0.565)
 shape = SubResource("RectangleShape2D_mdtab")
 
 [node name="ShopBasket" type="StaticBody2D" parent="." unique_id=2128236359]
-position = Vector2(576, 304)
+position = Vector2(344, 304)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket" unique_id=2094445738]
-scale = Vector2(3.028409, 1.3413461)
-polygon = PackedVector2Array(-64, 0, -64, 64, 64, 64, 64, 0, 88, 0, 88, 104, -88, 104, -88, 0)
+position = Vector2(0, 40)
+scale = Vector2(1.6606805, 1)
+polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -172.94063, 82.20001, -172.94063, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -172.94063)
+
+[node name="ShopBasket2" type="StaticBody2D" parent="." unique_id=17030764]
+position = Vector2(792, 304)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket2" unique_id=1692156038]
+position = Vector2(0, 40)
+scale = Vector2(1.6606805, 1)
+polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -172.94063, 82.20001, -172.94063, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -172.94063)
 
 [node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
-position = Vector2(577, 307)
+position = Vector2(784, 56)
+
+[node name="LoserLimbSpawner" type="Marker2D" parent="." unique_id=1325920964]
+position = Vector2(320, 56)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1922543435]
 wait_time = 0.5

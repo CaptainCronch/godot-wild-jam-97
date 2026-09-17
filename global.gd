@@ -3,6 +3,9 @@ extends Node
 var sumo_level: SumoLevel
 var player: Creature
 var camera: MultitargetCamera2D
+var loser: Body
+
+const CREATURE = preload("uid://cehmoa2dw3qj0")
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
