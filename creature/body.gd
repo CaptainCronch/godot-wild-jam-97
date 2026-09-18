@@ -50,11 +50,15 @@ func _physics_process(delta: float) -> void:
 	#body.angular_velocity = clampf(body.angular_velocity, -max_angular_velocity, max_angular_velocity)
 
 
-func add_limb(limb_scene: PackedScene, limb_stats: LimbStats = null, bonus_stats: LimbStats = null) -> void:
+func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: LimbStats = null, bonus_stats: LimbStats = null) -> void:
 	var limb: Limb = limb_scene.instantiate()
 	if flipped: limb.flip()
-	if is_instance_valid(limb_stats): limb.limb_stats = limb_stats
-	if is_instance_valid(bonus_stats): limb.bonus_stats = bonus_stats
+	#if is_instance_valid(limb_stats): limb.limb_stats = limb_stats
+	#if is_instance_valid(bonus_stats): limb.bonus_stats = bonus_stats
+	if not key.is_empty():
+		limb.limb_stats.key = key
+		if is_instance_valid(limb.bonus_stats): limb.bonus_stats.key = key
+	
 	var anchor_pos := positions[limb.limb_stats.slot].global_position
 	limb.limb_joint = joints[limb.limb_stats.slot]
 	

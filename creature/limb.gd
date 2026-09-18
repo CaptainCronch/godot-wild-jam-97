@@ -1,18 +1,22 @@
 extends Node2D
 class_name Limb
 
+const SHOP_BITS: Array[int] = [8, 9]
+
 @export var limb_stats: LimbStats ## Main limb stats.
 @export var bonus_stats: LimbStats = limb_stats ## Stats of the limb that connects to the main limb. Leave empty to copy main limb stats.
 #@export var flip_bonus := false ## If enabled, bonus limbs will rotate towards the opposite angular limit.
 
+@export var halo: Sprite2D
+
 var body: Body = null
+var backwards := false
+var in_shop := false
 
 @export var limb_joint: RapierPinJoint2D ## This should be connected to the body (Node A). Starts empty.
 @export var limb: RigidBody2D ## The limb which connects to the body.
 @export var limb_polygon: Polygon2D
 @export var limb_collider: CollisionPolygon2D
-
-var backwards := false
 
 @export var bonus_joint: RapierPinJoint2D ## This should be connected to the main limb (Node A).
 @export var bonus_limb: RigidBody2D ## The limb which connects to the main limb.
@@ -21,7 +25,8 @@ var backwards := false
 
 
 func _ready() -> void:
-	limb.connect("input_event", on_input_event)
+	#limb.connect("input_event", on_input_event)
+	halo.hide()
 	var gravity := 1.0
 	if not limb_stats.slot == LimbStats.Slot.ARM and \
 			not limb_stats.slot == LimbStats.Slot.LEG and \
@@ -30,32 +35,43 @@ func _ready() -> void:
 	limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
 	limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	limb.gravity_scale = gravity
+	
+	if in_shop:
+		limb.collision_layer = SHOP_BITS[0]
+		limb.collision_mask = SHOP_BITS[1]
+	
 	#if not limb_stats.slot == LimbStats.Slot.LEG and not limb_stats.slot == LimbStats.Slot.ARM:
 		#limb.collision_mask = 1
 	if not is_instance_valid(bonus_limb): return
 	bonus_limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
 	bonus_limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	bonus_limb.gravity_scale = gravity
+	
+	if in_shop:
+		bonus_limb.collision_layer = SHOP_BITS[0]
+		bonus_limb.collision_mask = SHOP_BITS[1]
+	
 	Limb.setup_joint(bonus_joint, bonus_stats)
-	#if not bonus_stats.slot == LimbStats.Slot.LEG and not bonus_stats.slot == LimbStats.Slot.ARM:
-		#bonus_limb.collision_mask = 1
-	#if not is_instance_valid(limb_joint): return
-	#limb_joint.node_b = limb_joint.get_path_to(limb) # Bonus limb should already be set up in the limb scene.
+
+
+func _process(_delta: float) -> void:
+	halo.global_rotation = 0.0
 
 
 func flex(is_flexed: bool) -> void:
 	var direction := is_flexed != backwards # XOR
 	
-	if direction != limb_stats.flip_orientation:
-		limb_joint.motor_position_target_angle = limb_stats.angular_limit_upper
-	else:
-		limb_joint.motor_position_target_angle = limb_stats.angular_limit_lower
+	if is_instance_valid(limb_joint):
+		if direction != limb_stats.flip_orientation:
+			limb_joint.motor_position_target_angle = limb_stats.angular_limit_upper
+		else:
+			limb_joint.motor_position_target_angle = limb_stats.angular_limit_lower
 	
-	if not is_instance_valid(bonus_limb): return
-	if direction != bonus_stats.flip_orientation:
-		bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_upper
-	else:
-		bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_lower
+	if is_instance_valid(bonus_limb):
+		if direction != bonus_stats.flip_orientation:
+			bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_upper
+		else:
+			bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_lower
 
 
 func flip() -> void:
@@ -124,6 +140,18 @@ func reverse_points(points: PackedVector2Array) -> PackedVector2Array:
 	return copy
 
 
+func select(is_selected: bool) -> void:
+	if is_selected:
+		z_index = 1
+		halo.show()
+		Global.camera.add_target(limb)
+	else:
+		z_index = 0
+		halo.hide()
+		Global.camera.remove_target(limb)
+	flex(is_selected)
+
+
 static func setup_joint(pin_joint: RapierPinJoint2D, ## So you don't have to mess with the individual joints when creating limbs.
 		stats: LimbStats) -> void:
 		#start_angle: float = stats.angular_limit_lower) -> void:
@@ -135,10 +163,12 @@ static func setup_joint(pin_joint: RapierPinJoint2D, ## So you don't have to mes
 	pin_joint.angular_limit_lower = stats.angular_limit_lower
 	pin_joint.angular_limit_upper = stats.angular_limit_upper
 	
-	pin_joint.motor_position_target_angle = stats.angular_limit_lower
+	#pin_joint.motor_position_target_angle = stats.angular_limit_lower
+	pin_joint.motor_position_target_angle = stats.angular_limit_upper if stats.flip_orientation else stats.angular_limit_lower
 	#pin_joint.motor_position_target_angle = (stats.angular_limit_lower + stats.angular_limit_upper) / 2.0
 
-func on_input_event(_viewport : Node, event : InputEvent, _idx : int) -> void:
-		print("touch!")
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			queue_free()
+
+#func on_input_event(_viewport: Node, event: InputEvent, _idx: int) -> void:
+		#print("touch!")
+		#if event.button_index == MOUSE_BUTTON_LEFT:
+			#queue_free()

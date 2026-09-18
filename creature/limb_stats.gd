@@ -30,3 +30,9 @@ const KEYS := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func _init() -> void:
 	resource_local_to_scene = true
+
+
+func pick_random_key() -> void:
+	var reduced_keys := KEYS.remove_chars(Global.picked_keys)
+	key = reduced_keys.substr(randi_range(0, reduced_keys.length() - 1), 1)
+	Global.picked_keys += key

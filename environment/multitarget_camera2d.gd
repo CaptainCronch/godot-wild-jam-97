@@ -44,10 +44,10 @@ func _process(delta: float) -> void:
 	# For debug
 	#get_parent().draw_cam_rect(r)
 
-func add_target(t) -> void:
+func add_target(t: Node2D) -> void:
 	if not t in targets:
 		targets.append(t)
 
-func remove_target(t) -> void:
+func remove_target(t: Node2D) -> void:
 	#if t in targets:
 	targets.erase(t)

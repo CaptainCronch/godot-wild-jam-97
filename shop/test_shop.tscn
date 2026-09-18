@@ -1,34 +1,62 @@
 [gd_scene format=3 uid="uid://bjviy5ac43lwa"]
 
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_4xkh5"]
-[ext_resource type="PackedScene" uid="uid://cehmoa2dw3qj0" path="res://creature/creature.tscn" id="1_7pbu7"]
 [ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
 [ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="1_whj44"]
 [ext_resource type="Texture2D" uid="uid://c1v76dl8ae5mk" path="res://shop/shop_mockup.png" id="2_ydxqm"]
-[ext_resource type="PackedScene" uid="uid://c1q66rs8180kh" path="res://player/input_component.tscn" id="3_egen4"]
+[ext_resource type="Script" uid="uid://cuum7unipagtj" path="res://shop/shop_button.gd" id="5_aq468"]
+[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="6_ydxqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
 size = Vector2(128, 128)
 
-[node name="TestShop" type="Node2D" unique_id=366313725]
+[sub_resource type="GDScript" id="GDScript_wagxh"]
+resource_name = "CameraTargetAddShopkeeper"
+script/source = "extends Marker2D
+
+
+func _ready() -> void:
+	Global.camera.add_target(self)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wagxh"]
+font_size = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vck1u"]
+shader = ExtResource("6_ydxqm")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.75
+shader_parameter/cut_inner_radius = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_4wu5g"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xarap"]
+gradient = SubResource("Gradient_4wu5g")
+width = 128
+height = 128
+
+[node name="TestShop" type="Node2D" unique_id=366313725 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_aq468")
+camera = NodePath("MultitargetCamera2D")
 
 [node name="ShopMockup" type="Sprite2D" parent="." unique_id=1276713185]
-self_modulate = Color(1, 1, 1, 0.078431375)
+self_modulate = Color(1, 1, 1, 0.19607843)
 position = Vector2(592, 247.99997)
 scale = Vector2(1.5934325, 1.5934325)
 texture = ExtResource("2_ydxqm")
 
-[node name="Multitarget Camera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
+[node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
 position = Vector2(576, 321)
 move_speed = 1.0
 max_zoom = 1.6
 min_zoom = 1.0
-
-[node name="Creature" parent="." unique_id=2117701955 instance=ExtResource("1_7pbu7")]
-position = Vector2(161, 445)
-
-[node name="InputComponent" parent="Creature" unique_id=697786358 instance=ExtResource("3_egen4")]
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1869619769]
 position = Vector2(577, 611)
@@ -47,6 +75,8 @@ shape = SubResource("RectangleShape2D_mdtab")
 
 [node name="ShopBasket" type="StaticBody2D" parent="." unique_id=2128236359]
 position = Vector2(344, 304)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket" unique_id=2094445738]
 position = Vector2(0, 40)
@@ -55,6 +85,8 @@ polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.2000
 
 [node name="ShopBasket2" type="StaticBody2D" parent="." unique_id=17030764]
 position = Vector2(792, 304)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket2" unique_id=1692156038]
 position = Vector2(0, 40)
@@ -67,8 +99,40 @@ position = Vector2(784, 56)
 [node name="LoserLimbSpawner" type="Marker2D" parent="." unique_id=1325920964]
 position = Vector2(320, 56)
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=1922543435]
-wait_time = 0.5
-autostart = true
+[node name="ShopkeeperPos" type="Marker2D" parent="." unique_id=1233649979]
+position = Vector2(543, 158)
+script = SubResource("GDScript_wagxh")
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[node name="CreatureSpawnPos" type="Marker2D" parent="." unique_id=2079176995]
+position = Vector2(561, 501)
+
+[node name="Next" type="Label" parent="." unique_id=1892265065 node_paths=PackedStringArray("halo")]
+offset_left = 1025.0
+offset_top = 417.0
+offset_right = 1106.0
+offset_bottom = 462.0
+text = "NEXT"
+label_settings = SubResource("LabelSettings_wagxh")
+script = ExtResource("5_aq468")
+halo = NodePath("Halo")
+
+[node name="Halo" type="Sprite2D" parent="Next" unique_id=1324772268]
+material = SubResource("ShaderMaterial_vck1u")
+position = Vector2(40, 23)
+texture = SubResource("GradientTexture2D_xarap")
+
+[node name="Reroll" type="Label" parent="." unique_id=1140248194 node_paths=PackedStringArray("halo")]
+offset_left = 29.0
+offset_top = 400.0
+offset_right = 148.0
+offset_bottom = 445.0
+text = "REROLL"
+label_settings = SubResource("LabelSettings_wagxh")
+script = ExtResource("5_aq468")
+is_reroll = true
+halo = NodePath("Halo")
+
+[node name="Halo" type="Sprite2D" parent="Reroll" unique_id=1034135845]
+material = SubResource("ShaderMaterial_vck1u")
+position = Vector2(59, 25)
+texture = SubResource("GradientTexture2D_xarap")

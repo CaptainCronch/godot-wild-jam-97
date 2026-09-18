@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dnijoyskehlg3" path="res://creature/creature.gd" id="1_km2ai"]
 [ext_resource type="Shader" uid="uid://b51kj50glvmno" path="res://creature/canvas_group_outline.gdshader" id="1_sf582"]
-[ext_resource type="PackedScene" uid="uid://brbv6c4bk75mp" path="res://creature/limbs/test_body.tscn" id="2_sf582"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_km2ai"]
 shader = ExtResource("1_sf582")
@@ -12,6 +11,4 @@ shader_parameter/line_thickness = 1
 [node name="Creature" type="CanvasGroup" unique_id=893333250 node_paths=PackedStringArray("body")]
 material = SubResource("ShaderMaterial_km2ai")
 script = ExtResource("1_km2ai")
-body = NodePath("TestBody")
-
-[node name="TestBody" parent="." unique_id=997076432 instance=ExtResource("2_sf582")]
+body = NodePath("")

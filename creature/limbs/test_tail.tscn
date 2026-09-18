@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://xrsxb8niu4j3" path="res://creature/limb.gd" id="1_18ddw"]
 [ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_7cfd6"]
 [ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_trngq"]
+[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_7cfd6"]
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_p56tc"]
 
 [sub_resource type="Resource" id="Resource_wagxh"]
@@ -17,9 +18,30 @@ flip_orientation = true
 key = "J"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
-[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("limb", "limb_polygon", "limb_collider")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ky5d"]
+shader = ExtResource("4_7cfd6")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.75
+shader_parameter/cut_inner_radius = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_yarrp"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k3did"]
+gradient = SubResource("Gradient_yarrp")
+width = 128
+height = 128
+
+[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider")]
 script = ExtResource("1_18ddw")
 limb_stats = SubResource("Resource_wagxh")
+halo = NodePath("Tail/Halo")
 limb = NodePath("Tail")
 limb_polygon = NodePath("Tail/Polygon2D")
 limb_collider = NodePath("Tail/CollisionPolygon2D")
@@ -28,6 +50,11 @@ limb_collider = NodePath("Tail/CollisionPolygon2D")
 collision_layer = 2
 mass = 0.1
 physics_material_override = ExtResource("3_trngq")
+
+[node name="Halo" type="Sprite2D" parent="Tail" unique_id=896714975]
+material = SubResource("ShaderMaterial_4ky5d")
+position = Vector2(-22, 1)
+texture = SubResource("GradientTexture2D_k3did")
 
 [node name="Polygon2D" type="Polygon2D" parent="Tail" unique_id=79614922]
 position = Vector2(-29, -3)
