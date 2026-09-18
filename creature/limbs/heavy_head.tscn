@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cwa5e24uhohgp"]
+
+[ext_resource type="Script" uid="uid://xrsxb8niu4j3" path="res://creature/limb.gd" id="1_m46gd"]
+[ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_ypexg"]
+[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_3uwxk"]
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_llmwo"]
+[ext_resource type="Texture2D" uid="uid://bw7iix0rvxt7a" path="res://creature/limbs/art/heavy_jaw.png" id="5_m46gd"]
+[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="6_her6q"]
+[ext_resource type="Texture2D" uid="uid://bes371couri6j" path="res://creature/limbs/art/heavy_skull.png" id="7_ypexg"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_nxqpv"]
+
+[sub_resource type="Resource" id="Resource_wrvxj"]
+script = ExtResource("2_ypexg")
+slot = 0
+stiffness = 50000.0
+damping = 1000.0
+angular_limit_lower = -0.2617993877991494
+flip_orientation = true
+key = "K"
+metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
+
+[sub_resource type="Resource" id="Resource_picer"]
+script = ExtResource("2_ypexg")
+slot = 0
+stiffness = 100000.0
+damping = 5000.0
+angular_limit_lower = 0.0
+angular_limit_upper = 0.2617993877991494
+key = "K"
+metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vm5so"]
+shader = ExtResource("6_her6q")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.75
+shader_parameter/cut_inner_radius = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_4wu5g"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m048s"]
+gradient = SubResource("Gradient_4wu5g")
+width = 128
+height = 128
+
+[node name="HeavyHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
+script = ExtResource("1_m46gd")
+limb_stats = SubResource("Resource_wrvxj")
+bonus_stats = SubResource("Resource_picer")
+halo = NodePath("Skull/Halo")
+limb = NodePath("Skull")
+limb_polygon = NodePath("Skull/Polygon2D")
+limb_collider = NodePath("Skull/CollisionPolygon2D")
+limb_sprite = NodePath("Skull/SkullSprite")
+bonus_joint = NodePath("JawJoint")
+bonus_limb = NodePath("Jaw")
+bonus_polygon = NodePath("Jaw/Polygon2D")
+bonus_collider = NodePath("Jaw/CollisionPolygon2D")
+bonus_sprite = NodePath("Jaw/JawSprite")
+
+[node name="Jaw" type="RigidBody2D" parent="." unique_id=1735232917]
+collision_layer = 2
+collision_mask = 5
+mass = 0.2
+physics_material_override = ExtResource("3_3uwxk")
+
+[node name="Polygon2D" type="Polygon2D" parent="Jaw" unique_id=951431591]
+visible = false
+position = Vector2(7.280258, -12.500553)
+texture = ExtResource("4_llmwo")
+texture_offset = Vector2(22.005, 38.55)
+texture_scale = Vector2(1.75, 1.75)
+texture_rotation = 0.06632251
+polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
+
+[node name="JawSprite" type="Sprite2D" parent="Jaw" unique_id=1660134623]
+position = Vector2(15.651609, -8.633984)
+scale = Vector2(0.240094, 0.240094)
+texture = ExtResource("5_m46gd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jaw" unique_id=1710538441]
+position = Vector2(12.25769, 0.492527)
+polygon = PackedVector2Array(-16.25769, 4.507473, 16.74231, 6.507473, 24.74231, 5.507473, 29.74231, 2.507473, 30.74231, 0.507473, 9.74231, 0.507473, 3.7423096, -1.492527, -0.25769043, -1.492527, -6.2576904, -6.492527, -16.25769, -6.492527, -19.25769, -0.492527)
+
+[node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]
+collision_layer = 2
+collision_mask = 5
+mass = 2.0
+physics_material_override = ExtResource("3_3uwxk")
+
+[node name="Halo" type="Sprite2D" parent="Skull" unique_id=1163732760]
+z_index = -1
+material = SubResource("ShaderMaterial_vm5so")
+position = Vector2(6, -9)
+texture = SubResource("GradientTexture2D_m048s")
+
+[node name="SkullSprite" type="Sprite2D" parent="Skull" unique_id=1634881281]
+position = Vector2(15.651609, -8.633984)
+scale = Vector2(0.240094, 0.240094)
+texture = ExtResource("7_ypexg")
+
+[node name="Polygon2D" type="Polygon2D" parent="Skull" unique_id=79614922]
+visible = false
+position = Vector2(4.280258, -11.500553)
+texture = ExtResource("4_llmwo")
+texture_offset = Vector2(22.005, 38.55)
+texture_scale = Vector2(1.75, 1.75)
+texture_rotation = 0.06632251
+polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -9.284725, -17.973104, -7.284725, -19.973104, -0.2847259, -10.973105, 5.21974, -10.347935, 9.21974, -8.347935, 11.21974, -5.3479342, 13.21974, -1.3479346, 14.21974, 3.6520658, 20.21974, 4.6520658, 25.21974, 8.652065, 24.860512, 11.114707, 22.860512, 12.114707, 0.86051154, 11.114707, -1.1394885, 15.114707, -5.780258, 14.652065)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Skull" unique_id=1741999959]
+position = Vector2(4.280258, -11.500553)
+polygon = PackedVector2Array(-8.280258, 16.500553, -17.280258, 10.500553, -17.280258, -6.499447, -14.280258, -10.499447, -6.280258, -11.499447, 32.71974, -9.499447, 36.71974, -7.499447, 39.71974, -2.4994469, 40.71974, 9.500553, 38.71974, 12.500553, 16.719742, 12.500553, 11.719742, 9.500553, 2.7197418, 12.500553, -0.28025818, 17.500553)
+
+[node name="JawJoint" type="PinJoint2D" parent="." unique_id=1462767458]
+position = Vector2(9, 1)
+node_a = NodePath("../Skull")
+node_b = NodePath("../Jaw")
+script = ExtResource("8_nxqpv")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
