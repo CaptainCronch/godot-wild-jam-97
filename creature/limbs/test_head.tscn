@@ -6,6 +6,8 @@
 [ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_4wu5g"]
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_vm5so"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="5_m048s"]
+[ext_resource type="Texture2D" uid="uid://dl2ijjkmpthix" path="res://creature/limbs/art/bluey_jaw.png" id="6_vm5so"]
+[ext_resource type="Texture2D" uid="uid://dfcmpv671sttg" path="res://creature/limbs/art/bluey_skull.png" id="7_m048s"]
 
 [sub_resource type="Resource" id="Resource_wrvxj"]
 script = ExtResource("2_4wu5g")
@@ -47,7 +49,7 @@ gradient = SubResource("Gradient_4wu5g")
 width = 128
 height = 128
 
-[node name="TestHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
+[node name="TestHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_adnh3")
 limb_stats = SubResource("Resource_wrvxj")
 bonus_stats = SubResource("Resource_picer")
@@ -55,10 +57,36 @@ halo = NodePath("Skull/Halo")
 limb = NodePath("Skull")
 limb_polygon = NodePath("Skull/Polygon2D")
 limb_collider = NodePath("Skull/CollisionPolygon2D")
+limb_sprite = NodePath("Skull/SkullSprite")
 bonus_joint = NodePath("JawJoint")
 bonus_limb = NodePath("Jaw")
 bonus_polygon = NodePath("Jaw/Polygon2D")
 bonus_collider = NodePath("Jaw/CollisionPolygon2D")
+bonus_sprite = NodePath("Jaw/JawSprite")
+
+[node name="Jaw" type="RigidBody2D" parent="." unique_id=1735232917]
+collision_layer = 2
+collision_mask = 5
+mass = 0.1
+physics_material_override = ExtResource("3_b7ye0")
+
+[node name="Polygon2D" type="Polygon2D" parent="Jaw" unique_id=951431591]
+visible = false
+position = Vector2(7.280258, -12.500553)
+texture = ExtResource("4_vm5so")
+texture_offset = Vector2(22.005, 38.55)
+texture_scale = Vector2(1.75, 1.75)
+texture_rotation = 0.06632251
+polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
+
+[node name="JawSprite" type="Sprite2D" parent="Jaw" unique_id=1660134623]
+position = Vector2(12, -14)
+scale = Vector2(0.240094, 0.240094)
+texture = ExtResource("6_vm5so")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jaw" unique_id=1710538441]
+position = Vector2(7.280258, -12.500553)
+polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
 
 [node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 2
@@ -67,11 +95,18 @@ mass = 0.5
 physics_material_override = ExtResource("3_b7ye0")
 
 [node name="Halo" type="Sprite2D" parent="Skull" unique_id=1163732760]
+z_index = -1
 material = SubResource("ShaderMaterial_vm5so")
 position = Vector2(6, -9)
 texture = SubResource("GradientTexture2D_m048s")
 
+[node name="SkullSprite" type="Sprite2D" parent="Skull" unique_id=1634881281]
+position = Vector2(12, -14)
+scale = Vector2(0.240094, 0.240094)
+texture = ExtResource("7_m048s")
+
 [node name="Polygon2D" type="Polygon2D" parent="Skull" unique_id=79614922]
+visible = false
 position = Vector2(4.280258, -11.500553)
 texture = ExtResource("4_vm5so")
 texture_offset = Vector2(22.005, 38.55)
@@ -82,24 +117,6 @@ polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.28472
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Skull" unique_id=1741999959]
 position = Vector2(4.280258, -11.500553)
 polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -9.284725, -17.973104, -7.284725, -19.973104, -0.2847259, -10.973105, 5.21974, -10.347935, 9.21974, -8.347935, 11.21974, -5.3479342, 13.21974, -1.3479346, 14.21974, 3.6520658, 20.21974, 4.6520658, 25.21974, 8.652065, 24.860512, 11.114707, 22.860512, 12.114707, 0.86051154, 11.114707, -1.1394885, 15.114707, -5.780258, 14.652065)
-
-[node name="Jaw" type="RigidBody2D" parent="." unique_id=1735232917]
-collision_layer = 2
-collision_mask = 5
-mass = 0.1
-physics_material_override = ExtResource("3_b7ye0")
-
-[node name="Polygon2D" type="Polygon2D" parent="Jaw" unique_id=951431591]
-position = Vector2(7.280258, -12.500553)
-texture = ExtResource("4_vm5so")
-texture_offset = Vector2(22.005, 38.55)
-texture_scale = Vector2(1.75, 1.75)
-texture_rotation = 0.06632251
-polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jaw" unique_id=1710538441]
-position = Vector2(7.280258, -12.500553)
-polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
 
 [node name="JawJoint" type="PinJoint2D" parent="." unique_id=1462767458]
 node_a = NodePath("../Skull")

@@ -6,6 +6,8 @@
 [ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_5gj5h"]
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_ymljb"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="5_aek7g"]
+[ext_resource type="Texture2D" uid="uid://j6gdnc4d8wxp" path="res://creature/limbs/art/bluey_upper_leg.png" id="6_ymljb"]
+[ext_resource type="Texture2D" uid="uid://o7fh3v4r57p5" path="res://creature/limbs/art/bluey_lower_leg.png" id="7_aek7g"]
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_5gj5h")
@@ -45,7 +47,7 @@ gradient = SubResource("Gradient_jeuh4")
 width = 128
 height = 128
 
-[node name="TestLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
+[node name="TestLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_scxij")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
@@ -53,10 +55,12 @@ halo = NodePath("Thigh/Halo")
 limb = NodePath("Thigh")
 limb_polygon = NodePath("Thigh/Polygon2D")
 limb_collider = NodePath("Thigh/CollisionPolygon2D")
+limb_sprite = NodePath("Thigh/ThighSprite")
 bonus_joint = NodePath("LegJoint")
 bonus_limb = NodePath("Calf")
 bonus_polygon = NodePath("Calf/Polygon2D")
 bonus_collider = NodePath("Calf/CollisionPolygon2D")
+bonus_sprite = NodePath("Calf/CalfSprite")
 
 [node name="Thigh" type="RigidBody2D" parent="." unique_id=487199005]
 collision_layer = 2
@@ -69,13 +73,20 @@ position = Vector2(0, 9)
 texture = SubResource("GradientTexture2D_jdx4g")
 
 [node name="Polygon2D" type="Polygon2D" parent="Thigh" unique_id=1764561574]
+visible = false
 texture = ExtResource("4_ymljb")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
 texture_rotation = -0.37350047
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
+[node name="ThighSprite" type="Sprite2D" parent="Thigh" unique_id=623202331]
+position = Vector2(1, 9)
+scale = Vector2(0.2064698, 0.2064698)
+texture = ExtResource("6_ymljb")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Thigh" unique_id=829456843]
+visible = false
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
 [node name="Calf" type="RigidBody2D" parent="." unique_id=1563005039]
@@ -85,6 +96,7 @@ mass = 0.5
 physics_material_override = ExtResource("3_1xu3b")
 
 [node name="Polygon2D" type="Polygon2D" parent="Calf" unique_id=1804474107]
+visible = false
 texture = ExtResource("4_ymljb")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
@@ -92,7 +104,13 @@ texture_rotation = -0.37350047
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Calf" unique_id=1884480031]
+visible = false
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
+
+[node name="CalfSprite" type="Sprite2D" parent="Calf" unique_id=497793253]
+position = Vector2(1, 10)
+scale = Vector2(0.2252059, 0.2252059)
+texture = ExtResource("7_aek7g")
 
 [node name="LegJoint" type="PinJoint2D" parent="." unique_id=11654315]
 position = Vector2(-1, 19)

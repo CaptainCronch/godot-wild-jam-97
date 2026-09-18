@@ -55,8 +55,8 @@ texture = ExtResource("2_ydxqm")
 [node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
 position = Vector2(576, 321)
 move_speed = 1.0
-max_zoom = 1.6
-min_zoom = 1.0
+max_zoom = 0.5
+min_zoom = 0.1
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1869619769]
 position = Vector2(577, 611)
@@ -94,10 +94,10 @@ scale = Vector2(1.6606805, 1)
 polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -172.94063, 82.20001, -172.94063, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -172.94063)
 
 [node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
-position = Vector2(784, 56)
+position = Vector2(320, 56)
 
 [node name="LoserLimbSpawner" type="Marker2D" parent="." unique_id=1325920964]
-position = Vector2(320, 56)
+position = Vector2(784, 56)
 
 [node name="ShopkeeperPos" type="Marker2D" parent="." unique_id=1233649979]
 position = Vector2(543, 158)

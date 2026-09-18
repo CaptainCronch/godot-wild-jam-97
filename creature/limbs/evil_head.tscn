@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://djo0mo0kshkh1"]
+
+[ext_resource type="PackedScene" uid="uid://xj4exedc2frc" path="res://creature/limbs/test_head.tscn" id="1_2ure1"]
+[ext_resource type="Texture2D" uid="uid://6swof7t5hk88" path="res://creature/limbs/art/evil_jaw.png" id="2_a2dxh"]
+[ext_resource type="Texture2D" uid="uid://cur52glnvlbws" path="res://creature/limbs/art/evil_skull.png" id="3_cif88"]
+
+[node name="EvilHead" unique_id=1712427213 instance=ExtResource("1_2ure1")]
+
+[node name="JawSprite" parent="Jaw" parent_id_path=PackedInt32Array(1735232917) index="1" unique_id=1660134623]
+texture = ExtResource("2_a2dxh")
+
+[node name="SkullSprite" parent="Skull" parent_id_path=PackedInt32Array(997076432) index="1" unique_id=1634881281]
+texture = ExtResource("3_cif88")

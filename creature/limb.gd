@@ -17,11 +17,13 @@ var in_shop := false
 @export var limb: RigidBody2D ## The limb which connects to the body.
 @export var limb_polygon: Polygon2D
 @export var limb_collider: CollisionPolygon2D
+@export var limb_sprite: Sprite2D
 
 @export var bonus_joint: RapierPinJoint2D ## This should be connected to the main limb (Node A).
 @export var bonus_limb: RigidBody2D ## The limb which connects to the main limb.
 @export var bonus_polygon: Polygon2D
 @export var bonus_collider: CollisionPolygon2D
+@export var bonus_sprite: Sprite2D
 
 
 func _ready() -> void:
@@ -80,6 +82,9 @@ func flip() -> void:
 	limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	
 	limb.position.x *= -1.0
+	if limb_sprite: 
+		limb_sprite.flip_h = true
+		limb_sprite.position.x *= -1.0
 	limb_polygon.polygon = reverse_points(limb_polygon.polygon)
 	limb_polygon.texture_offset.x *= -1.0
 	#limb_polygon.texture_rotation *= -1.0
@@ -104,6 +109,9 @@ func flip() -> void:
 	bonus_joint.node_b = ""
 	bonus_joint.position.x *= -1.0
 	bonus_joint.node_b = bonus_joint.get_path_to(bonus_limb)
+	if bonus_sprite: 
+		bonus_sprite.flip_h = true
+		bonus_sprite.position.x *= -1.0
 	
 	var bonus_holder := bonus_stats.angular_limit_lower * -1.0
 	bonus_stats.angular_limit_lower = bonus_stats.angular_limit_upper * -1.0

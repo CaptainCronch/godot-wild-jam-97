@@ -9,6 +9,7 @@ const BODIES: Array[String] = [
 ]
 const HEADS: Array[String] = [
 	"res://creature/limbs/test_head.tscn",
+	"res://creature/limbs/evil_head.tscn",
 ]
 const ARMS: Array[String] = [
 	"res://creature/limbs/test_arm.tscn",

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://yp0ud5pmbio5"]
+
+[ext_resource type="PackedScene" uid="uid://brbv6c4bk75mp" path="res://creature/bodies/test_body.tscn" id="1_qjue8"]
+[ext_resource type="PackedScene" uid="uid://dnsl5n65j0isy" path="res://creature/limbs/test_arm.tscn" id="2_4ypd0"]
+[ext_resource type="PackedScene" uid="uid://cj35yvh70kyg6" path="res://creature/limbs/test_leg.tscn" id="3_ciga6"]
+[ext_resource type="PackedScene" uid="uid://xj4exedc2frc" path="res://creature/limbs/test_head.tscn" id="4_ajql2"]
+[ext_resource type="PackedScene" uid="uid://21goo8mxrnyp" path="res://creature/limbs/test_tail.tscn" id="5_83qpi"]
+
+[node name="TestBody" unique_id=1237689098 instance=ExtResource("1_qjue8")]
+
+[node name="TestArm" parent="." index="7" unique_id=132918231 instance=ExtResource("2_4ypd0")]
+position = Vector2(25, 0)
+
+[node name="Halo" parent="TestArm/Shoulder" parent_id_path=PackedInt32Array(132918231, 487199005) index="0" unique_id=389979899]
+visible = false
+
+[node name="TestLeg" parent="." index="8" unique_id=472270695 instance=ExtResource("3_ciga6")]
+position = Vector2(-24, 11)
+
+[node name="Halo" parent="TestLeg/Thigh" parent_id_path=PackedInt32Array(472270695, 487199005) index="0" unique_id=1124052092]
+visible = false
+
+[node name="TestHead" parent="." index="9" unique_id=1712427213 instance=ExtResource("4_ajql2")]
+position = Vector2(24, -19)
+
+[node name="Halo" parent="TestHead/Skull" parent_id_path=PackedInt32Array(1712427213, 997076432) index="0" unique_id=1163732760]
+visible = false
+
+[node name="TestTail" parent="." index="10" unique_id=1977241255 instance=ExtResource("5_83qpi")]
+position = Vector2(-29, -5)
+
+[node name="Halo" parent="TestTail/Tail" parent_id_path=PackedInt32Array(1977241255, 997076432) index="0" unique_id=896714975]
+visible = false
+
+[editable path="TestArm"]
+[editable path="TestLeg"]
+[editable path="TestHead"]
+[editable path="TestTail"]

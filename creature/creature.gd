@@ -39,8 +39,10 @@ func _ready() -> void:
 		for i in Global.player_pieces.size():
 			body.add_limb(load(Global.player_pieces[i]), Global.player_piece_keys[i])
 	else:
-		pass # pick random enemy limbs
-
+		body.add_limb(load(Global.LEGS.pick_random()))
+		body.add_limb(load(Global.ARMS.pick_random()))
+		body.add_limb(load(Global.HEADS.pick_random()))
+		body.add_limb(load(Global.TAILS.pick_random()))
 
 func die() -> void:
 	died.emit(self)

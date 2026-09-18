@@ -4,18 +4,20 @@
 [ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="2_cjrek"]
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="3_qurxk"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="4_7f2ax"]
+[ext_resource type="Texture2D" uid="uid://b5ydq8mq33k1" path="res://creature/limbs/art/bluey_body.png" id="4_cjrek"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w6uit"]
 font_size = 64
 font_color = Color(0, 0, 0, 1)
 
-[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "polygon2d", "collider", "positions", "joints")]
+[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "polygon2d", "collider", "positions", "joints", "body_sprite")]
 script = ExtResource("1_pgie4")
 body = NodePath("Body")
 polygon2d = NodePath("Body/Polygon2D")
 collider = NodePath("Body/CollisionPolygon2D")
 positions = [NodePath("Body/HeadPos"), NodePath("Body/ArmPos"), NodePath("Body/LegPos"), NodePath("Body/TailPos"), NodePath("Body/BackPos")]
 joints = [NodePath("HeadJoint"), NodePath("ShoulderJoint"), NodePath("ThighJoint"), NodePath("TailJoint"), NodePath("BackJoint")]
+body_sprite = NodePath("Body/BodySprite")
 
 [node name="Body" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 4
@@ -24,11 +26,17 @@ mass = 5.0
 physics_material_override = ExtResource("2_cjrek")
 
 [node name="Polygon2D" type="Polygon2D" parent="Body" unique_id=79614922]
+visible = false
 texture = ExtResource("3_qurxk")
 texture_offset = Vector2(27.025, 42.6)
 texture_scale = Vector2(1.75, 1.75)
 texture_rotation = 0.24958208
 polygon = PackedVector2Array(-3.052827, -12.192586, 6.947173, -13.192586, 9.947173, -18.192585, 15.947173, -21.192585, 19.947174, -22.192585, 24.947174, -21.192585, 28.947174, -18.192585, 30.947174, -12.192586, 30.947174, -5.192586, 27.947174, 1.807414, 24.947174, 4.807414, 19.947174, 6.807414, 9.947173, 11.807414, 3.947173, 16.807415, -1.0528269, 16.807415, -11.052827, 18.807415, -17.052826, 16.807415, -24.052826, 14.807414, -32.052826, 9.807414, -33.052826, 3.807414, -31.052826, -2.192586, -29.052826, -6.192586, -26.052826, -10.192586, -22.052826, -11.192586, -14.052827, -13.192586)
+
+[node name="BodySprite" type="Sprite2D" parent="Body" unique_id=1464135040]
+position = Vector2(0, -2)
+scale = Vector2(0.24730651, 0.24730651)
+texture = ExtResource("4_cjrek")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body" unique_id=1741999959]
 visible = false

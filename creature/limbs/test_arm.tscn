@@ -47,7 +47,13 @@ gradient = SubResource("Gradient_7qk3k")
 width = 128
 height = 128
 
-[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ewmd5"]
+load_path = "res://.godot/imported/bluey_upper_leg.png-8aa34c3fc7f76264f96cd87306a95c12.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6i0b"]
+load_path = "res://.godot/imported/bluey_lower_leg.png-6fd7a7b583447c1b5f3ed15557295b49.ctex"
+
+[node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_s7bgj")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
@@ -55,10 +61,12 @@ halo = NodePath("Shoulder/Halo")
 limb = NodePath("Shoulder")
 limb_polygon = NodePath("Shoulder/Polygon2D")
 limb_collider = NodePath("Shoulder/CollisionPolygon2D")
+limb_sprite = NodePath("Shoulder/ShoulderSprite")
 bonus_joint = NodePath("ElbowJoint")
 bonus_limb = NodePath("Forearm")
 bonus_polygon = NodePath("Forearm/Polygon2D")
 bonus_collider = NodePath("Forearm/CollisionPolygon2D")
+bonus_sprite = NodePath("Forearm/ForearmSprite")
 
 [node name="Shoulder" type="RigidBody2D" parent="." unique_id=487199005]
 collision_layer = 2
@@ -71,6 +79,7 @@ position = Vector2(0, 9)
 texture = SubResource("GradientTexture2D_ka6ai")
 
 [node name="Polygon2D" type="Polygon2D" parent="Shoulder" unique_id=1764561574]
+visible = false
 texture = ExtResource("4_hb6v0")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
@@ -80,6 +89,11 @@ polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shoulder" unique_id=829456843]
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
+[node name="ShoulderSprite" type="Sprite2D" parent="Shoulder" unique_id=2096196314]
+position = Vector2(1, 9)
+scale = Vector2(0.2064698, 0.2064698)
+texture = SubResource("CompressedTexture2D_ewmd5")
+
 [node name="Forearm" type="RigidBody2D" parent="." unique_id=1563005039]
 position = Vector2(-1, 19)
 collision_layer = 2
@@ -87,6 +101,7 @@ mass = 0.5
 physics_material_override = ExtResource("3_l6i0b")
 
 [node name="Polygon2D" type="Polygon2D" parent="Forearm" unique_id=1804474107]
+visible = false
 texture = ExtResource("4_hb6v0")
 texture_offset = Vector2(34.85, 18.655)
 texture_scale = Vector2(2.01, 2.01)
@@ -95,6 +110,11 @@ polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forearm" unique_id=1884480031]
 polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
+
+[node name="ForearmSprite" type="Sprite2D" parent="Forearm" unique_id=667761097]
+position = Vector2(1, 10)
+scale = Vector2(0.2252059, 0.2252059)
+texture = SubResource("CompressedTexture2D_l6i0b")
 
 [node name="ElbowJoint" type="PinJoint2D" parent="." unique_id=11654315]
 position = Vector2(-1, 19)
