@@ -6,6 +6,8 @@
 [ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_ewmd5"]
 [ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_hb6v0"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="5_ka6ai"]
+[ext_resource type="Texture2D" uid="uid://di3nmtv4cr41w" path="res://creature/limbs/art/bluey_upper_arm.png" id="6_hb6v0"]
+[ext_resource type="Texture2D" uid="uid://bm4kgcvhhvej4" path="res://creature/limbs/art/bluey_lower_arm.png" id="7_ka6ai"]
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_ewmd5")
@@ -47,12 +49,6 @@ gradient = SubResource("Gradient_7qk3k")
 width = 128
 height = 128
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ewmd5"]
-load_path = "res://.godot/imported/bluey_upper_leg.png-8aa34c3fc7f76264f96cd87306a95c12.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6i0b"]
-load_path = "res://.godot/imported/bluey_lower_leg.png-6fd7a7b583447c1b5f3ed15557295b49.ctex"
-
 [node name="TestArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_s7bgj")
 limb_stats = SubResource("Resource_iqkbx")
@@ -92,7 +88,7 @@ polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 
 [node name="ShoulderSprite" type="Sprite2D" parent="Shoulder" unique_id=2096196314]
 position = Vector2(1, 9)
 scale = Vector2(0.2064698, 0.2064698)
-texture = SubResource("CompressedTexture2D_ewmd5")
+texture = ExtResource("6_hb6v0")
 
 [node name="Forearm" type="RigidBody2D" parent="." unique_id=1563005039]
 position = Vector2(-1, 19)
@@ -114,7 +110,7 @@ polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 
 [node name="ForearmSprite" type="Sprite2D" parent="Forearm" unique_id=667761097]
 position = Vector2(1, 10)
 scale = Vector2(0.2252059, 0.2252059)
-texture = SubResource("CompressedTexture2D_l6i0b")
+texture = ExtResource("7_ka6ai")
 
 [node name="ElbowJoint" type="PinJoint2D" parent="." unique_id=11654315]
 position = Vector2(-1, 19)

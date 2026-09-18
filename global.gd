@@ -10,13 +10,16 @@ const BODIES: Array[String] = [
 const HEADS: Array[String] = [
 	"res://creature/limbs/test_head.tscn",
 	"res://creature/limbs/evil_head.tscn",
-]
+	"res://creature/limbs/cookie_head.tscn",
+	"res://creature/limbs/dopey_head.tscn",
+	]
 const ARMS: Array[String] = [
 	"res://creature/limbs/test_arm.tscn",
 ]
 const LEGS: Array[String] = [
 	"res://creature/limbs/test_leg.tscn",
-]
+	"res://creature/limbs/bison_leg.tscn",
+	]
 const TAILS: Array[String] = [
 	"res://creature/limbs/test_tail.tscn",
 ]

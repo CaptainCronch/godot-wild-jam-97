@@ -301,6 +301,8 @@ limit_right = 2250
 limit_bottom = 1200
 limit_smoothed = true
 editor_draw_limits = true
+max_zoom = 0.8
+min_zoom = 0.5
 
 [node name="LeftSpawn" type="Marker2D" parent="." unique_id=1642029024]
 position = Vector2(639.36, 540)

@@ -10,6 +10,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydxqm"]
+size = Vector2(128, 128)
+
 [sub_resource type="GDScript" id="GDScript_wagxh"]
 resource_name = "CameraTargetAddShopkeeper"
 script/source = "extends Marker2D
@@ -73,6 +76,21 @@ polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 scale = Vector2(9.015, 0.565)
 shape = SubResource("RectangleShape2D_mdtab")
 
+[node name="Floor2" type="StaticBody2D" parent="." unique_id=600766984]
+position = Vector2(577, -184)
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor2" unique_id=1852758068]
+texture_repeat = 2
+scale = Vector2(9.015, 0.565)
+texture = ExtResource("1_4xkh5")
+texture_offset = Vector2(0, -102.935)
+texture_scale = Vector2(9.015, 0.565)
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=536062691]
+scale = Vector2(9.015, 0.565)
+shape = SubResource("RectangleShape2D_ydxqm")
+
 [node name="ShopBasket" type="StaticBody2D" parent="." unique_id=2128236359]
 position = Vector2(344, 304)
 collision_layer = 8
@@ -81,7 +99,7 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket" unique_id=2094445738]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -172.94063, 82.20001, -172.94063, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -172.94063)
+polygon = PackedVector2Array(-77.79999, -488, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -488, 82.20001, -488, 82.20001, 83.05937, -93.79999, 83.05937, -91.52875, -488)
 
 [node name="ShopBasket2" type="StaticBody2D" parent="." unique_id=17030764]
 position = Vector2(792, 304)
@@ -91,7 +109,7 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket2" unique_id=1692156038]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-77.79999, -172.94063, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -172.94063, 82.20001, -172.94063, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -172.94063)
+polygon = PackedVector2Array(-77.79999, -488, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -488, 82.20001, -488, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -488)
 
 [node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
 position = Vector2(320, 56)

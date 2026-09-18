@@ -101,6 +101,7 @@ func select_limb() -> void:
 				Global.player_pieces.append(limb.scene_file_path)
 				Global.player_piece_keys.append(limb.limb_stats.key)
 				Global.picked_keys += limb.limb_stats.key
+		Global.loser_pieces.clear()
 		get_tree().change_scene_to_file("res://environment/arena/test_level.tscn")
 		return
 	

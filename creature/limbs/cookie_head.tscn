@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://djo0mo0kshkh1"]
+[gd_scene format=3 uid="uid://ch2ddav6dtcor"]
 
-[ext_resource type="Script" uid="uid://xrsxb8niu4j3" path="res://creature/limb.gd" id="1_5lgq3"]
-[ext_resource type="Texture2D" uid="uid://6swof7t5hk88" path="res://creature/limbs/art/evil_jaw.png" id="2_a2dxh"]
-[ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_nl2ce"]
-[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_1virc"]
-[ext_resource type="Texture2D" uid="uid://cur52glnvlbws" path="res://creature/limbs/art/evil_skull.png" id="3_cif88"]
-[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_50806"]
-[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="6_vhfno"]
-[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_pbvsv"]
+[ext_resource type="Script" uid="uid://xrsxb8niu4j3" path="res://creature/limb.gd" id="1_mosv0"]
+[ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_kr4bw"]
+[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_disjj"]
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="4_aufdv"]
+[ext_resource type="Texture2D" uid="uid://bve6a5j7stg7t" path="res://creature/limbs/art/cookie_jaw.png" id="5_nvk07"]
+[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="6_nbgfb"]
+[ext_resource type="Texture2D" uid="uid://bm2txx3gcesmr" path="res://creature/limbs/art/cookie_skull.png" id="7_jg408"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_2bj87"]
 
 [sub_resource type="Resource" id="Resource_wrvxj"]
-script = ExtResource("2_nl2ce")
+script = ExtResource("2_kr4bw")
 slot = 0
 stiffness = 50000.0
 damping = 1000.0
@@ -20,17 +20,17 @@ key = "K"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="Resource" id="Resource_picer"]
-script = ExtResource("2_nl2ce")
+script = ExtResource("2_kr4bw")
 slot = 0
 stiffness = 100000.0
 damping = 5000.0
 angular_limit_lower = -0.08726646259971647
-angular_limit_upper = 0.7853981633974483
+angular_limit_upper = 0.5235987755982988
 key = "K"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vm5so"]
-shader = ExtResource("6_vhfno")
+shader = ExtResource("6_nbgfb")
 shader_parameter/shine_num = 8.0
 shader_parameter/rotation_speed = 3.0
 shader_parameter/light_magnitude = 2.0
@@ -49,8 +49,8 @@ gradient = SubResource("Gradient_4wu5g")
 width = 128
 height = 128
 
-[node name="EvilHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
-script = ExtResource("1_5lgq3")
+[node name="CookieHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider", "bonus_sprite")]
+script = ExtResource("1_mosv0")
 limb_stats = SubResource("Resource_wrvxj")
 bonus_stats = SubResource("Resource_picer")
 halo = NodePath("Skull/Halo")
@@ -68,32 +68,31 @@ bonus_sprite = NodePath("Jaw/JawSprite")
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
-physics_material_override = ExtResource("3_1virc")
+physics_material_override = ExtResource("3_disjj")
 
 [node name="Polygon2D" type="Polygon2D" parent="Jaw" unique_id=951431591]
 visible = false
 position = Vector2(7.280258, -12.500553)
-texture = ExtResource("4_50806")
+texture = ExtResource("4_aufdv")
 texture_offset = Vector2(22.005, 38.55)
 texture_scale = Vector2(1.75, 1.75)
 texture_rotation = 0.06632251
 polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
 
 [node name="JawSprite" type="Sprite2D" parent="Jaw" unique_id=1660134623]
-position = Vector2(12, -14)
-scale = Vector2(0.240094, 0.240094)
-texture = ExtResource("2_a2dxh")
+position = Vector2(7.5910397, -12.096109)
+scale = Vector2(0.27486, 0.27486)
+texture = ExtResource("5_nvk07")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jaw" unique_id=1710538441]
-visible = false
 position = Vector2(7.280258, -12.500553)
-polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 16.537357, -0.6407714, 16.537357, -8.64077, 15.537358)
+polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 7.719742, 11.500553, 7.719742, 14.500553, 5.719742, 16.500553, -0.6407714, 16.537357, -8.64077, 15.537358)
 
 [node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]
 collision_layer = 2
 collision_mask = 5
 mass = 0.5
-physics_material_override = ExtResource("3_1virc")
+physics_material_override = ExtResource("3_disjj")
 
 [node name="Halo" type="Sprite2D" parent="Skull" unique_id=1163732760]
 z_index = -1
@@ -102,27 +101,26 @@ position = Vector2(6, -9)
 texture = SubResource("GradientTexture2D_m048s")
 
 [node name="SkullSprite" type="Sprite2D" parent="Skull" unique_id=1634881281]
-position = Vector2(12, -14)
-scale = Vector2(0.240094, 0.240094)
-texture = ExtResource("3_cif88")
+position = Vector2(7.5910397, -12.096109)
+scale = Vector2(0.27486, 0.27486)
+texture = ExtResource("7_jg408")
 
 [node name="Polygon2D" type="Polygon2D" parent="Skull" unique_id=79614922]
 visible = false
 position = Vector2(4.280258, -11.500553)
-texture = ExtResource("4_50806")
+texture = ExtResource("4_aufdv")
 texture_offset = Vector2(22.005, 38.55)
 texture_scale = Vector2(1.75, 1.75)
 texture_rotation = 0.06632251
 polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -9.284725, -17.973104, -7.284725, -19.973104, -0.2847259, -10.973105, 5.21974, -10.347935, 9.21974, -8.347935, 11.21974, -5.3479342, 13.21974, -1.3479346, 14.21974, 3.6520658, 20.21974, 4.6520658, 25.21974, 8.652065, 24.860512, 11.114707, 22.860512, 12.114707, 0.86051154, 11.114707, -1.1394885, 15.114707, -5.780258, 14.652065)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Skull" unique_id=1741999959]
-visible = false
-position = Vector2(4.280258, -11.500553)
-polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -9.284725, -17.973104, -7.284725, -19.973104, -0.2847259, -10.973105, 5.21974, -10.347935, 9.21974, -8.347935, 11.21974, -5.3479342, 13.21974, -1.3479346, 14.21974, 3.6520658, 20.21974, 4.6520658, 25.21974, 8.652065, 24.860512, 11.114707, 22.860512, 12.114707, 0.86051154, 11.114707, -1.1394885, 15.114707, -5.780258, 14.652065)
+position = Vector2(4, -12)
+polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -7, -12, -1.2802582, -16.499447, 1.7197418, -12.499447, 2.7197418, -9.499447, 9.21974, -8.347935, 12, -6, 15, -1, 15, 6, 15, 11, 12, 13, 7, 12, 4, 13, 0, 11, -2, 12, -5, 14)
 
 [node name="JawJoint" type="PinJoint2D" parent="." unique_id=1462767458]
-visible = false
+position = Vector2(-1, -2)
 node_a = NodePath("../Skull")
 node_b = NodePath("../Jaw")
-script = ExtResource("8_pbvsv")
+script = ExtResource("8_2bj87")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
