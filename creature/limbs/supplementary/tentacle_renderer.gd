@@ -9,5 +9,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var i = 0
 	for node : Node2D in point_nodes:
-		set_point_position(i, node.global_position)
+		set_point_position(i, node.global_position - global_position)
 		i += 1
