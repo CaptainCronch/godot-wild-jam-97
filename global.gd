@@ -15,6 +15,7 @@ const HEADS: Array[String] = [
 	]
 const ARMS: Array[String] = [
 	"res://creature/limbs/test_arm.tscn",
+	"res://creature/limbs/tentacle_arm.tscn",
 ]
 const LEGS: Array[String] = [
 	"res://creature/limbs/test_leg.tscn",

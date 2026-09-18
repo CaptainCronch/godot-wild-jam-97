@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b2l2a8bm37mbj"]
+
+[ext_resource type="Script" uid="uid://dbedy70hyjda4" path="res://creature/floppy_limb.gd" id="1_lmi2h"]
+[ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_hy4vq"]
+[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_jqlx1"]
+[ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_3ldqd"]
+[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="5_mq5wi"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="6_fs0s5"]
+[ext_resource type="Texture2D" uid="uid://x57nhdgmfdch" path="res://creature/limbs/art/tentacle.png" id="7_hnvdv"]
+[ext_resource type="Script" uid="uid://cbd3i3rafw6e0" path="res://creature/limbs/supplementary/tentacle_renderer.gd" id="8_is1wr"]
+
+[sub_resource type="Resource" id="Resource_iqkbx"]
+script = ExtResource("2_hy4vq")
+name = "Tentacle"
+slot = 1
+stiffness = 1500000.0
+damping = 50000.0
+angular_limit_lower = 0.0
+flip_orientation = true
+key = "R"
+metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb6v0"]
+shader = ExtResource("4_3ldqd")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.75
+shader_parameter/cut_inner_radius = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_7qk3k"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ka6ai"]
+gradient = SubResource("Gradient_7qk3k")
+width = 128
+height = 128
+
+[node name="TentacleArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb_joint", "limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
+script = ExtResource("1_lmi2h")
+limb_stats = SubResource("Resource_iqkbx")
+bonus_stats = SubResource("Resource_iqkbx")
+halo = NodePath("TentacleBase/Halo")
+limb_joint = NodePath("Joint")
+limb = NodePath("TentacleBase")
+limb_polygon = NodePath("TentacleBase/Polygon2D")
+limb_collider = NodePath("TentacleBase/CollisionShape2D")
+bonus_joint = NodePath("Joint")
+bonus_limb = NodePath("TentacleEnd")
+bonus_polygon = NodePath("TentacleEnd/Polygon2D")
+bonus_collider = NodePath("TentacleEnd/CollisionShape2D2")
+
+[node name="TentacleBase" type="RigidBody2D" parent="." unique_id=487199005]
+collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("3_jqlx1")
+
+[node name="Halo" type="Sprite2D" parent="TentacleBase" unique_id=389979899]
+material = SubResource("ShaderMaterial_hb6v0")
+position = Vector2(0, 9)
+texture = SubResource("GradientTexture2D_ka6ai")
+
+[node name="Polygon2D" type="Polygon2D" parent="TentacleBase" unique_id=1764561574]
+visible = false
+texture = ExtResource("5_mq5wi")
+texture_offset = Vector2(34.85, 18.655)
+texture_scale = Vector2(2.01, 2.01)
+texture_rotation = -0.37350047
+polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TentacleBase" unique_id=1081737674]
+position = Vector2(0, 13)
+polygon = PackedVector2Array(0, -16, -4, -15, -6, -9, -5, 1, -4, 10, -2, 14, 2, 15, 5, 12, 5, 3, 5, -8, 3, -14)
+
+[node name="TentacleEnd" type="RigidBody2D" parent="." unique_id=1563005039]
+position = Vector2(1, 26)
+collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("3_jqlx1")
+
+[node name="Polygon2D" type="Polygon2D" parent="TentacleEnd" unique_id=1804474107]
+visible = false
+texture = ExtResource("5_mq5wi")
+texture_offset = Vector2(34.85, 18.655)
+texture_scale = Vector2(2.01, 2.01)
+texture_rotation = -0.37350047
+polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="TentacleEnd" unique_id=2144500793]
+position = Vector2(-2, 18.3)
+polygon = PackedVector2Array(1, -22, -2, -20, -4, -10, -4, -1, 0, 9, 3, 3, 5, -10, 5, -21)
+
+[node name="end" type="Marker2D" parent="TentacleEnd" unique_id=1041023]
+position = Vector2(-2, 25.3)
+
+[node name="Joint" type="PinJoint2D" parent="." unique_id=11654315]
+position = Vector2(1, 26)
+node_a = NodePath("../TentacleBase")
+node_b = NodePath("../TentacleEnd")
+script = ExtResource("6_fs0s5")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="TentacleRenderer" type="Line2D" parent="." unique_id=680560110 node_paths=PackedStringArray("point_nodes")]
+top_level = true
+width = 18.0
+texture = ExtResource("7_hnvdv")
+texture_mode = 2
+joint_mode = 1
+script = ExtResource("8_is1wr")
+point_nodes = [NodePath("../TentacleBase"), NodePath("../TentacleEnd"), NodePath("../TentacleEnd/end")]
