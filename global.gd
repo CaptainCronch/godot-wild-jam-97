@@ -6,6 +6,7 @@ const AI_COMPONENT := preload("uid://bwl211rl7kw44")
 
 const BODIES: Array[String] = [
 	"res://creature/bodies/test_body.tscn",
+	"res://creature/bodies/arched_body.tscn",
 ]
 const HEADS: Array[String] = [
 	"res://creature/limbs/test_head.tscn",

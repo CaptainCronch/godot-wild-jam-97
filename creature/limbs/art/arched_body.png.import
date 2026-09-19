@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkj4u2dipqko4"
-path="res://.godot/imported/stomper_upper_leg.png-6503bab4ee311579aa3ab76af0ee0c53.ctex"
+uid="uid://bgtbn1fgdafdj"
+path="res://.godot/imported/arched_body.png-6ea540e947b34afdcab2e2139f9c4ba6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://creature/limbs/art/stomper_upper_leg.png"
-dest_files=["res://.godot/imported/stomper_upper_leg.png-6503bab4ee311579aa3ab76af0ee0c53.ctex"]
+source_file="res://creature/limbs/art/arched_body.png"
+dest_files=["res://.godot/imported/arched_body.png-6ea540e947b34afdcab2e2139f9c4ba6.ctex"]
 
 [params]
 
