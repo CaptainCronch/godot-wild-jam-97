@@ -17,6 +17,7 @@ damping = 1000.0
 softness = 0.01
 angular_limit_lower = -0.5235987755982988
 angular_limit_upper = 0.5235987755982988
+body_torque = 50000.0
 flip_orientation = true
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
@@ -40,12 +41,11 @@ gradient = SubResource("Gradient_yarrp")
 width = 128
 height = 128
 
-[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("halo", "limb", "limb_polygon", "limb_collider", "limb_sprite")]
+[node name="TestTail" type="Node2D" unique_id=1977241255 node_paths=PackedStringArray("halo", "limb", "limb_collider", "limb_sprite")]
 script = ExtResource("1_18ddw")
 limb_stats = SubResource("Resource_wagxh")
 halo = NodePath("Tail/Halo")
 limb = NodePath("Tail")
-limb_polygon = NodePath("Tail/Polygon2D")
 limb_collider = NodePath("Tail/CollisionPolygon2D")
 limb_sprite = NodePath("Tail/TailSprite")
 

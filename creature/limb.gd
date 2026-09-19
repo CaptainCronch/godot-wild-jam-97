@@ -10,6 +10,7 @@ const SHOP_BITS: Array[int] = [8, 9]
 @export var halo: Sprite2D
 
 var body: Body = null
+var direction := false
 var backwards := false
 var in_shop := false
 
@@ -59,8 +60,13 @@ func _process(_delta: float) -> void:
 	halo.global_rotation = 0.0
 
 
+func _physics_process(_delta: float) -> void:
+	if is_instance_valid(body):
+		body.body.constant_torque = limb_stats.body_torque * -1.0 if direction else 1.0
+
+
 func flex(is_flexed: bool) -> void:
-	var direction := is_flexed != backwards # XOR
+	direction = is_flexed != backwards # XOR
 	
 	if is_instance_valid(limb_joint):
 		if direction != limb_stats.flip_orientation:

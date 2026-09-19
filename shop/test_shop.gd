@@ -130,11 +130,11 @@ func select_limb() -> void:
 	selection[current_selection_index].select(false)
 	selection[current_selection_index].queue_free()
 	shop_limbs.remove_at(current_selection_index - 1)
-	update_selected(-1)
+	update_selected(0)
 
 
 func reroll_shop() -> void:
-	if money <= 3: return
+	if money < 1: return
 	money -= 1
 	
 	for limb in shop_limbs:

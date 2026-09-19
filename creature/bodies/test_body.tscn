@@ -10,10 +10,9 @@
 font_size = 64
 font_color = Color(0, 0, 0, 1)
 
-[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "polygon2d", "collider", "positions", "joints", "body_sprite")]
+[node name="TestBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "collider", "positions", "joints", "body_sprite")]
 script = ExtResource("1_pgie4")
 body = NodePath("Body")
-polygon2d = NodePath("Body/Polygon2D")
 collider = NodePath("Body/CollisionPolygon2D")
 positions = [NodePath("Body/HeadPos"), NodePath("Body/ArmPos"), NodePath("Body/LegPos"), NodePath("Body/TailPos"), NodePath("Body/BackPos")]
 joints = [NodePath("HeadJoint"), NodePath("ShoulderJoint"), NodePath("ThighJoint"), NodePath("TailJoint"), NodePath("BackJoint")]

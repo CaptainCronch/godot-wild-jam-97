@@ -53,8 +53,8 @@ func _init() -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_released("quit"): get_tree().quit()
-	elif event.is_action_released("fullscreen"):
+	#if event.is_action_released("quit"): get_tree().quit()
+	if event.is_action_released("fullscreen"):
 		if get_window().mode != Window.MODE_FULLSCREEN:
 			get_window().mode = Window.MODE_FULLSCREEN
 			get_window().size = Vector2i(1920, 1080)

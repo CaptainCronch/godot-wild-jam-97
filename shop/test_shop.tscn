@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
 [ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="1_whj44"]
+[ext_resource type="PackedScene" uid="uid://rtbfietwevjw" path="res://environment/quit_bar.tscn" id="2_nhnb8"]
 [ext_resource type="Texture2D" uid="uid://cuvxk6ix6c1o0" path="res://shop/shop_bg.png" id="2_xarap"]
 [ext_resource type="Texture2D" uid="uid://c1v76dl8ae5mk" path="res://shop/shop_mockup.png" id="2_ydxqm"]
 [ext_resource type="Texture2D" uid="uid://c2g3rnhhfdtmj" path="res://shop/shop_table.png" id="3_ppsil"]
@@ -60,6 +61,11 @@ func _ready() -> void:
 [node name="TestShop" type="Node2D" unique_id=366313725 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_aq468")
 camera = NodePath("MultitargetCamera2D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=395725245]
+
+[node name="QuitBar" parent="CanvasLayer" unique_id=711782903 instance=ExtResource("2_nhnb8")]
+offset_bottom = 0.0
 
 [node name="Environment" type="Node2D" parent="." unique_id=1664966796]
 position = Vector2(281, 320)
@@ -221,7 +227,7 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasketLeft" unique_id=2094445738]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-120.432556, 111, 42.151398, 111, 42.753555, 256, -119.83039, 255)
+polygon = PackedVector2Array(-120.432556, 111, 42.151398, 111, 42.753555, 137, -119.83039, 138)
 
 [node name="ShopBasketRight" type="StaticBody2D" parent="." unique_id=98692422]
 position = Vector2(947, 304)
@@ -231,7 +237,7 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasketRight" unique_id=899983976]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-131.27148, 111, 31.312439, 112, 30.710266, 256, -133.07797, 256)
+polygon = PackedVector2Array(-131.27148, 111, 31.312439, 112, 30.710266, 136, -131.27151, 136)
 
 [node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
 position = Vector2(261, 216)
