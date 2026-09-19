@@ -24,7 +24,7 @@ const KEYS := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @export var flip_orientation := false ## Sets limb to flex towards lower limit instead of upper limit.
 @export var key := "": ## Should contain one uppercase alphabet letter.
 	set(value):
-		assert(value in KEYS)
+		assert(value in KEYS or value.is_empty())
 		key = value
 
 

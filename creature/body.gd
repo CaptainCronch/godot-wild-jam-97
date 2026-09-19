@@ -21,6 +21,7 @@ var limbs: Array[Limb] = [null, null, null, null, null] ## [head, arm, leg, tail
 @export var positions: Array[Marker2D] = [null, null, null, null, null]
 @export var joints: Array[RapierPinJoint2D] = [null, null, null, null, null]
 @export var body_sprite: Sprite2D
+@onready var creature: Creature = $".."
 
 
 func _ready() -> void:
@@ -76,6 +77,8 @@ func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: 
 	Limb.setup_joint(joints[limb.limb_stats.slot], limb.limb_stats)
 	#if is_instance_valid(limb.bonus_joint):
 		#Limb.setup_joint(limb.bonus_joint, limb.bonus_stats)
+	
+	creature.add_key_display(limb.limb_stats)
 
 
 func remove_limb(slot: LimbStats.Slot) -> void:

@@ -1,29 +1,28 @@
 [gd_scene format=3 uid="uid://bjviy5ac43lwa"]
 
-[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="1_4xkh5"]
 [ext_resource type="Script" uid="uid://cxf7fi5mbjhcl" path="res://shop/test_shop.gd" id="1_aq468"]
 [ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="1_whj44"]
+[ext_resource type="Texture2D" uid="uid://cuvxk6ix6c1o0" path="res://shop/shop_bg.png" id="2_xarap"]
 [ext_resource type="Texture2D" uid="uid://c1v76dl8ae5mk" path="res://shop/shop_mockup.png" id="2_ydxqm"]
+[ext_resource type="Texture2D" uid="uid://c2g3rnhhfdtmj" path="res://shop/shop_table.png" id="3_ppsil"]
+[ext_resource type="Texture2D" uid="uid://bivo5gtjxdts4" path="res://shop/shop_board.png" id="3_sle2v"]
+[ext_resource type="Texture2D" uid="uid://bswpjmg70demv" path="res://shop/shop_chute.png" id="4_upm54"]
 [ext_resource type="Script" uid="uid://cuum7unipagtj" path="res://shop/shop_button.gd" id="5_aq468"]
+[ext_resource type="Texture2D" uid="uid://dif1cjp06k8ue" path="res://shop/shopkeep_body.png" id="5_jgfsr"]
+[ext_resource type="FontFile" uid="uid://c22xvgbfr7pnx" path="res://SharpMessLite.ttf" id="5_vck1u"]
+[ext_resource type="Texture2D" uid="uid://bkxtx7m2h0iqr" path="res://shop/shopkeep_head.png" id="6_mpl2y"]
 [ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="6_ydxqm"]
+[ext_resource type="Script" uid="uid://dlado8xxry24m" path="res://environment/arena/eye_follow.gd" id="7_jgfsr"]
+[ext_resource type="Texture2D" uid="uid://bv8a4wsja2ece" path="res://shop/shopkeep_tail.png" id="7_mpl2y"]
+[ext_resource type="Texture2D" uid="uid://c0xqf0tvueia" path="res://shop/shopkeep_eye_single.png" id="8_mpl2y"]
+[ext_resource type="Texture2D" uid="uid://dt7nbqcoxv736" path="res://shop/shopkeep_cleaver.png" id="8_t8mxg"]
+[ext_resource type="Texture2D" uid="uid://mvyalnf1a2y8" path="res://shop/shop_b_refresh.png" id="11_xhtwk"]
+[ext_resource type="Texture2D" uid="uid://dgtj4bqwb7a2c" path="res://shop/shop_b_exit.png" id="14_rq7mp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
-size = Vector2(128, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydxqm"]
-size = Vector2(128, 128)
-
-[sub_resource type="GDScript" id="GDScript_wagxh"]
-resource_name = "CameraTargetAddShopkeeper"
-script/source = "extends Marker2D
-
-
-func _ready() -> void:
-	Global.camera.add_target(self)
-"
-
-[sub_resource type="LabelSettings" id="LabelSettings_wagxh"]
-font_size = 32
+[sub_resource type="LabelSettings" id="LabelSettings_7qk3k"]
+font = ExtResource("5_vck1u")
+font_size = 48
+font_color = Color(0.9, 0.9, 0.9, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vck1u"]
 shader = ExtResource("6_ydxqm")
@@ -42,115 +41,207 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xarap"]
 gradient = SubResource("Gradient_4wu5g")
-width = 128
-height = 128
+width = 512
+height = 512
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
+size = Vector2(225.40208, 128)
+
+[sub_resource type="GDScript" id="GDScript_wagxh"]
+resource_name = "CameraTargetAddShopkeeper"
+script/source = "extends Marker2D
+
+
+func _ready() -> void:
+	await get_tree().process_frame
+	Global.camera.add_target(self)
+"
 
 [node name="TestShop" type="Node2D" unique_id=366313725 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_aq468")
 camera = NodePath("MultitargetCamera2D")
 
+[node name="Environment" type="Node2D" parent="." unique_id=1664966796]
+position = Vector2(281, 320)
+scale = Vector2(0.5, 0.5)
+
+[node name="Background" type="Sprite2D" parent="Environment" unique_id=1464886610]
+position = Vector2(604, 301)
+texture = ExtResource("2_xarap")
+
+[node name="Chalkboard" type="Sprite2D" parent="Environment" unique_id=107441514]
+position = Vector2(-20, 106)
+texture = ExtResource("3_sle2v")
+
+[node name="ChalkboardLabel" type="Label" parent="Environment/Chalkboard" unique_id=609386478]
+custom_minimum_size = Vector2(448, 248)
+custom_maximum_size = Vector2(448, 248)
+offset_left = -222.0
+offset_top = -124.0
+offset_right = 226.0
+offset_bottom = 124.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+label_settings = SubResource("LabelSettings_7qk3k")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="ShopkeepBody" type="Sprite2D" parent="Environment" unique_id=207535210]
+position = Vector2(560, 227.5)
+scale = Vector2(0.99999976, 0.99999976)
+texture = ExtResource("5_jgfsr")
+
+[node name="ShopkeepHead" type="Sprite2D" parent="Environment/ShopkeepBody" unique_id=687571287]
+position = Vector2(17.500004, -251.25003)
+texture = ExtResource("6_mpl2y")
+
+[node name="LeftEyeSpinner" type="Node2D" parent="Environment/ShopkeepBody/ShopkeepHead" unique_id=447600605 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(-62.50001, 20.000004)
+script = ExtResource("7_jgfsr")
+offset = -0.1
+pupil_spinner = NodePath(".")
+pupil_position = NodePath("LeftEyeHolder")
+pupil = NodePath("../LeftEye")
+
+[node name="LeftEyeHolder" type="Node2D" parent="Environment/ShopkeepBody/ShopkeepHead/LeftEyeSpinner" unique_id=809236877]
+position = Vector2(12.500004, 0)
+
+[node name="LeftEye" type="Sprite2D" parent="Environment/ShopkeepBody/ShopkeepHead" unique_id=1683742345]
+position = Vector2(-45, 20)
+texture = ExtResource("8_mpl2y")
+
+[node name="RightEyeSpinner" type="Node2D" parent="Environment/ShopkeepBody/ShopkeepHead" unique_id=304652932 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(48.75001, 20.000004)
+script = ExtResource("7_jgfsr")
+offset = 0.1
+pupil_spinner = NodePath(".")
+pupil_position = NodePath("RightEyeHolder")
+pupil = NodePath("../RightEye")
+
+[node name="RightEyeHolder" type="Node2D" parent="Environment/ShopkeepBody/ShopkeepHead/RightEyeSpinner" unique_id=1528669832]
+position = Vector2(12.500004, 0)
+
+[node name="RightEye" type="Sprite2D" parent="Environment/ShopkeepBody/ShopkeepHead" unique_id=1706085250]
+position = Vector2(63.75, 20)
+texture = ExtResource("8_mpl2y")
+
+[node name="ShopkeepTail" type="Sprite2D" parent="Environment/ShopkeepBody" unique_id=777757565]
+show_behind_parent = true
+position = Vector2(198.75003, 45.000015)
+rotation = -0.34906584
+texture = ExtResource("7_mpl2y")
+offset = Vector2(65.48, -71.525)
+
+[node name="ShopkeepCleaver" type="Sprite2D" parent="Environment/ShopkeepBody" unique_id=7695354]
+position = Vector2(-93.750015, 32.500008)
+texture = ExtResource("8_t8mxg")
+
+[node name="TableLeft" type="Sprite2D" parent="Environment" unique_id=885884]
+position = Vector2(-21.249994, 412.5)
+texture = ExtResource("3_ppsil")
+
+[node name="TableRight" type="Sprite2D" parent="Environment" unique_id=156188090]
+position = Vector2(1185, 412.5)
+texture = ExtResource("3_ppsil")
+flip_h = true
+
+[node name="ChuteLeft" type="Sprite2D" parent="Environment" unique_id=889574284]
+z_index = 2
+position = Vector2(-41.25, -177.49995)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_upm54")
+
+[node name="ChuteRight" type="Sprite2D" parent="Environment" unique_id=1052666819]
+z_index = 2
+position = Vector2(1185, -177.49998)
+texture = ExtResource("4_upm54")
+flip_h = true
+
+[node name="Reroll" type="Sprite2D" parent="Environment" unique_id=521676901 node_paths=PackedStringArray("halo")]
+position = Vector2(-386, 520)
+texture = ExtResource("11_xhtwk")
+script = ExtResource("5_aq468")
+is_reroll = true
+halo = NodePath("Halo")
+
+[node name="Halo" type="Sprite2D" parent="Environment/Reroll" unique_id=1034135845]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_vck1u")
+texture = SubResource("GradientTexture2D_xarap")
+
+[node name="Next" type="Sprite2D" parent="Environment" unique_id=739925422 node_paths=PackedStringArray("halo")]
+position = Vector2(1542, 526)
+texture = ExtResource("14_rq7mp")
+script = ExtResource("5_aq468")
+halo = NodePath("Halo")
+
+[node name="Halo" type="Sprite2D" parent="Environment/Next" unique_id=1324772268]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_vck1u")
+texture = SubResource("GradientTexture2D_xarap")
+
 [node name="ShopMockup" type="Sprite2D" parent="." unique_id=1276713185]
+visible = false
 self_modulate = Color(1, 1, 1, 0.19607843)
 position = Vector2(592, 247.99997)
 scale = Vector2(1.5934325, 1.5934325)
 texture = ExtResource("2_ydxqm")
 
 [node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("1_whj44")]
-position = Vector2(576, 321)
+position = Vector2(568, 431)
 move_speed = 1.0
-max_zoom = 0.5
-min_zoom = 0.1
+max_zoom = 0.8
+min_zoom = 0.2
+margin = Vector2(300, 200)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1869619769]
-position = Vector2(577, 611)
-
-[node name="Polygon2D" type="Polygon2D" parent="Floor" unique_id=1699441697]
-texture_repeat = 2
-scale = Vector2(9.015, 0.565)
-texture = ExtResource("1_4xkh5")
-texture_offset = Vector2(0, -102.935)
-texture_scale = Vector2(9.015, 0.565)
-polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+position = Vector2(577, 678)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1693585124]
 scale = Vector2(9.015, 0.565)
 shape = SubResource("RectangleShape2D_mdtab")
 
-[node name="Floor2" type="StaticBody2D" parent="." unique_id=600766984]
-position = Vector2(577, -184)
-
-[node name="Polygon2D" type="Polygon2D" parent="Floor2" unique_id=1852758068]
-texture_repeat = 2
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" unique_id=864547788]
+position = Vector2(-529, -312.00003)
+rotation = 1.5707964
 scale = Vector2(9.015, 0.565)
-texture = ExtResource("1_4xkh5")
-texture_offset = Vector2(0, -102.935)
-texture_scale = Vector2(9.015, 0.565)
-polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+shape = SubResource("RectangleShape2D_mdtab")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=536062691]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" unique_id=98605119]
+position = Vector2(518, -312.00003)
+rotation = 1.5707964
 scale = Vector2(9.015, 0.565)
-shape = SubResource("RectangleShape2D_ydxqm")
+shape = SubResource("RectangleShape2D_mdtab")
 
-[node name="ShopBasket" type="StaticBody2D" parent="." unique_id=2128236359]
+[node name="ShopBasketLeft" type="StaticBody2D" parent="." unique_id=2128236359]
 position = Vector2(344, 304)
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket" unique_id=2094445738]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasketLeft" unique_id=2094445738]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-77.79999, -488, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -488, 82.20001, -488, 82.20001, 83.05937, -93.79999, 83.05937, -91.52875, -488)
+polygon = PackedVector2Array(-120.432556, 111, 42.151398, 111, 42.753555, 256, -119.83039, 255)
 
-[node name="ShopBasket2" type="StaticBody2D" parent="." unique_id=17030764]
-position = Vector2(792, 304)
+[node name="ShopBasketRight" type="StaticBody2D" parent="." unique_id=98692422]
+position = Vector2(947, 304)
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasket2" unique_id=1692156038]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShopBasketRight" unique_id=899983976]
 position = Vector2(0, 40)
 scale = Vector2(1.6606805, 1)
-polygon = PackedVector2Array(-77.79999, -488, -77.79999, 67.05937, 66.20001, 67.05937, 66.20001, -488, 82.20001, -488, 82.20001, 83.05937, -93.79999, 83.05937, -93.79999, -488)
+polygon = PackedVector2Array(-131.27148, 111, 31.312439, 112, 30.710266, 256, -133.07797, 256)
 
 [node name="ShopLimbSpawner" type="Marker2D" parent="." unique_id=2011013419]
-position = Vector2(320, 56)
+position = Vector2(261, 216)
 
 [node name="LoserLimbSpawner" type="Marker2D" parent="." unique_id=1325920964]
-position = Vector2(784, 56)
+position = Vector2(868, 209)
 
 [node name="ShopkeeperPos" type="Marker2D" parent="." unique_id=1233649979]
-position = Vector2(543, 158)
+position = Vector2(568, 325)
 script = SubResource("GDScript_wagxh")
 
 [node name="CreatureSpawnPos" type="Marker2D" parent="." unique_id=2079176995]
-position = Vector2(561, 501)
-
-[node name="Next" type="Label" parent="." unique_id=1892265065 node_paths=PackedStringArray("halo")]
-offset_left = 1025.0
-offset_top = 417.0
-offset_right = 1106.0
-offset_bottom = 462.0
-text = "NEXT"
-label_settings = SubResource("LabelSettings_wagxh")
-script = ExtResource("5_aq468")
-halo = NodePath("Halo")
-
-[node name="Halo" type="Sprite2D" parent="Next" unique_id=1324772268]
-material = SubResource("ShaderMaterial_vck1u")
-position = Vector2(40, 23)
-texture = SubResource("GradientTexture2D_xarap")
-
-[node name="Reroll" type="Label" parent="." unique_id=1140248194 node_paths=PackedStringArray("halo")]
-offset_left = 29.0
-offset_top = 400.0
-offset_right = 148.0
-offset_bottom = 445.0
-text = "REROLL"
-label_settings = SubResource("LabelSettings_wagxh")
-script = ExtResource("5_aq468")
-is_reroll = true
-halo = NodePath("Halo")
-
-[node name="Halo" type="Sprite2D" parent="Reroll" unique_id=1034135845]
-material = SubResource("ShaderMaterial_vck1u")
-position = Vector2(59, 25)
-texture = SubResource("GradientTexture2D_xarap")
+position = Vector2(556, 569)

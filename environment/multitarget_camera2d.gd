@@ -4,8 +4,8 @@ class_name MultitargetCamera2D
 @export var move_speed := 2.0 # camera position lerp speed
 @export var zoom_speed := 2.0  # camera zoom lerp speed
 @export var max_zoom := 1.5  # camera won't zoom farther than this
-@export var min_zoom := 0.8  # camera won't zoom closer than this
-@export var margin := Vector2(200, 100)  # include some buffer area around targets
+@export var min_zoom := 0.5  # camera won't zoom closer than this
+@export var margin := Vector2(500, 300)  # include some buffer area around targets
 
 var targets: Array[Node2D] = []
 

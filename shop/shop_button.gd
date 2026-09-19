@@ -1,4 +1,4 @@
-extends Label
+extends Node2D
 
 @export var is_reroll := false
 

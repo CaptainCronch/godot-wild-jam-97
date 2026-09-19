@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://gpt5rd33ocw5"]
+
+[ext_resource type="Script" uid="uid://b7f0un5noey3r" path="res://player/limb_key.gd" id="1_jqgrr"]
+[ext_resource type="FontFile" uid="uid://c22xvgbfr7pnx" path="res://SharpMessLite.ttf" id="1_t5git"]
+
+[sub_resource type="Gradient" id="Gradient_7qk3k"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.72, 0.72, 0.72, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wagxh"]
+gradient = SubResource("Gradient_7qk3k")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqgrr"]
+font = ExtResource("1_t5git")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 12
+
+[node name="LimbKey" type="Node2D" unique_id=1015954388]
+script = ExtResource("1_jqgrr")
+
+[node name="Follower" type="Node2D" parent="." unique_id=935534709]
+
+[node name="Spinner" type="Node2D" parent="Follower" unique_id=604717490]
+
+[node name="Holder" type="Node2D" parent="Follower/Spinner" unique_id=1951287142]
+
+[node name="Backdrop" type="Sprite2D" parent="." unique_id=868891864]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_wagxh")
+
+[node name="Label" type="Label" parent="Backdrop" unique_id=1269072075]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "B"
+label_settings = SubResource("LabelSettings_jqgrr")
+horizontal_alignment = 1
+vertical_alignment = 1

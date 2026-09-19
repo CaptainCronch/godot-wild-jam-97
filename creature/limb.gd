@@ -4,7 +4,7 @@ class_name Limb
 const SHOP_BITS: Array[int] = [8, 9]
 
 @export var limb_stats: LimbStats ## Main limb stats.
-@export var bonus_stats: LimbStats = limb_stats ## Stats of the limb that connects to the main limb. Leave empty to copy main limb stats.
+@export var bonus_stats: LimbStats = limb_stats ## Stats of the limb that connects to the main limb.
 #@export var flip_bonus := false ## If enabled, bonus limbs will rotate towards the opposite angular limit.
 
 @export var halo: Sprite2D
@@ -15,19 +15,18 @@ var in_shop := false
 
 @export var limb_joint: RapierPinJoint2D ## This should be connected to the body (Node A). Starts empty.
 @export var limb: RigidBody2D ## The limb which connects to the body.
-@export var limb_polygon: Polygon2D
+#@export var limb_polygon: Polygon2D
 @export var limb_collider: CollisionPolygon2D
 @export var limb_sprite: Sprite2D
 
 @export var bonus_joint: RapierPinJoint2D ## This should be connected to the main limb (Node A).
 @export var bonus_limb: RigidBody2D ## The limb which connects to the main limb.
-@export var bonus_polygon: Polygon2D
+#@export var bonus_polygon: Polygon2D
 @export var bonus_collider: CollisionPolygon2D
 @export var bonus_sprite: Sprite2D
 
 
 func _ready() -> void:
-	#limb.connect("input_event", on_input_event)
 	halo.hide()
 	var gravity := 1.0
 	if not limb_stats.slot == LimbStats.Slot.ARM and \
@@ -85,11 +84,11 @@ func flip() -> void:
 	if limb_sprite: 
 		limb_sprite.flip_h = true
 		limb_sprite.position.x *= -1.0
-	limb_polygon.polygon = reverse_points(limb_polygon.polygon)
-	limb_polygon.texture_offset.x *= -1.0
+	#limb_polygon.polygon = reverse_points(limb_polygon.polygon)
+	#limb_polygon.texture_offset.x *= -1.0
 	#limb_polygon.texture_rotation *= -1.0
-	limb_polygon.texture_scale.x *= -1.0
-	limb_polygon.position.x *= -1.0
+	#limb_polygon.texture_scale.x *= -1.0
+	#limb_polygon.position.x *= -1.0
 	limb_collider.polygon = reverse_points(limb_collider.polygon)
 	limb_collider.position.x *= -1.0
 	
@@ -102,8 +101,8 @@ func flip() -> void:
 	bonus_limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	
 	bonus_limb.position.x *= -1.0
-	bonus_polygon.polygon = reverse_points(bonus_polygon.polygon)
-	bonus_polygon.position.x *= -1.0
+	#bonus_polygon.polygon = reverse_points(bonus_polygon.polygon)
+	#bonus_polygon.position.x *= -1.0
 	bonus_collider.polygon = reverse_points(bonus_collider.polygon)
 	bonus_collider.position.x *= -1.0
 	bonus_joint.node_b = ""

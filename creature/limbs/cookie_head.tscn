@@ -11,6 +11,8 @@
 
 [sub_resource type="Resource" id="Resource_wrvxj"]
 script = ExtResource("2_kr4bw")
+name = "Cookie Head"
+description = "Weird cat"
 slot = 0
 stiffness = 50000.0
 damping = 1000.0

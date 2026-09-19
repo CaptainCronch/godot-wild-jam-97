@@ -9,6 +9,8 @@
 
 [sub_resource type="Resource" id="Resource_wagxh"]
 script = ExtResource("2_7cfd6")
+name = "Puffy Tail"
+description = "Helps with balance"
 slot = 3
 stiffness = 20000.0
 damping = 1000.0
@@ -16,7 +18,6 @@ softness = 0.01
 angular_limit_lower = -0.5235987755982988
 angular_limit_upper = 0.5235987755982988
 flip_orientation = true
-key = "J"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ky5d"]

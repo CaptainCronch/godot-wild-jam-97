@@ -3,12 +3,10 @@ class_name Creature
 
 signal died(creature: Creature)
 
-const TEST_LIMBS := [
-	preload("uid://xj4exedc2frc"),
-	preload("uid://dnsl5n65j0isy"),
-	preload("uid://cj35yvh70kyg6"),
-	preload("uid://21goo8mxrnyp"),
-]
+const LIMB_KEY := preload("uid://gpt5rd33ocw5")
+const GIBS := preload("uid://yyobgug6ans2")
+
+var limb_key_displays: Array[LimbKey] = [null, null, null, null, null]
 
 @export var is_player := false
 @export var flip := false
@@ -25,6 +23,8 @@ func _enter_tree() -> void:
 		
 		body = load(Global.player_body_file).instantiate()
 		add_child(body)
+		
+		
 	else:
 		body = load(Global.BODIES.pick_random()).instantiate()
 		add_child(body)
@@ -44,6 +44,24 @@ func _ready() -> void:
 		body.add_limb(load(Global.HEADS.pick_random()))
 		body.add_limb(load(Global.TAILS.pick_random()))
 
+
+func add_key_display(limb_stats: LimbStats) -> void:
+	if not is_player: return
+	if is_instance_valid(limb_key_displays[limb_stats.slot]): 
+		limb_key_displays[limb_stats.slot].queue_free()
+	var display: LimbKey = LIMB_KEY.instantiate()
+	display.target_body = body
+	#display.global_position = body.global_position
+	#display.backdrop.global_position = body.body.global_position
+	add_child(display)
+	display.set_key(limb_stats.key)
+	limb_key_displays[limb_stats.slot] = display
+	
+	for i in limb_key_displays.size():
+		if is_instance_valid(limb_key_displays[i]):
+			limb_key_displays[i].rotation_offset = ((TAU / float(limb_key_displays.size())) * i) - deg_to_rad(10.0)
+
+
 func die() -> void:
 	died.emit(self)
 	if is_instance_valid(ai_comp): ai_comp.dead = true
@@ -51,4 +69,12 @@ func die() -> void:
 		if not is_instance_valid(limb): continue
 		if not is_player: Global.loser_pieces.append(limb.scene_file_path)
 		limb.die()
+	
+	var gib_particles: CPUParticles2D = GIBS.instantiate()
+	gib_particles.global_position = body.body.global_position
+	gib_particles.emitting = true
+	get_tree().current_scene.add_child(gib_particles)
+	
+	for display in limb_key_displays:
+		if is_instance_valid(display): display.queue_free()
 	body.queue_free()

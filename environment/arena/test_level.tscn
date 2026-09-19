@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbfd68jw6rnjn" path="res://environment/test_level.gd" id="1_lnbra"]
 [ext_resource type="Script" uid="uid://d0b1scjwbqul7" path="res://environment/sumo_floor.gd" id="1_y646j"]
+[ext_resource type="Texture2D" uid="uid://c7yxmnq38xrje" path="res://start/extra_count3.png" id="2_a22pp"]
 [ext_resource type="Texture2D" uid="uid://dvi3ikia2jweq" path="res://environment/arena/arena_sky.png" id="2_tn8km"]
 [ext_resource type="Texture2D" uid="uid://bw1j46cxmlqcb" path="res://environment/arena/arena_wall.png" id="3_86stu"]
 [ext_resource type="Shader" uid="uid://cmmm73r8o2hvs" path="res://environment/arena/sumo_floor.gdshader" id="3_b164j"]
@@ -36,12 +37,13 @@ size = Vector2(1428, 76)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wagxh"]
 
-[node name="TestLevel" type="Node2D" unique_id=1968053387 node_paths=PackedStringArray("left_spawn", "right_spawn", "camera", "color_rect")]
+[node name="TestLevel" type="Node2D" unique_id=1968053387 node_paths=PackedStringArray("left_spawn", "right_spawn", "camera", "color_rect", "counter")]
 script = ExtResource("1_lnbra")
 left_spawn = NodePath("LeftSpawn")
 right_spawn = NodePath("RightSpawn")
 camera = NodePath("MultitargetCamera2D")
 color_rect = NodePath("CanvasLayer/ColorRect")
+counter = NodePath("CanvasLayer/Counter")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=332931075]
 
@@ -70,6 +72,23 @@ text = "LOOOOOLLLLL"
 label_settings = SubResource("LabelSettings_wagxh")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Counter" type="TextureRect" parent="CanvasLayer" unique_id=2046894700]
+modulate = Color(1, 1, 1, 0.5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_a22pp")
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1319239231]
 
@@ -294,15 +313,15 @@ script = ExtResource("6_gbhdq")
 shape = SubResource("WorldBoundaryShape2D_wagxh")
 
 [node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("7_lnbra")]
+process_mode = 3
 position = Vector2(960, 540)
+zoom = Vector2(0.7, 0.7)
 limit_left = -250
 limit_top = -150
 limit_right = 2250
 limit_bottom = 1200
 limit_smoothed = true
 editor_draw_limits = true
-max_zoom = 0.8
-min_zoom = 0.5
 
 [node name="LeftSpawn" type="Marker2D" parent="." unique_id=1642029024]
 position = Vector2(639.36, 540)

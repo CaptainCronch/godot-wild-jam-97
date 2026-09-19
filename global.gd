@@ -53,7 +53,15 @@ func _init() -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action("quit"): get_tree().quit()
+	if event.is_action_released("quit"): get_tree().quit()
+	elif event.is_action_released("fullscreen"):
+		if get_window().mode != Window.MODE_FULLSCREEN:
+			get_window().mode = Window.MODE_FULLSCREEN
+			get_window().size = Vector2i(1920, 1080)
+		else:
+			get_window().mode = Window.MODE_WINDOWED
+			get_window().size = Vector2i(1280, 720)
+			get_window().position = Vector2i((Vector2i(1920, 1080) / 2.0) - (Vector2i(1280, 720) / 2.0))
 
 
 func decay_towards(value: float, target: float,

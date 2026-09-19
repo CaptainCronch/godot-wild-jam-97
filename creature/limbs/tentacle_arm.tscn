@@ -11,7 +11,8 @@
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_hy4vq")
-name = "Tentacle"
+name = "Tentacle Arm"
+description = "Difficult to control"
 slot = 1
 stiffness = 1500000.0
 damping = 50000.0
@@ -40,18 +41,16 @@ gradient = SubResource("Gradient_7qk3k")
 width = 128
 height = 128
 
-[node name="TentacleArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb_joint", "limb", "limb_polygon", "limb_collider", "bonus_joint", "bonus_limb", "bonus_polygon", "bonus_collider")]
+[node name="TentacleArm" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb_joint", "limb", "limb_collider", "bonus_joint", "bonus_limb", "bonus_collider")]
 script = ExtResource("1_lmi2h")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_iqkbx")
 halo = NodePath("TentacleBase/Halo")
 limb_joint = NodePath("Joint")
 limb = NodePath("TentacleBase")
-limb_polygon = NodePath("TentacleBase/Polygon2D")
 limb_collider = NodePath("TentacleBase/CollisionShape2D")
 bonus_joint = NodePath("Joint")
 bonus_limb = NodePath("TentacleEnd")
-bonus_polygon = NodePath("TentacleEnd/Polygon2D")
 bonus_collider = NodePath("TentacleEnd/CollisionShape2D2")
 
 [node name="TentacleBase" type="RigidBody2D" parent="." unique_id=487199005]

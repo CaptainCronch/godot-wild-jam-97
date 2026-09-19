@@ -4,19 +4,19 @@
 [ext_resource type="Script" uid="uid://dlu2dvl03ve3s" path="res://creature/limb_stats.gd" id="2_blc0b"]
 [ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="3_a1fi2"]
 [ext_resource type="Shader" uid="uid://dpmia35xve850" path="res://creature/halo.gdshader" id="4_x35ds"]
-[ext_resource type="Texture2D" uid="uid://e3vqxr6nwflc" path="res://icon.svg" id="5_x1bah"]
 [ext_resource type="Texture2D" uid="uid://idfdcsrwobcr" path="res://creature/limbs/art/bison_upper_leg.png" id="6_0ksmi"]
 [ext_resource type="Texture2D" uid="uid://55jumsaikhoj" path="res://creature/limbs/art/bison_lower_leg.png" id="7_hshhx"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_hd130"]
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_blc0b")
+name = "Bison Leg"
+description = "Stubby but poweful"
 slot = 2
-stiffness = 1000000.0
+stiffness = 2000000.0
 damping = 100000.0
 angular_limit_lower = -0.5235987755982988
 angular_limit_upper = 1.0471975511965976
-key = "D"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="Resource" id="Resource_boad6"]
@@ -24,7 +24,6 @@ script = ExtResource("2_blc0b")
 slot = 2
 stiffness = 2000000.0
 damping = 100000.0
-key = "D"
 metadata/_custom_type_script = "uid://dlu2dvl03ve3s"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aek7g"]
@@ -53,17 +52,17 @@ limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
 halo = NodePath("Thigh/Halo")
 limb = NodePath("Thigh")
-limb_polygon = NodePath("Thigh/Polygon2D")
+limb_polygon = NodePath("")
 limb_collider = NodePath("Thigh/CollisionPolygon2D")
 limb_sprite = NodePath("Thigh/ThighSprite")
 bonus_joint = NodePath("LegJoint")
 bonus_limb = NodePath("Calf")
-bonus_polygon = NodePath("Calf/Polygon2D")
+bonus_polygon = NodePath("")
 bonus_collider = NodePath("Calf/CollisionPolygon2D")
 bonus_sprite = NodePath("Calf/CalfSprite")
 
 [node name="Thigh" type="RigidBody2D" parent="." unique_id=487199005]
-position = Vector2(-2, 0)
+position = Vector2(-1, 3)
 collision_layer = 2
 mass = 0.5
 physics_material_override = ExtResource("3_a1fi2")
@@ -72,14 +71,6 @@ physics_material_override = ExtResource("3_a1fi2")
 material = SubResource("ShaderMaterial_aek7g")
 position = Vector2(0, 9)
 texture = SubResource("GradientTexture2D_jdx4g")
-
-[node name="Polygon2D" type="Polygon2D" parent="Thigh" unique_id=1764561574]
-visible = false
-texture = ExtResource("5_x1bah")
-texture_offset = Vector2(34.85, 18.655)
-texture_scale = Vector2(2.01, 2.01)
-texture_rotation = -0.37350047
-polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
 [node name="ThighSprite" type="Sprite2D" parent="Thigh" unique_id=623202331]
 position = Vector2(1, 9)
@@ -90,18 +81,10 @@ texture = ExtResource("6_0ksmi")
 polygon = PackedVector2Array(-4, -4, -1, -7, 2, -8, 4, -7, 6, -3, 7, 3, 5, 10, 3, 14, 1, 14, -2, 10, -4, 2)
 
 [node name="Calf" type="RigidBody2D" parent="." unique_id=1563005039]
-position = Vector2(-1, 16)
+position = Vector2(0, 19)
 collision_layer = 2
 mass = 0.5
 physics_material_override = ExtResource("3_a1fi2")
-
-[node name="Polygon2D" type="Polygon2D" parent="Calf" unique_id=1804474107]
-visible = false
-texture = ExtResource("5_x1bah")
-texture_offset = Vector2(34.85, 18.655)
-texture_scale = Vector2(2.01, 2.01)
-texture_rotation = -0.37350047
-polygon = PackedVector2Array(-5, -2, -3, -4, 1, -4, 4, -3, 7, 1, 7, 4, 7, 7, 7, 11, 7, 16, 7, 20, 5, 23, 1, 24, -1, 24, -5, 22, -7, 18, -7, 14, -7, 10, -7, 5, -6, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Calf" unique_id=1884480031]
 visible = false
@@ -113,7 +96,7 @@ scale = Vector2(0.2252059, 0.2252059)
 texture = ExtResource("7_hshhx")
 
 [node name="LegJoint" type="PinJoint2D" parent="." unique_id=11654315]
-position = Vector2(-1, 11)
+position = Vector2(0, 14)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
 script = ExtResource("8_hd130")

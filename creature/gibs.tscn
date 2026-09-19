@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://yyobgug6ans2"]
+
+[ext_resource type="Texture2D" uid="uid://cj6hqg6gfn3gr" path="res://creature/gib-sheet.png" id="1_7b2a5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7qk3k"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Gibs" type="CPUParticles2D" unique_id=1894446058]
+material = SubResource("CanvasItemMaterial_7qk3k")
+emitting = false
+amount = 10
+texture = ExtResource("1_7b2a5")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.95
+randomness = 0.3
+emission_shape = 2
+emission_sphere_radius = 64.0
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 490)
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+anim_offset_max = 1.0
