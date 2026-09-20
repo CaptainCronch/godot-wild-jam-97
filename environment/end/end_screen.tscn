@@ -114,8 +114,25 @@ grow_vertical = 2
 scale = Vector2(0.22499412, 0.22499412)
 theme_override_fonts/font = ExtResource("13_fildh")
 theme_override_font_sizes/font_size = 60
-text = "Space or Enter to restart
-Hold Escape to quit"
+text = "Hold Escape to quit"
+label_settings = SubResource("LabelSettings_x88ab")
+
+[node name="RestartInstructions" type="Label" parent="." unique_id=394815269]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1035.0
+offset_top = 482.0
+offset_right = 1960.0
+offset_bottom = 1536.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.22499412, 0.22499412)
+theme_override_fonts/font = ExtResource("13_fildh")
+theme_override_font_sizes/font_size = 60
+text = "Space or Enter to restart"
 label_settings = SubResource("LabelSettings_x88ab")
 
 [node name="RestartButton" type="Button" parent="." unique_id=1796265433]
