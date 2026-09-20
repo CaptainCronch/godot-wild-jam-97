@@ -65,5 +65,6 @@ func _on_restart_button_pressed() -> void:
 	Global.shops_rerolled = 0
 	Global.limbs_bought = 0
 	Global.rounds_lasted = 0
+	Global.player_pieces = []
 	Global.player_pieces_lifetime = []
 	get_tree().change_scene_to_file("uid://bjviy5ac43lwa")
