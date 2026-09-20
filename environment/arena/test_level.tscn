@@ -25,6 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://cyalcb51hjdps" path="res://environment/arena/arena_cage_pupil.png" id="12_s3507"]
 [ext_resource type="Texture2D" uid="uid://6l3osg8yiket" path="res://environment/arena/arena_stage.png" id="12_xg1ho"]
 [ext_resource type="Script" uid="uid://tvk6yknu3pr2" path="res://environment/arena/saw_spinner.gd" id="15_tc0xv"]
+[ext_resource type="AudioStream" uid="uid://dnnopow2vrqjr" path="res://audio/buzz_saw_kill.wav" id="25_16whw"]
+[ext_resource type="Script" uid="uid://6v3rg6wgbapo" path="res://environment/arena/cheer_area.gd" id="26_5knb0"]
+[ext_resource type="Texture2D" uid="uid://c0sxbys4k0fbp" path="res://environment/arena/arena_crowd_face_wild.png" id="27_13g4g"]
+[ext_resource type="AudioStream" uid="uid://dwxee1l1u4qys" path="res://audio/crowd_ambience_main.mp3" id="27_qj4ww"]
+[ext_resource type="AudioStream" uid="uid://bqqpoba3lc72e" path="res://audio/crowd_cheer_long.wav" id="28_ytawn"]
+[ext_resource type="AudioStream" uid="uid://csgiet7r8eokt" path="res://audio/start_countdown_stereo.wav" id="31_2t7kt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wagxh"]
 font_size = 128
@@ -105,7 +111,7 @@ centered = false
 
 [node name="Wall" type="Parallax2D" parent="Parallax" unique_id=1089817830]
 scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(-206.675, 418.095)
+scroll_offset = Vector2(-206.675, 478.88)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Wall" unique_id=496759169]
 texture = ExtResource("3_86stu")
@@ -113,7 +119,7 @@ centered = false
 
 [node name="Mouth" type="Parallax2D" parent="Parallax" unique_id=1935084275]
 scroll_scale = Vector2(0.5, 0.5)
-scroll_offset = Vector2(-384.785, -581.216)
+scroll_offset = Vector2(-384.785, -479.831)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Mouth" unique_id=997360232]
 texture = ExtResource("4_86stu")
@@ -315,6 +321,26 @@ script = ExtResource("6_gbhdq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SumoKiller" unique_id=1464010031]
 shape = SubResource("WorldBoundaryShape2D_wagxh")
 
+[node name="SawKill" type="AudioStreamPlayer" parent="SumoKiller" unique_id=1815031854]
+stream = ExtResource("25_16whw")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="CheerArea" type="Area2D" parent="." unique_id=291631665]
+z_index = 2
+position = Vector2(960, 826)
+collision_mask = 7
+script = ExtResource("26_5knb0")
+excited = ExtResource("27_13g4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheerArea" unique_id=1979504897]
+shape = SubResource("WorldBoundaryShape2D_wagxh")
+
+[node name="Cheer" type="AudioStreamPlayer" parent="CheerArea" unique_id=1145654962]
+stream = ExtResource("28_ytawn")
+volume_db = -6.0
+bus = &"Ambiance"
+
 [node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("7_lnbra")]
 process_mode = 3
 position = Vector2(960, 540)
@@ -332,4 +358,16 @@ position = Vector2(639.36, 540)
 [node name="RightSpawn" type="Marker2D" parent="." unique_id=1535748919]
 position = Vector2(1278.72, 540)
 
+[node name="Ambiance" type="AudioStreamPlayer" parent="." unique_id=1667425180]
+stream = ExtResource("27_qj4ww")
+volume_db = -18.0
+autoplay = true
+bus = &"Ambiance"
+
+[node name="Countdown" type="AudioStreamPlayer" parent="." unique_id=1946057293]
+process_mode = 3
+stream = ExtResource("31_2t7kt")
+bus = &"SFX"
+
 [connection signal="body_entered" from="SumoKiller" to="SumoKiller" method="_on_body_entered"]
+[connection signal="body_entered" from="CheerArea" to="CheerArea" method="_on_body_entered"]
