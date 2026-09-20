@@ -289,3 +289,4 @@ bus = &"SFX"
 stream = ExtResource("23_crb3n")
 autoplay = true
 bus = &"Ambiance"
+parameters/looping = true

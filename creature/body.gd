@@ -96,6 +96,7 @@ func flip() -> void:
 	
 	if body_sprite:
 		body_sprite.flip_h = true
+		body_sprite.position.x *= -1.0
 	
 	for marker in positions:
 		marker.position.x *= -1.0

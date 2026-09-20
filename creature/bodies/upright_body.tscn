@@ -23,28 +23,29 @@ mass = 5.0
 physics_material_override = ExtResource("2_wr066")
 
 [node name="BodySprite" type="Sprite2D" parent="Body" unique_id=1464135040]
-position = Vector2(0, -2)
+position = Vector2(6.9999995, -2)
 scale = Vector2(0.31514087, 0.31514087)
 texture = ExtResource("3_c3xr3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body" unique_id=1741999959]
+position = Vector2(7, 0)
 rotation = -0.6440265
-polygon = PackedVector2Array(30.947174, -12.192586, 30.403778, -7.1840277, 27.00052, -0.9858141, 21.79863, 2.611454, 13.796531, 6.6072497, 5.5951653, 9.202941, 0.7970576, 5.6004195, -4.2003145, 0.59779334, -9.200314, 0.5951662, -13.60252, 4.7928543, -14.805986, 11.392222, -13.408509, 16.192957, -17.810715, 20.390646, -22.01103, 20.988438, -25.810188, 19.386442, -28.408508, 16.185078, -28.40588, 11.185078, -26.801256, 2.3859186, -18.395374, -8.809666, -9.790226, -18.605146, 1.4132395, -25.19926, 7.414815, -28.19611, 15.215025, -28.59201, 22.013657, -25.988438, 27.810715, -20.385391)
+polygon = PackedVector2Array(30.947174, -12.192586, 30.403778, -7.1840277, 27.00052, -0.9858141, 21.79863, 2.611454, 13.796531, 6.6072497, 5.5951653, 9.202941, -4.805989, 11.397477, -13.408509, 16.192957, -17.810715, 20.390646, -22.01103, 20.988438, -25.810188, 19.386442, -28.408508, 16.185078, -28.40588, 11.185078, -26.801256, 2.3859186, -18.395374, -8.809666, -9.790226, -18.605146, 1.4132395, -25.19926, 7.414815, -28.19611, 15.215025, -28.59201, 22.013657, -25.988438, 27.810715, -20.385391)
 
 [node name="HeadPos" type="Marker2D" parent="Body" unique_id=1715646764]
-position = Vector2(12, -30)
+position = Vector2(19, -30)
 
 [node name="ArmPos" type="Marker2D" parent="Body" unique_id=268962678]
-position = Vector2(16, -11)
+position = Vector2(22, -8)
 
 [node name="LegPos" type="Marker2D" parent="Body" unique_id=1735680769]
-position = Vector2(-9, 25)
+position = Vector2(-6, 28)
 
 [node name="TailPos" type="Marker2D" parent="Body" unique_id=1978398828]
-position = Vector2(-20, 16)
+position = Vector2(-13, 12)
 
 [node name="BackPos" type="Marker2D" parent="Body" unique_id=465721527]
-position = Vector2(-15, -7)
+position = Vector2(-9, -12)
 
 [node name="HeadJoint" type="PinJoint2D" parent="." unique_id=149873185]
 script = ExtResource("5_g5geb")

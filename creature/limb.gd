@@ -166,7 +166,6 @@ func flip() -> void:
 func bite() -> void:
 	if not is_instance_valid(bite_area): return
 	for bited in bite_area.get_overlapping_bodies():
-		print("bited")
 		var parent := bited.get_parent()
 		if parent is Body:
 			parent.body.apply_central_impulse(Vector2(limb_stats.bite_knockback * (-1.0 if backwards else 1.0), 0.0))

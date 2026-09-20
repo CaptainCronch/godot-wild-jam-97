@@ -1,15 +1,40 @@
 extends Node2D
+
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var player_limb_spawner: Marker2D = $PlayerLimbSpawner
 @onready var multitarget_camera_2d: MultitargetCamera2D = $MultitargetCamera2D
 @onready var result_label: Label = $ResultLabel
+@onready var shopkeep_tail: Sprite2D = $ShopkeepBody/ShopkeepTail
+@onready var shopkeep_left_eye: Sprite2D = $ShopkeepBody/ShopkeepHead/LeftEye
+@onready var shopkeep_right_eye: Sprite2D = $ShopkeepBody/ShopkeepHead/RightEye
+@onready var shopkeep_head: Sprite2D = $ShopkeepBody/ShopkeepHead
+
 
 func _ready() -> void:
-	var string = "Rounds lasted: %s \n Limbs Bought: %s \n Shops Rerolled: %s"
+	var string = "Rounds lasted: %s\n Limbs Bought: %s\n Shops Rerolled: %s"
 	result_label.text = string % [Global.rounds_lasted, Global.limbs_bought, Global.shops_rerolled]
 	print("test")
 	#Global.player_pieces = []
 	spawn_timer.start()
+	
+	if OS.get_name() == "Web":
+		$QuitInstructions.hide()
+	
+	var tail_tween := create_tween().set_loops().set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_BOUNCE)
+	tail_tween.tween_property(shopkeep_tail, "rotation", deg_to_rad(25.0), 15.0)
+	tail_tween.tween_property(shopkeep_tail, "rotation", deg_to_rad(-25.0), 15.0)
+	
+	var eyes_tween := create_tween().set_loops().set_parallel()
+	eyes_tween.tween_interval(12.0)
+	eyes_tween.chain().tween_property(shopkeep_left_eye, "scale:y", 0.0, 0.01)
+	eyes_tween.tween_property(shopkeep_right_eye, "scale:y", 0.0, 0.01)
+	eyes_tween.chain().tween_interval(0.2)
+	eyes_tween.chain().tween_property(shopkeep_left_eye, "scale:y", 1.0, 0.01)
+	eyes_tween.tween_property(shopkeep_right_eye, "scale:y", 1.0, 0.01)
+	
+	var head_tween := create_tween().set_loops().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	head_tween.tween_property(shopkeep_head, "rotation", deg_to_rad(3.0), 10.0)
+	head_tween.tween_property(shopkeep_head, "rotation", deg_to_rad(-3.0), 10.0)
 
 func _on_spawn_timer_timeout() -> void:
 	print("test2")

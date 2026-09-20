@@ -6,7 +6,7 @@ func _ready() -> void:
 	flex(false)
 
 func flex(is_flexed: bool) -> void:
-	var direction := is_flexed != backwards # XOR
+	direction = is_flexed != backwards # XOR
 	if is_instance_valid(limb_joint):
 		if direction != limb_stats.flip_orientation:
 			limb_joint.angular_limit_enabled = false

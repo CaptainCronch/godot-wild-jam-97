@@ -363,6 +363,7 @@ stream = ExtResource("27_qj4ww")
 volume_db = -18.0
 autoplay = true
 bus = &"Ambiance"
+parameters/looping = true
 
 [node name="Countdown" type="AudioStreamPlayer" parent="." unique_id=1946057293]
 process_mode = 3
