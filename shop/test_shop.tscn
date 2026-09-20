@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c0xqf0tvueia" path="res://shop/shopkeep_eye_single.png" id="8_mpl2y"]
 [ext_resource type="Texture2D" uid="uid://dt7nbqcoxv736" path="res://shop/shopkeep_cleaver.png" id="8_t8mxg"]
 [ext_resource type="Texture2D" uid="uid://mvyalnf1a2y8" path="res://shop/shop_b_refresh.png" id="11_xhtwk"]
+[ext_resource type="Texture2D" uid="uid://cim3cv8e2yvjj" path="res://environment/end/shopkeep_end_sign.png" id="13_bat07"]
 [ext_resource type="Texture2D" uid="uid://dgtj4bqwb7a2c" path="res://shop/shop_b_exit.png" id="14_rq7mp"]
 [ext_resource type="AudioStream" uid="uid://c8wiq0vija4js" path="res://audio/menu_change_option_1.wav" id="20_u238f"]
 [ext_resource type="AudioStream" uid="uid://d2qpjk3ruk0ux" path="res://audio/menu_select_purchase.wav" id="21_ioydm"]
@@ -157,6 +158,12 @@ texture = ExtResource("3_ppsil")
 position = Vector2(1226, 443)
 texture = ExtResource("3_ppsil")
 flip_h = true
+
+[node name="LoserSign" type="Sprite2D" parent="Environment" unique_id=1061321523]
+position = Vector2(1214, 562.0001)
+rotation = -0.017453292
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("13_bat07")
 
 [node name="ChuteLeft" type="Sprite2D" parent="Environment" unique_id=889574284]
 z_index = 2
