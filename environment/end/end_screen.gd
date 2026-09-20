@@ -11,7 +11,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	var string = "Rounds lasted: %s\n Limbs Bought: %s\n Shops Rerolled: %s"
+	var string = "Rounds survived: %s\nLimbs purchased: %s\nTimes rerolled: %s"
 	result_label.text = string % [Global.rounds_lasted, Global.limbs_bought, Global.shops_rerolled]
 	#Global.player_pieces = []
 	spawn_timer.start()
