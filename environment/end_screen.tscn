@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0wd1etoisawd" path="res://environment/end_screen.gd" id="1_kln7c"]
 [ext_resource type="Texture2D" uid="uid://bswpjmg70demv" path="res://shop/shop_chute.png" id="2_2cfbd"]
 [ext_resource type="PackedScene" uid="uid://rtbfietwevjw" path="res://environment/quit_bar.tscn" id="2_ilhnp"]
+[ext_resource type="Texture2D" uid="uid://cuvxk6ix6c1o0" path="res://shop/shop_bg.png" id="2_x1eyp"]
 [ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="2_x88ab"]
 [ext_resource type="Texture2D" uid="uid://dif1cjp06k8ue" path="res://shop/shopkeep_body.png" id="3_x88ab"]
 [ext_resource type="Texture2D" uid="uid://bkxtx7m2h0iqr" path="res://shop/shopkeep_head.png" id="4_ilhnp"]
@@ -13,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c2g3rnhhfdtmj" path="res://shop/shop_table.png" id="9_6n0d8"]
 [ext_resource type="FontFile" uid="uid://c22xvgbfr7pnx" path="res://SharpMessLite.ttf" id="10_vifo3"]
 [ext_resource type="AudioStream" uid="uid://b2vwxv5oj8nt" path="res://audio/butcher_shop_ambience_EQ.mp3" id="13_ilhnp"]
+[ext_resource type="AudioStream" uid="uid://bixwt21a51job" path="res://audio/impact_stream.tres" id="15_505ns"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ilhnp"]
 font_size = 70
@@ -24,6 +26,11 @@ font_color = Color(0.9, 0.9, 0.9, 1)
 
 [node name="EndScreen" type="Node2D" unique_id=1283311390]
 script = ExtResource("1_kln7c")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=12231481]
+position = Vector2(1000, 672)
+scale = Vector2(0.7310808, 0.7310808)
+texture = ExtResource("2_x1eyp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1722694037]
 
@@ -130,10 +137,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1192.0001
-offset_top = 504.0
-offset_right = 1638.0001
-offset_bottom = 676.0
+offset_left = 560.00006
+offset_top = 616.0
+offset_right = 1006.00006
+offset_bottom = 788.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.35941952, 0.35941952)
@@ -160,7 +167,7 @@ theme_override_font_sizes/font_size = 80
 text = "EXIT"
 
 [node name="PlayerLimbSpawner" type="Marker2D" parent="." unique_id=1314353773]
-position = Vector2(953.20526, 425.18246)
+position = Vector2(963.99994, 359.99997)
 scale = Vector2(0.35941952, 0.35941952)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=495975148]
@@ -184,6 +191,11 @@ pitch_scale = 0.9
 autoplay = true
 bus = &"Ambiance"
 parameters/looping = true
+
+[node name="TubeNoise" type="AudioStreamPlayer2D" parent="." unique_id=561708211]
+stream = ExtResource("15_505ns")
+volume_db = 3.0
+bus = &"SFX"
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

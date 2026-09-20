@@ -8,15 +8,15 @@ extends Node2D
 @onready var shopkeep_left_eye: Sprite2D = $ShopkeepBody/ShopkeepHead/LeftEye
 @onready var shopkeep_right_eye: Sprite2D = $ShopkeepBody/ShopkeepHead/RightEye
 @onready var shopkeep_head: Sprite2D = $ShopkeepBody/ShopkeepHead
+@onready var tube_noise: AudioStreamPlayer2D = $TubeNoise
 
 
 func _ready() -> void:
 	var string = "Rounds lasted: %s\n Limbs Bought: %s\n Shops Rerolled: %s"
 	result_label.text = string % [Global.rounds_lasted, Global.limbs_bought, Global.shops_rerolled]
-	print("test")
 	#Global.player_pieces = []
 	spawn_timer.start()
-	
+	_on_spawn_timer_timeout()
 	if OS.get_name() == "Web":
 		$QuitInstructions.hide()
 	
@@ -37,8 +37,8 @@ func _ready() -> void:
 	head_tween.tween_property(shopkeep_head, "rotation", deg_to_rad(-3.0), 10.0)
 
 func _on_spawn_timer_timeout() -> void:
-	print("test2")
 	if Global.player_pieces.is_empty(): return
+	tube_noise.play()
 	spawn_limb(load(Global.player_pieces.back()), player_limb_spawner.global_position)
 	Global.player_pieces.erase(Global.player_pieces.back())
 	print(Global.player_pieces)

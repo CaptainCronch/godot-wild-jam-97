@@ -27,7 +27,9 @@ const LEGS: Array[String] = [
 	]
 const TAILS: Array[String] = [
 	"res://creature/limbs/test_tail.tscn",
-]
+	"res://creature/limbs/rabbit_tail.tscn",
+	"res://creature/limbs/raccoon_tail.tscn",
+	]
 const BACKS: Array[String] = [
 ]
 
