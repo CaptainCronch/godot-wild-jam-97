@@ -15,6 +15,8 @@ const BLOOD := preload("uid://6bkmcljg616q")
 @export var sound_on: AudioStreamPlayer2D
 @export var sound_off: AudioStreamPlayer2D
 @export var impact_sound: AudioStreamPlayer2D
+@export var bite_sound: AudioStreamPlayer2D
+@export var shut_sound: AudioStreamPlayer2D
 
 var body: Body = null
 var direction := false
@@ -169,13 +171,17 @@ func flip() -> void:
 
 func bite() -> void:
 	if not is_instance_valid(bite_area): return
+	var bit_anything := false
 	for bited in bite_area.get_overlapping_bodies():
 		var parent := bited.get_parent()
 		if parent is Body:
+			bit_anything = true
 			parent.body.apply_central_impulse(Vector2(limb_stats.bite_knockback * (-1.0 if backwards else 1.0), 0.0))
 			if is_instance_valid(body):
 				body.body.apply_central_impulse(Vector2(limb_stats.self_knockback * (-1.0 if backwards else 1.0), 0.0))
-			impact_sound.play()
+	
+	if bit_anything: bite_sound.play()
+	else: shut_sound.play()
 
 
 func die() -> void:

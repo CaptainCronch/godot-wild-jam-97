@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_nxqpv"]
 [ext_resource type="AudioStream" uid="uid://clt4pip0vbwh4" path="res://audio/player_bark_1.wav" id="9_ypexg"]
 [ext_resource type="AudioStream" uid="uid://bixwt21a51job" path="res://audio/impact_stream.tres" id="10_3uwxk"]
+[ext_resource type="AudioStream" uid="uid://cpsqnk34g3e5i" path="res://audio/bite_stream.tres" id="11_v8lau"]
+[ext_resource type="AudioStream" uid="uid://dmiksfu71srvs" path="res://audio/shut_stream.tres" id="12_her6q"]
 
 [sub_resource type="Resource" id="Resource_wrvxj"]
 script = ExtResource("2_ypexg")
@@ -56,7 +58,7 @@ width = 128
 height = 128
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uwxk"]
-size = Vector2(55, 31)
+size = Vector2(60, 31)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3uwxk"]
 random_pitch = 1.0594631
@@ -64,7 +66,7 @@ random_volume_offset_db = 2.0
 streams_count = 1
 stream_0/stream = ExtResource("9_ypexg")
 
-[node name="HeavyHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("bite_area", "halo", "sound_on", "impact_sound", "limb", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_collider", "bonus_sprite")]
+[node name="HeavyHead" type="Node2D" unique_id=1712427213 node_paths=PackedStringArray("bite_area", "halo", "sound_on", "impact_sound", "bite_sound", "shut_sound", "limb", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_m46gd")
 limb_stats = SubResource("Resource_wrvxj")
 bonus_stats = SubResource("Resource_picer")
@@ -73,6 +75,8 @@ bite_area = NodePath("Skull/Bite")
 halo = NodePath("Skull/Halo")
 sound_on = NodePath("Bark")
 impact_sound = NodePath("Impact")
+bite_sound = NodePath("Bite")
+shut_sound = NodePath("Shut")
 limb = NodePath("Skull")
 limb_collider = NodePath("Skull/CollisionPolygon2D")
 limb_sprite = NodePath("Skull/SkullSprite")
@@ -140,7 +144,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Skull/Bite" unique_id=1280646164]
-position = Vector2(26.5, -1.5)
+position = Vector2(29, -1.5)
 shape = SubResource("RectangleShape2D_3uwxk")
 
 [node name="JawJoint" type="PinJoint2D" parent="." unique_id=1462767458]
@@ -159,4 +163,17 @@ bus = &"SFX"
 [node name="Impact" type="AudioStreamPlayer2D" parent="." unique_id=1756916134]
 stream = ExtResource("10_3uwxk")
 volume_db = 3.0
+bus = &"SFX"
+
+[node name="Bite" type="AudioStreamPlayer2D" parent="." unique_id=871234632]
+stream = ExtResource("11_v8lau")
+volume_db = 6.0
+pitch_scale = 2.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Shut" type="AudioStreamPlayer2D" parent="." unique_id=2054014649]
+stream = ExtResource("12_her6q")
+volume_db = -6.0
+max_polyphony = 3
 bus = &"SFX"

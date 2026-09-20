@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cpsqnk34g3e5i"]
+
+[ext_resource type="AudioStream" uid="uid://rj7gpid774xh" path="res://audio/bite-1.wav" id="1_e23b1"]
+[ext_resource type="AudioStream" uid="uid://c5h0jgdr1phjy" path="res://audio/bite-2.wav" id="2_4w22q"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("1_e23b1")
+stream_1/stream = ExtResource("2_4w22q")
