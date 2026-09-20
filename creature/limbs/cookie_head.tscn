@@ -96,12 +96,12 @@ polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 22, 11, 21, 15, 19.359228, 
 
 [node name="JawSprite" type="Sprite2D" parent="Jaw" unique_id=1660134623]
 position = Vector2(7.5910397, -12.096109)
-scale = Vector2(0.35939127, 0.35939127)
+scale = Vector2(0.31483018, 0.31483018)
 texture = ExtResource("5_nvk07")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jaw" unique_id=1710538441]
 position = Vector2(7.280258, -12.500553)
-scale = Vector2(1.307543, 1.307543)
+scale = Vector2(1.1454201, 1.1454201)
 polygon = PackedVector2Array(-11, 12, -10, 9, -4, 9, 7.719742, 11.500553, 7.719742, 14.500553, 5.719742, 16.500553, -0.6407714, 16.537357, -8.64077, 15.537358)
 
 [node name="Skull" type="RigidBody2D" parent="." unique_id=997076432]
@@ -118,7 +118,7 @@ texture = SubResource("GradientTexture2D_m048s")
 
 [node name="SkullSprite" type="Sprite2D" parent="Skull" unique_id=1634881281]
 position = Vector2(7.5910397, -12.096109)
-scale = Vector2(0.35939127, 0.35939127)
+scale = Vector2(0.31483018, 0.31483018)
 texture = ExtResource("7_jg408")
 
 [node name="Polygon2D" type="Polygon2D" parent="Skull" unique_id=79614922]
@@ -132,7 +132,7 @@ polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.28472
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Skull" unique_id=1741999959]
 position = Vector2(4, -12)
-scale = Vector2(1.307543, 1.307543)
+scale = Vector2(1.1454201, 1.1454201)
 polygon = PackedVector2Array(-8.780258, 9.652065, -9.780258, 2.6520658, -9.284725, -1.9731053, -9.284725, -4.973105, -7, -12, -1.2802582, -16.499447, 1.7197418, -12.499447, 2.7197418, -9.499447, 9.21974, -8.347935, 12, -6, 15, -1, 15, 6, 15, 11, 12, 13, 7, 12, 4, 13, 0, 11, -2, 12, -5, 14)
 
 [node name="Bite" type="Area2D" parent="Skull" unique_id=1381285879]
@@ -144,7 +144,7 @@ position = Vector2(26, -8.5)
 shape = SubResource("RectangleShape2D_wagxh")
 
 [node name="JawJoint" type="PinJoint2D" parent="." unique_id=1462767458]
-position = Vector2(-3, 2)
+position = Vector2(-2, 0)
 node_a = NodePath("../Skull")
 node_b = NodePath("../Jaw")
 script = ExtResource("8_2bj87")
