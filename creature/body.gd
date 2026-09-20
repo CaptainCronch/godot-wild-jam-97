@@ -44,6 +44,8 @@ func _physics_process(_delta: float) -> void:
 
 func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: LimbStats = null, bonus_stats: LimbStats = null) -> void:
 	var limb: Limb = limb_scene.instantiate()
+	if not Global.player_pieces_lifetime.has(limb.scene_file_path) and creature.is_player:
+		Global.player_pieces_lifetime.append(limb.scene_file_path)
 	if flipped: limb.flip()
 	#if is_instance_valid(limb_stats): limb.limb_stats = limb_stats
 	#if is_instance_valid(bonus_stats): limb.bonus_stats = bonus_stats

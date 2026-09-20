@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://dt215nwmvlo71"]
+
+[ext_resource type="Script" uid="uid://b0wd1etoisawd" path="res://environment/end/end_screen.gd" id="1_i4mnx"]
+[ext_resource type="Texture2D" uid="uid://cuvxk6ix6c1o0" path="res://shop/shop_bg.png" id="2_jmho2"]
+[ext_resource type="PackedScene" uid="uid://rtbfietwevjw" path="res://environment/quit_bar.tscn" id="3_4ml4e"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="4_32arl"]
+[ext_resource type="Texture2D" uid="uid://bswpjmg70demv" path="res://shop/shop_chute.png" id="5_65ixo"]
+[ext_resource type="Texture2D" uid="uid://br57cr52ld3xb" path="res://environment/end/shopkeep_end_body.png" id="7_b1pj8"]
+[ext_resource type="Texture2D" uid="uid://cim3cv8e2yvjj" path="res://environment/end/shopkeep_end_sign.png" id="7_i4mnx"]
+[ext_resource type="Script" uid="uid://dlado8xxry24m" path="res://environment/arena/eye_follow.gd" id="8_63hnv"]
+[ext_resource type="Texture2D" uid="uid://cqxm12fnilhmf" path="res://environment/end/shopkeep_end_head.png" id="8_e13y8"]
+[ext_resource type="Texture2D" uid="uid://c0xqf0tvueia" path="res://shop/shopkeep_eye_single.png" id="9_07a4w"]
+[ext_resource type="Texture2D" uid="uid://deet227ugy8yw" path="res://environment/end/shopkeep_end_tail.png" id="9_qai12"]
+[ext_resource type="Texture2D" uid="uid://c2g3rnhhfdtmj" path="res://shop/shop_table.png" id="12_bil0t"]
+[ext_resource type="FontFile" uid="uid://c22xvgbfr7pnx" path="res://SharpMessLite.ttf" id="13_fildh"]
+[ext_resource type="AudioStream" uid="uid://b2vwxv5oj8nt" path="res://audio/butcher_shop_ambience_EQ.mp3" id="14_p35jd"]
+[ext_resource type="AudioStream" uid="uid://bixwt21a51job" path="res://audio/impact_stream.tres" id="15_657xh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilhnp"]
+font_size = 70
+font_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x88ab"]
+font_size = 73
+font_color = Color(0.9, 0.9, 0.9, 1)
+
+[node name="EndScreen" type="Node2D" unique_id=1283311390]
+script = ExtResource("1_i4mnx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1722694037]
+
+[node name="QuitBar" parent="CanvasLayer" unique_id=711782903 instance=ExtResource("3_4ml4e")]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=12231481]
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(917.67505, 672)
+scale = Vector2(0.7310808, 0.7310808)
+texture = ExtResource("2_jmho2")
+
+[node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("4_32arl")]
+enabled = false
+
+[node name="ChuteLeft" type="Sprite2D" parent="." unique_id=419247086]
+z_index = 2
+position = Vector2(873.8803, 390.1825)
+scale = Vector2(0.48162207, 0.48162207)
+texture = ExtResource("5_65ixo")
+
+[node name="TableLeft" type="Sprite2D" parent="." unique_id=1235138204]
+position = Vector2(875.67505, 775.3877)
+scale = Vector2(0.5833821, 0.5833822)
+texture = ExtResource("12_bil0t")
+
+[node name="LoserSign" type="Sprite2D" parent="." unique_id=1097240307]
+position = Vector2(871, 838)
+rotation = -0.034906585
+scale = Vector2(0.5833821, 0.5833822)
+texture = ExtResource("7_i4mnx")
+
+[node name="ShopkeepLean" type="Sprite2D" parent="." unique_id=1307379675]
+position = Vector2(1141.6749, 715)
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("7_b1pj8")
+
+[node name="ShopkeepHead" type="Sprite2D" parent="ShopkeepLean" unique_id=1969666352 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(-129.91432, -300.8547)
+texture = ExtResource("8_e13y8")
+script = ExtResource("8_63hnv")
+pupil_spinner = NodePath("EyeSpinner")
+pupil_position = NodePath("EyeSpinner/EyeHolder")
+pupil = NodePath("Eye")
+
+[node name="EyeSpinner" type="Node2D" parent="ShopkeepLean/ShopkeepHead" unique_id=1746312953]
+position = Vector2(15.940063, 10.256409)
+
+[node name="EyeHolder" type="Node2D" parent="ShopkeepLean/ShopkeepHead/EyeSpinner" unique_id=1070282853]
+position = Vector2(13.675214, 0)
+
+[node name="Eye" type="Sprite2D" parent="ShopkeepLean/ShopkeepHead" unique_id=1358186812]
+position = Vector2(29.61522, 10.256389)
+texture = ExtResource("9_07a4w")
+
+[node name="ShopkeepTail" type="Sprite2D" parent="ShopkeepLean" unique_id=1646123213]
+show_behind_parent = true
+position = Vector2(80.34207, 47.863243)
+texture = ExtResource("9_qai12")
+offset = Vector2(179.095, -144.19)
+
+[node name="ResultLabel" type="Label" parent="." unique_id=723270349]
+offset_left = 535.99994
+offset_top = 391.99997
+offset_right = 1109.0
+offset_bottom = 1446.0
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("13_fildh")
+theme_override_font_sizes/font_size = 60
+text = "Rounds lasted: 0
+Limbs Bought: 0
+Shops Rerolled: 0"
+label_settings = SubResource("LabelSettings_ilhnp")
+
+[node name="QuitInstructions" type="Label" parent="." unique_id=725871303]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1091.0
+offset_top = 396.00003
+offset_right = 2016.0
+offset_bottom = 1450.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("13_fildh")
+theme_override_font_sizes/font_size = 60
+text = "Press Space or Enter to restart
+Hold Escape to quit"
+label_settings = SubResource("LabelSettings_x88ab")
+
+[node name="RestartButton" type="Button" parent="." unique_id=1796265433]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 560.00006
+offset_top = 616.0
+offset_right = 1006.00006
+offset_bottom = 788.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("13_fildh")
+theme_override_font_sizes/font_size = 80
+text = "RESTART"
+
+[node name="PlayerLimbSpawner" type="Marker2D" parent="." unique_id=1314353773]
+position = Vector2(876, 370)
+scale = Vector2(0.35941952, 0.35941952)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=495975148]
+position = Vector2(873.67505, 672)
+scale = Vector2(0.44766268, 0.44766268)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1203809137]
+position = Vector2(8.346791, 83.46791)
+polygon = PackedVector2Array(-356.8236, 139.91455, -365.7589, 182.3573, 360.23413, 189.05872, 351.29883, 144.3822)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=291414382]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1243994502]
+position = Vector2(964, 608)
+zoom = Vector2(2, 2)
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="." unique_id=1392997916]
+stream = ExtResource("14_p35jd")
+volume_db = -3.0
+pitch_scale = 0.9
+autoplay = true
+bus = &"Ambiance"
+parameters/looping = true
+
+[node name="TubeNoise" type="AudioStreamPlayer2D" parent="." unique_id=561708211]
+stream = ExtResource("15_657xh")
+volume_db = 3.0
+bus = &"SFX"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

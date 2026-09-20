@@ -40,6 +40,7 @@ var player_body_file: String = "" ## File path of the player's body.
 var player_pieces: Array[String] ## Array of file paths of the player's limbs.
 var player_piece_keys: Array[String] ## Corresponding array of the player's limbs' associated key inputs.
 var loser_pieces: Array[String] ## Array of file paths of the body parts of the last loser.
+var player_pieces_lifetime: Array[String] ## Array of every limb the player has ever gotten.
 var limb_files: Array[String] ## Has everything in HEADS, ARMS, LEGS, TAILS, and BACKS.
 var picked_keys := "" ## Keys that are already taken by currently existing limbs
 var just_started := true

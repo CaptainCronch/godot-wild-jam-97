@@ -3,6 +3,7 @@ class_name Limb
 
 const SHOP_BITS: Array[int] = [8, 9]
 const IMPACT_THRESHOLD := 50.0
+const BLOOD := preload("uid://6bkmcljg616q")
 
 @export var limb_stats: LimbStats ## Main limb stats.
 @export var bonus_stats: LimbStats = limb_stats ## Stats of the limb that connects to the main limb.
@@ -53,6 +54,9 @@ func _ready() -> void:
 	if in_shop:
 		limb.collision_layer = SHOP_BITS[0]
 		limb.collision_mask = SHOP_BITS[1]
+		var blood: CPUParticles2D = BLOOD.instantiate()
+		limb.add_child(blood)
+		blood.lifetime += randf_range(-1.0, 1.0)
 	
 	#if not limb_stats.slot == LimbStats.Slot.LEG and not limb_stats.slot == LimbStats.Slot.ARM:
 		#limb.collision_mask = 1
