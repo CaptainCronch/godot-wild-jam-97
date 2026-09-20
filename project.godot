@@ -13,7 +13,7 @@ config_version=5
 config/name="Critter Carnage"
 run/main_scene="uid://bjviy5ac43lwa"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cadmsnu7hftse"
 
 [audio]
 
