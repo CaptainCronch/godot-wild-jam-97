@@ -49,7 +49,7 @@ func _ready() -> void:
 		player.body.add_limb(load(Global.HEADS.pick_random()))
 	
 	reroll_shop()
-	
+	Global.shops_rerolled -= 1
 	update_selected(0)
 	
 	var tail_tween := create_tween().set_loops().set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_BOUNCE)
@@ -163,7 +163,7 @@ func select_limb() -> void:
 	shop_limbs.remove_at(current_selection_index - 1)
 	update_selected(0)
 	select_purchase.play()
-
+	Global.limbs_bought += 1
 
 func reroll_shop() -> bool:
 	if money < 1: return false
@@ -172,6 +172,8 @@ func reroll_shop() -> bool:
 	for limb in shop_limbs:
 		limb.queue_free()
 	shop_limbs = []
+	
+	Global.shops_rerolled += 1
 	
 	if Global.just_started:
 		#var start_leg: String = Global.LEGS.pick_random()

@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dt215nwmvlo71"]
+
+[ext_resource type="Script" uid="uid://b0wd1etoisawd" path="res://environment/end_screen.gd" id="1_kln7c"]
+[ext_resource type="Texture2D" uid="uid://bswpjmg70demv" path="res://shop/shop_chute.png" id="2_2cfbd"]
+[ext_resource type="PackedScene" uid="uid://dktd6w5t37l1v" path="res://environment/multitarget_camera_2d.tscn" id="2_x88ab"]
+[ext_resource type="Texture2D" uid="uid://dif1cjp06k8ue" path="res://shop/shopkeep_body.png" id="3_x88ab"]
+[ext_resource type="Texture2D" uid="uid://bkxtx7m2h0iqr" path="res://shop/shopkeep_head.png" id="4_ilhnp"]
+[ext_resource type="Script" uid="uid://dlado8xxry24m" path="res://environment/arena/eye_follow.gd" id="5_x1eyp"]
+[ext_resource type="Texture2D" uid="uid://c0xqf0tvueia" path="res://shop/shopkeep_eye_single.png" id="6_505ns"]
+[ext_resource type="Texture2D" uid="uid://bv8a4wsja2ece" path="res://shop/shopkeep_tail.png" id="7_tjfmj"]
+[ext_resource type="Texture2D" uid="uid://dt7nbqcoxv736" path="res://shop/shopkeep_cleaver.png" id="8_7hyng"]
+[ext_resource type="Texture2D" uid="uid://c2g3rnhhfdtmj" path="res://shop/shop_table.png" id="9_6n0d8"]
+[ext_resource type="FontFile" uid="uid://c22xvgbfr7pnx" path="res://SharpMessLite.ttf" id="10_vifo3"]
+
+[node name="EndScreen" type="Node2D" unique_id=1283311390]
+script = ExtResource("1_kln7c")
+
+[node name="MultitargetCamera2D" parent="." unique_id=514115872 instance=ExtResource("2_x88ab")]
+enabled = false
+
+[node name="ChuteLeft" type="Sprite2D" parent="." unique_id=419247086]
+z_index = 2
+position = Vector2(956.20526, 390.1825)
+scale = Vector2(0.48162207, 0.48162207)
+texture = ExtResource("2_2cfbd")
+
+[node name="ShopkeepBody" type="Sprite2D" parent="." unique_id=745792399]
+position = Vector2(958, 672)
+scale = Vector2(0.63205355, 0.63205355)
+texture = ExtResource("3_x88ab")
+
+[node name="ShopkeepHead" type="Sprite2D" parent="ShopkeepBody" unique_id=147558348]
+position = Vector2(17.500004, -251.25003)
+texture = ExtResource("4_ilhnp")
+
+[node name="LeftEyeSpinner" type="Node2D" parent="ShopkeepBody/ShopkeepHead" unique_id=44546240 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(-62.50001, 20.000004)
+script = ExtResource("5_x1eyp")
+offset = -0.1
+pupil_spinner = NodePath(".")
+pupil_position = NodePath("LeftEyeHolder")
+pupil = NodePath("../LeftEye")
+
+[node name="LeftEyeHolder" type="Node2D" parent="ShopkeepBody/ShopkeepHead/LeftEyeSpinner" unique_id=854071971]
+position = Vector2(12.500004, 0)
+
+[node name="LeftEye" type="Sprite2D" parent="ShopkeepBody/ShopkeepHead" unique_id=1549303152]
+position = Vector2(-64.121506, 6.3604746)
+texture = ExtResource("6_505ns")
+
+[node name="RightEyeSpinner" type="Node2D" parent="ShopkeepBody/ShopkeepHead" unique_id=1599530388 node_paths=PackedStringArray("pupil_spinner", "pupil_position", "pupil")]
+position = Vector2(48.75001, 20.000004)
+script = ExtResource("5_x1eyp")
+offset = 0.1
+pupil_spinner = NodePath(".")
+pupil_position = NodePath("RightEyeHolder")
+pupil = NodePath("../RightEye")
+
+[node name="RightEyeHolder" type="Node2D" parent="ShopkeepBody/ShopkeepHead/RightEyeSpinner" unique_id=1225842597]
+position = Vector2(12.500004, 0)
+
+[node name="RightEye" type="Sprite2D" parent="ShopkeepBody/ShopkeepHead" unique_id=1676007306]
+position = Vector2(44.628494, 6.3604746)
+texture = ExtResource("6_505ns")
+
+[node name="ShopkeepTail" type="Sprite2D" parent="ShopkeepBody" unique_id=918416452]
+show_behind_parent = true
+position = Vector2(198.75003, 45.000015)
+rotation = -0.34906584
+texture = ExtResource("7_tjfmj")
+offset = Vector2(65.48, -71.525)
+
+[node name="ShopkeepCleaver" type="Sprite2D" parent="ShopkeepBody" unique_id=828954200]
+position = Vector2(-93.750015, 32.500008)
+texture = ExtResource("8_7hyng")
+
+[node name="TableLeft" type="Sprite2D" parent="." unique_id=1235138204]
+position = Vector2(958, 775.3877)
+scale = Vector2(0.5833821, 0.5833822)
+texture = ExtResource("9_6n0d8")
+
+[node name="ResultLabel" type="Label" parent="." unique_id=723270349]
+offset_left = 535.99994
+offset_top = 391.99997
+offset_right = 1109.0
+offset_bottom = 1446.0
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("10_vifo3")
+theme_override_font_sizes/font_size = 60
+text = "Rounds lasted: 0,
+Limbs Bought: 0,
+Shops Rerolled: 0"
+
+[node name="RestartButton" type="Button" parent="." unique_id=1796265433]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1192.0001
+offset_top = 504.0
+offset_right = 1638.0001
+offset_bottom = 676.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("10_vifo3")
+theme_override_font_sizes/font_size = 80
+text = "RESTART"
+
+[node name="ExitButton" type="Button" parent="." unique_id=1381657006]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1184.0
+offset_top = 608.0
+offset_right = 1630.0
+offset_bottom = 780.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.35941952, 0.35941952)
+theme_override_fonts/font = ExtResource("10_vifo3")
+theme_override_font_sizes/font_size = 80
+text = "EXIT"
+
+[node name="PlayerLimbSpawner" type="Marker2D" parent="." unique_id=1314353773]
+position = Vector2(953.20526, 425.18246)
+scale = Vector2(0.35941952, 0.35941952)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=495975148]
+position = Vector2(956, 672)
+scale = Vector2(0.44766268, 0.44766268)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1203809137]
+position = Vector2(8.346791, 83.46791)
+polygon = PackedVector2Array(-372, -42, -372, -1034, -452, -1034, -444, 46, 452, 46, 452, -1042, 380, -1042, 388, -42)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=291414382]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1243994502]
+position = Vector2(964, 608)
+zoom = Vector2(2, 2)
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

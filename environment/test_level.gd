@@ -101,14 +101,13 @@ func _on_creature_died(creature: Creature) -> void:
 	end_tween.tween_callback(func(): get_tree().paused = false)
 	if not creature.is_player:
 		Global.sumo_level = null
+		Global.rounds_lasted += 1
 		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://bjviy5ac43lwa")) # shop
 	else:
 		Global.sumo_level = null
 		Global.just_started = true
 		Global.loser_pieces = []
-		Global.player_pieces = []
 		Global.picked_keys = ""
 		#end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://b8l7b6elncmkp"))
-		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://bjviy5ac43lwa")) # shop
+		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://dt215nwmvlo71")) # end screen
 		#end_tween.tween_property($CanvasLayer/Label, "visible", true, 0.1) # lol
-		pass # change to end screen scene

@@ -42,6 +42,9 @@ var limb_files: Array[String] ## Has everything in HEADS, ARMS, LEGS, TAILS, and
 var picked_keys := "" ## Keys that are already taken by currently existing limbs
 var just_started := true
 
+var rounds_lasted := 0
+var limbs_bought := 0
+var shops_rerolled := 0
 
 func _init() -> void:
 	limb_files.append_array(HEADS)
