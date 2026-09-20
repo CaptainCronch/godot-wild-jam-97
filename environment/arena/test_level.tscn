@@ -328,7 +328,7 @@ bus = &"SFX"
 
 [node name="CheerArea" type="Area2D" parent="." unique_id=291631665]
 z_index = 2
-position = Vector2(960, 826)
+position = Vector2(960, 816)
 collision_mask = 7
 script = ExtResource("26_5knb0")
 excited = ExtResource("27_13g4g")
