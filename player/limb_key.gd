@@ -7,6 +7,7 @@ class_name LimbKey
 	set(value):
 		distance = value
 		holder.position = value
+@export var backdrop: Sprite2D
 
 var target_body: Body
 var key := ""
@@ -16,13 +17,13 @@ var rotation_delta := 0.0
 @onready var follower: Node2D = $Follower
 @onready var spinner: Node2D = $Follower/Spinner
 @onready var holder: Node2D = $Follower/Spinner/Holder
-@onready var backdrop: Sprite2D = $Backdrop
+#@onready var backdrop: Sprite2D = $Backdrop
 @onready var label: Label = $Backdrop/Label
 
 
 func _ready() -> void:
 	holder.position = distance
-	backdrop.global_position = target_body.body.global_position
+	#backdrop.global_position = target_body.body.global_position
 
 
 func _process(delta: float) -> void:

@@ -49,8 +49,9 @@ func add_key_display(limb_stats: LimbStats) -> void:
 	var display: LimbKey = LIMB_KEY.instantiate()
 	display.target_body = body
 	#display.global_position = body.global_position
-	#display.backdrop.global_position = body.body.global_position
+	display.backdrop.position = position
 	add_child(display)
+	#display.global_position = body.body.global_position
 	display.set_key(limb_stats.key)
 	limb_key_displays[limb_stats.slot] = display
 	
@@ -75,3 +76,10 @@ func die() -> void:
 	for display in limb_key_displays:
 		if is_instance_valid(display): display.queue_free()
 	body.queue_free()
+
+
+func _on_prepause() -> void:
+	for display in limb_key_displays:
+		if is_instance_valid(display):
+			display.spinner.global_rotation = display.rotation_offset
+			display.backdrop.global_position = display.holder.global_position

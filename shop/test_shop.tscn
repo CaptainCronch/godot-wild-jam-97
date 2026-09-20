@@ -83,7 +83,7 @@ position = Vector2(604, 301)
 texture = ExtResource("2_xarap")
 
 [node name="Chalkboard" type="Sprite2D" parent="Environment" unique_id=107441514]
-position = Vector2(-20, 106)
+position = Vector2(-20, 114)
 texture = ExtResource("3_sle2v")
 
 [node name="ChalkboardLabel" type="Label" parent="Environment/Chalkboard" unique_id=609386478]
@@ -150,11 +150,11 @@ position = Vector2(-93.750015, 32.500008)
 texture = ExtResource("8_t8mxg")
 
 [node name="TableLeft" type="Sprite2D" parent="Environment" unique_id=885884]
-position = Vector2(-21.249994, 412.5)
+position = Vector2(-21.249994, 443)
 texture = ExtResource("3_ppsil")
 
 [node name="TableRight" type="Sprite2D" parent="Environment" unique_id=156188090]
-position = Vector2(1185, 412.5)
+position = Vector2(1226, 443)
 texture = ExtResource("3_ppsil")
 flip_h = true
 
@@ -228,7 +228,7 @@ scale = Vector2(9.015, 0.565)
 shape = SubResource("RectangleShape2D_mdtab")
 
 [node name="ShopBasketLeft" type="StaticBody2D" parent="." unique_id=2128236359]
-position = Vector2(344, 304)
+position = Vector2(336, 379)
 collision_layer = 8
 collision_mask = 8
 
@@ -238,7 +238,7 @@ scale = Vector2(1.6606805, 1)
 polygon = PackedVector2Array(-120.432556, 111, 42.151398, 111, 42.753555, 137, -119.83039, 138)
 
 [node name="ShopBasketRight" type="StaticBody2D" parent="." unique_id=98692422]
-position = Vector2(947, 304)
+position = Vector2(976, 381)
 collision_layer = 8
 collision_mask = 8
 
@@ -290,3 +290,8 @@ stream = ExtResource("23_crb3n")
 autoplay = true
 bus = &"Ambiance"
 parameters/looping = true
+
+[node name="Ambiance2" type="AudioStreamPlayer" parent="." unique_id=1218454086]
+stream = ExtResource("23_crb3n")
+autoplay = true
+bus = &"Ambiance"

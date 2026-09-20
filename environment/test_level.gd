@@ -2,6 +2,7 @@ extends Node2D
 class_name SumoLevel
 
 signal loss
+signal prepause
 
 const COUNT_3 := preload("uid://c7yxmnq38xrje")
 const COUNT_2 := preload("uid://crub6x6mx82fc")
@@ -33,6 +34,7 @@ func _ready() -> void:
 	player.global_position = left_spawn.global_position
 	player.add_child(input_comp)
 	player.died.connect(_on_creature_died)
+	prepause.connect(player._on_prepause)
 	
 	#for limb_file in Global.player_pieces:
 		#player_body.add_limb(load(limb_file))
@@ -60,6 +62,7 @@ func _ready() -> void:
 
 func animate_counter() -> void:
 	await get_tree().process_frame
+	prepause.emit()
 	get_tree().paused = true
 	$Countdown.play()
 	var start_tween := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -94,7 +97,7 @@ func _on_creature_died(creature: Creature) -> void:
 	if is_instance_valid(end_tween): return
 	loss.emit()
 	end_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	end_tween.tween_interval(2.5)
+	end_tween.tween_interval(4.5)
 	end_tween.tween_callback(func(): get_tree().paused = true)
 	#end_tween.tween_interval(0.5)
 	end_tween.tween_property(color_rect, "color", Color.BLACK, 0.5)

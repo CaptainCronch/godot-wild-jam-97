@@ -47,10 +47,10 @@ position = Vector2(40, 7)
 position = Vector2(31, 22)
 
 [node name="LegPos" type="Marker2D" parent="Body" unique_id=1735680769]
-position = Vector2(-17, 24)
+position = Vector2(-27, 22)
 
 [node name="TailPos" type="Marker2D" parent="Body" unique_id=1978398828]
-position = Vector2(-39, 10)
+position = Vector2(-39, 6)
 
 [node name="BackPos" type="Marker2D" parent="Body" unique_id=465721527]
 position = Vector2(-13, -21)
