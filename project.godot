@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Godot Wild Jam #97"
+config/name="Critter Carnage"
 run/main_scene="uid://bjviy5ac43lwa"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://cjvqbdg00110y"
 
 [autoload]
 
@@ -30,7 +34,7 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
-"res://addons/": "red",
+"res://audio/": "red",
 "res://creature/": "orange",
 "res://enemy/": "yellow",
 "res://environment/": "green",

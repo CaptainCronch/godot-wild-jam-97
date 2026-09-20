@@ -1,0 +1,19 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bixwt21a51job"]
+
+[ext_resource type="AudioStream" uid="uid://bycra2ewx7tp1" path="res://audio/meat_slap_1.wav" id="1_jacr8"]
+[ext_resource type="AudioStream" uid="uid://38vg3t33lcyk" path="res://audio/meat_slap_2.wav" id="2_8jii5"]
+[ext_resource type="AudioStream" uid="uid://bhmemt7jlabnc" path="res://audio/meat_slap_3.wav" id="3_8g5ee"]
+[ext_resource type="AudioStream" uid="uid://bnnkjseigxjcj" path="res://audio/meat_slap_4.wav" id="4_iaj4b"]
+[ext_resource type="AudioStream" uid="uid://b0bpgw00t825b" path="res://audio/meat_slap_5.wav" id="5_5bq35"]
+[ext_resource type="AudioStream" uid="uid://cuv3acw8piux6" path="res://audio/meat_slap_6.wav" id="6_ehia1"]
+[ext_resource type="AudioStream" uid="uid://bili4gqn4o4rx" path="res://audio/meat_slap_7.wav" id="7_nldrn"]
+
+[resource]
+streams_count = 7
+stream_0/stream = ExtResource("1_jacr8")
+stream_1/stream = ExtResource("2_8jii5")
+stream_2/stream = ExtResource("3_8g5ee")
+stream_3/stream = ExtResource("4_iaj4b")
+stream_4/stream = ExtResource("5_5bq35")
+stream_5/stream = ExtResource("6_ehia1")
+stream_6/stream = ExtResource("7_nldrn")

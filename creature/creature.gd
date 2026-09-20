@@ -18,13 +18,10 @@ var limb_key_displays: Array[LimbKey] = [null, null, null, null, null]
 func _enter_tree() -> void:
 	if is_player:
 		Global.player = self
-		if not is_instance_valid(Global.player_body_file):
-			Global.player_body_file = "res://creature/bodies/test_body.tscn" # FALLBACK BODY
-		
+		#if not is_instance_valid(Global.player_body_file):
+			#Global.player_body_file = "res://creature/bodies/test_body.tscn" # FALLBACK BODY
 		body = load(Global.player_body_file).instantiate()
 		add_child(body)
-		
-		
 	else:
 		body = load(Global.BODIES.pick_random()).instantiate()
 		add_child(body)
@@ -59,7 +56,7 @@ func add_key_display(limb_stats: LimbStats) -> void:
 	
 	for i in limb_key_displays.size():
 		if is_instance_valid(limb_key_displays[i]):
-			limb_key_displays[i].rotation_offset = ((TAU / float(limb_key_displays.size())) * i) - deg_to_rad(10.0)
+			limb_key_displays[i].rotation_offset = ((TAU / float(limb_key_displays.size())) * i) + body.key_display_offset
 
 
 func die() -> void:

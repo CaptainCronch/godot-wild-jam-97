@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cu0tghamhkfrj"]
+
+[ext_resource type="Script" uid="uid://ck1sch3tqmeeg" path="res://creature/body.gd" id="1_fe10m"]
+[ext_resource type="PhysicsMaterial" uid="uid://dxdld23ydcyth" path="res://creature/default_physics_material.tres" id="2_wr066"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="5_g5geb"]
+
+[sub_resource type="Gradient" id="Gradient_wx3ad"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.32, 0.32, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c3xr3"]
+gradient = SubResource("Gradient_wx3ad")
+width = 164
+height = 222
+
+[node name="UprightBody" type="Node2D" unique_id=1237689098 node_paths=PackedStringArray("body", "collider", "positions", "joints", "body_sprite")]
+script = ExtResource("1_fe10m")
+self_righting_torque = 200000.0
+self_righting_range = 1.0471975511965976
+key_display_offset = -0.6981317007977318
+body = NodePath("Body")
+collider = NodePath("Body/CollisionPolygon2D")
+positions = [NodePath("Body/HeadPos"), NodePath("Body/ArmPos"), NodePath("Body/LegPos"), NodePath("Body/TailPos"), NodePath("Body/BackPos")]
+joints = [NodePath("HeadJoint"), NodePath("ShoulderJoint"), NodePath("ThighJoint"), NodePath("TailJoint"), NodePath("BackJoint")]
+body_sprite = NodePath("Body/BodySprite")
+
+[node name="Body" type="RigidBody2D" parent="." unique_id=997076432]
+collision_layer = 4
+collision_mask = 3
+mass = 5.0
+physics_material_override = ExtResource("2_wr066")
+
+[node name="BodySprite" type="Sprite2D" parent="Body" unique_id=1464135040]
+position = Vector2(0, -2)
+scale = Vector2(0.24730651, 0.24730651)
+texture = SubResource("GradientTexture2D_c3xr3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body" unique_id=1741999959]
+rotation = -0.6440265
+polygon = PackedVector2Array(-3.052827, -12.192586, 6.947173, -13.192586, 9.947173, -18.192585, 15.947173, -21.192585, 19.947174, -22.192585, 24.947174, -21.192585, 28.947174, -18.192585, 30.947174, -12.192586, 30.947174, -5.192586, 27.947174, 1.807414, 24.947174, 4.807414, 19.947174, 6.807414, 9.947173, 11.807414, 3.947173, 16.807415, -1.0528269, 16.807415, -11.052827, 18.807415, -17.052826, 16.807415, -24.052826, 14.807414, -32.052826, 9.807414, -33.052826, 3.807414, -31.052826, -2.192586, -29.052826, -6.192586, -26.052826, -10.192586, -22.052826, -11.192586, -14.052827, -13.192586)
+
+[node name="HeadPos" type="Marker2D" parent="Body" unique_id=1715646764]
+position = Vector2(12, -29)
+
+[node name="ArmPos" type="Marker2D" parent="Body" unique_id=268962678]
+position = Vector2(22, -9)
+
+[node name="LegPos" type="Marker2D" parent="Body" unique_id=1735680769]
+position = Vector2(-15, 23)
+
+[node name="TailPos" type="Marker2D" parent="Body" unique_id=1978398828]
+position = Vector2(-24, 12)
+
+[node name="BackPos" type="Marker2D" parent="Body" unique_id=465721527]
+position = Vector2(-7, -7)
+
+[node name="HeadJoint" type="PinJoint2D" parent="." unique_id=149873185]
+script = ExtResource("5_g5geb")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="ShoulderJoint" type="PinJoint2D" parent="." unique_id=1222444339]
+script = ExtResource("5_g5geb")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="ThighJoint" type="PinJoint2D" parent="." unique_id=1418225259]
+script = ExtResource("5_g5geb")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="TailJoint" type="PinJoint2D" parent="." unique_id=2051336264]
+script = ExtResource("5_g5geb")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="BackJoint" type="PinJoint2D" parent="." unique_id=374218387]
+script = ExtResource("5_g5geb")
+metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"

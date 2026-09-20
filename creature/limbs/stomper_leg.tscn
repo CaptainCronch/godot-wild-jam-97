@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dkj4u2dipqko4" path="res://creature/limbs/art/stomper_upper_leg.png" id="6_d2t7n"]
 [ext_resource type="Texture2D" uid="uid://i4v77pql7ugh" path="res://creature/limbs/art/stomper_lower_leg.png" id="7_hfuiv"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="8_66nid"]
+[ext_resource type="AudioStream" uid="uid://choiimb0nbc8t" path="res://audio/arm_move_1.wav" id="9_h5708"]
+[ext_resource type="AudioStream" uid="uid://bcfopflj70agi" path="res://audio/arm_move_2.wav" id="10_ie2ec"]
+[ext_resource type="AudioStream" uid="uid://derfwo5llwunf" path="res://audio/arm_move_3.wav" id="11_svpmo"]
+[ext_resource type="AudioStream" uid="uid://bixwt21a51job" path="res://audio/impact_stream.tres" id="12_ie2ec"]
 
 [sub_resource type="Resource" id="Resource_iqkbx"]
 script = ExtResource("2_hfuiv")
@@ -50,11 +54,19 @@ gradient = SubResource("Gradient_jeuh4")
 width = 128
 height = 128
 
-[node name="StomperLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "limb", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_collider", "bonus_sprite")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwpuf"]
+streams_count = 3
+stream_0/stream = ExtResource("9_h5708")
+stream_1/stream = ExtResource("10_ie2ec")
+stream_2/stream = ExtResource("11_svpmo")
+
+[node name="StomperLeg" type="Node2D" unique_id=132918231 node_paths=PackedStringArray("halo", "sound_on", "impact_sound", "limb", "limb_collider", "limb_sprite", "bonus_joint", "bonus_limb", "bonus_collider", "bonus_sprite")]
 script = ExtResource("1_d2t7n")
 limb_stats = SubResource("Resource_iqkbx")
 bonus_stats = SubResource("Resource_boad6")
 halo = NodePath("Calf/Halo")
+sound_on = NodePath("Swing")
+impact_sound = NodePath("Impact")
 limb = NodePath("Thigh")
 limb_collider = NodePath("Thigh/CollisionPolygon2D")
 limb_sprite = NodePath("Thigh/ThighSprite")
@@ -119,3 +131,14 @@ node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
 script = ExtResource("8_66nid")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
+
+[node name="Swing" type="AudioStreamPlayer2D" parent="." unique_id=449376477]
+stream = SubResource("AudioStreamRandomizer_mwpuf")
+volume_db = 12.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="." unique_id=385324151]
+stream = ExtResource("12_ie2ec")
+volume_db = 3.0
+bus = &"SFX"

@@ -1,6 +1,8 @@
 extends Node2D
 class_name SumoLevel
 
+signal loss
+
 const COUNT_3 := preload("uid://c7yxmnq38xrje")
 const COUNT_2 := preload("uid://crub6x6mx82fc")
 const COUNT_1 := preload("uid://bjtbvyfse2kdu")
@@ -41,6 +43,7 @@ func _ready() -> void:
 	
 	var ai_comp := Global.AI_COMPONENT.instantiate()
 	enemy.ai_comp = ai_comp
+	loss.connect(enemy.ai_comp._on_loss)
 	enemy.global_position = right_spawn.global_position
 	enemy.add_child(ai_comp)
 	enemy.died.connect(_on_creature_died)
@@ -58,6 +61,7 @@ func _ready() -> void:
 func animate_counter() -> void:
 	await get_tree().process_frame
 	get_tree().paused = true
+	$Countdown.play()
 	var start_tween := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	start_tween.tween_callback(reset_counter.bind(COUNT_3))
 	start_tween.tween_property(counter, "modulate", Color.WHITE, COUNT_DELAY)
@@ -88,7 +92,7 @@ func _on_creature_died(creature: Creature) -> void:
 	camera.remove_target(creature.body.body)
 	
 	if is_instance_valid(end_tween): return
-	
+	loss.emit()
 	end_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	end_tween.tween_interval(2.5)
 	end_tween.tween_callback(func(): get_tree().paused = true)
@@ -96,8 +100,15 @@ func _on_creature_died(creature: Creature) -> void:
 	end_tween.tween_property(color_rect, "color", Color.BLACK, 0.5)
 	end_tween.tween_callback(func(): get_tree().paused = false)
 	if not creature.is_player:
-		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://bjviy5ac43lwa"))
+		Global.sumo_level = null
+		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://bjviy5ac43lwa")) # shop
 	else:
-		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://b8l7b6elncmkp"))
+		Global.sumo_level = null
+		Global.just_started = true
+		Global.loser_pieces = []
+		Global.player_pieces = []
+		Global.picked_keys = ""
+		#end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://b8l7b6elncmkp"))
+		end_tween.tween_callback(func(): get_tree().change_scene_to_file("uid://bjviy5ac43lwa")) # shop
 		#end_tween.tween_property($CanvasLayer/Label, "visible", true, 0.1) # lol
 		pass # change to end screen scene

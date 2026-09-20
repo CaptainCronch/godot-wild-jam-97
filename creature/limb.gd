@@ -2,17 +2,25 @@ extends Node2D
 class_name Limb
 
 const SHOP_BITS: Array[int] = [8, 9]
+const IMPACT_THRESHOLD := 50.0
 
 @export var limb_stats: LimbStats ## Main limb stats.
 @export var bonus_stats: LimbStats = limb_stats ## Stats of the limb that connects to the main limb.
 #@export var flip_bonus := false ## If enabled, bonus limbs will rotate towards the opposite angular limit.
+@export var bark_delay := 0.0
 
+@export var bite_area: Area2D
 @export var halo: Sprite2D
+@export var sound_on: AudioStreamPlayer2D
+@export var sound_off: AudioStreamPlayer2D
+@export var impact_sound: AudioStreamPlayer2D
 
 var body: Body = null
 var direction := false
 var backwards := false
 var in_shop := false
+var started_bark := false
+var bark_timer := 0.0
 
 @export var limb_joint: RapierPinJoint2D ## This should be connected to the body (Node A). Starts empty.
 @export var limb: RigidBody2D ## The limb which connects to the body.
@@ -29,6 +37,7 @@ var in_shop := false
 
 func _ready() -> void:
 	halo.hide()
+	if is_instance_valid(sound_on): sound_on.volume_db = 18.0
 	var gravity := 1.0
 	if not limb_stats.slot == LimbStats.Slot.ARM and \
 			not limb_stats.slot == LimbStats.Slot.LEG and \
@@ -37,6 +46,9 @@ func _ready() -> void:
 	limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
 	limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	limb.gravity_scale = gravity
+	limb.contact_monitor = true
+	limb.max_contacts_reported = 1
+	limb.body_entered.connect(_on_impact)
 	
 	if in_shop:
 		limb.collision_layer = SHOP_BITS[0]
@@ -48,21 +60,30 @@ func _ready() -> void:
 	bonus_limb.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
 	bonus_limb.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 	bonus_limb.gravity_scale = gravity
+	bonus_limb.contact_monitor = true
+	bonus_limb.max_contacts_reported = 1
+	bonus_limb.body_entered.connect(_on_impact)
 	
 	if in_shop:
 		bonus_limb.collision_layer = SHOP_BITS[0]
 		bonus_limb.collision_mask = SHOP_BITS[1]
 	
 	Limb.setup_joint(bonus_joint, bonus_stats)
+	
+	if is_instance_valid(bite_area):
+		if not in_shop:
+			bite_area.collision_layer = body.LEFT_BITS[0] if backwards else body.RIGHT_BITS[0]
+			bite_area.collision_mask = body.LEFT_BITS[1] if backwards else body.RIGHT_BITS[1]
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	halo.global_rotation = 0.0
+	if bark_timer <= bark_delay: bark_timer += delta
 
 
 func _physics_process(_delta: float) -> void:
-	if is_instance_valid(body):
-		body.body.constant_torque = limb_stats.body_torque * -1.0 if direction else 1.0
+	if is_instance_valid(body) and not is_zero_approx(limb_stats.body_torque):
+		body.body.constant_torque = limb_stats.body_torque * (-1.0 if direction else 1.0)
 
 
 func flex(is_flexed: bool) -> void:
@@ -79,6 +100,25 @@ func flex(is_flexed: bool) -> void:
 			bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_upper
 		else:
 			bonus_joint.motor_position_target_angle = bonus_stats.angular_limit_lower
+	
+	if bark_delay > 0.0:
+		if is_flexed and not started_bark:
+			started_bark = true
+			bark_timer = 0.0
+		elif not is_flexed and started_bark:
+			started_bark = false
+			if bark_timer < bark_delay:
+				bark_timer = bark_delay
+				if is_instance_valid(sound_on): sound_on.play()
+			else:
+				bite()
+	else:
+		if is_flexed and not started_bark:
+			if is_instance_valid(sound_on): sound_on.play()
+			started_bark = true
+		elif not is_flexed and started_bark:
+			if is_instance_valid(sound_off): sound_off.play()
+			started_bark = false
 
 
 func flip() -> void:
@@ -123,6 +163,18 @@ func flip() -> void:
 	bonus_stats.angular_limit_upper = bonus_holder
 
 
+func bite() -> void:
+	if not is_instance_valid(bite_area): return
+	for bited in bite_area.get_overlapping_bodies():
+		print("bited")
+		var parent := bited.get_parent()
+		if parent is Body:
+			parent.body.apply_central_impulse(Vector2(limb_stats.bite_knockback * (-1.0 if backwards else 1.0), 0.0))
+			if is_instance_valid(body):
+				body.body.apply_central_impulse(Vector2(limb_stats.self_knockback * (-1.0 if backwards else 1.0), 0.0))
+			impact_sound.play()
+
+
 func die() -> void:
 	if is_instance_valid(limb_joint):
 		limb_joint.node_b = ""
@@ -163,6 +215,14 @@ func select(is_selected: bool) -> void:
 		halo.hide()
 		Global.camera.remove_target(limb)
 	flex(is_selected)
+
+
+func _on_impact(_body: Node) -> void:
+	if not in_shop: return
+	if limb.linear_velocity.length() < IMPACT_THRESHOLD: return
+	if not is_instance_valid(impact_sound): return
+	if impact_sound.playing: return
+	impact_sound.play()
 
 
 static func setup_joint(pin_joint: RapierPinJoint2D, ## So you don't have to mess with the individual joints when creating limbs.

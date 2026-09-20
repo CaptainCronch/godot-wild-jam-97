@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dt7nbqcoxv736" path="res://shop/shopkeep_cleaver.png" id="8_t8mxg"]
 [ext_resource type="Texture2D" uid="uid://mvyalnf1a2y8" path="res://shop/shop_b_refresh.png" id="11_xhtwk"]
 [ext_resource type="Texture2D" uid="uid://dgtj4bqwb7a2c" path="res://shop/shop_b_exit.png" id="14_rq7mp"]
+[ext_resource type="AudioStream" uid="uid://c8wiq0vija4js" path="res://audio/menu_change_option_1.wav" id="20_u238f"]
+[ext_resource type="AudioStream" uid="uid://d2qpjk3ruk0ux" path="res://audio/menu_select_purchase.wav" id="21_ioydm"]
+[ext_resource type="AudioStream" uid="uid://ovibiafyrsgm" path="res://audio/menu_select_fail.wav" id="22_7fkpa"]
+[ext_resource type="AudioStream" uid="uid://b2vwxv5oj8nt" path="res://audio/butcher_shop_ambience_EQ.mp3" id="23_crb3n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7qk3k"]
 font = ExtResource("5_vck1u")
@@ -44,6 +48,9 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_4wu5g")
 width = 512
 height = 512
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhnb8"]
+size = Vector2(225.40208, 876.3894)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtab"]
 size = Vector2(225.40208, 128)
@@ -204,8 +211,9 @@ margin = Vector2(300, 200)
 position = Vector2(577, 678)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1693585124]
+position = Vector2(0, 211.42004)
 scale = Vector2(9.015, 0.565)
-shape = SubResource("RectangleShape2D_mdtab")
+shape = SubResource("RectangleShape2D_nhnb8")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" unique_id=864547788]
 position = Vector2(-529, -312.00003)
@@ -251,3 +259,33 @@ script = SubResource("GDScript_wagxh")
 
 [node name="CreatureSpawnPos" type="Marker2D" parent="." unique_id=2079176995]
 position = Vector2(556, 569)
+
+[node name="SelectRight" type="AudioStreamPlayer" parent="." unique_id=934046756]
+stream = ExtResource("20_u238f")
+volume_db = 12.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="SelectLeft" type="AudioStreamPlayer" parent="." unique_id=728395696]
+stream = ExtResource("20_u238f")
+volume_db = 12.0
+pitch_scale = 0.85
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="SelectPurchase" type="AudioStreamPlayer" parent="." unique_id=1106285885]
+stream = ExtResource("21_ioydm")
+volume_db = 12.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="SelectFail" type="AudioStreamPlayer" parent="." unique_id=1444129089]
+stream = ExtResource("22_7fkpa")
+volume_db = 12.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="." unique_id=1195644338]
+stream = ExtResource("23_crb3n")
+autoplay = true
+bus = &"Ambiance"

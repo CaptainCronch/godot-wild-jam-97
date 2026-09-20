@@ -6,10 +6,11 @@ const AI_COMPONENT := preload("uid://bwl211rl7kw44")
 
 const BODIES: Array[String] = [
 	"res://creature/bodies/test_body.tscn",
+	"res://creature/bodies/upright_body.tscn",
 	"res://creature/bodies/arched_body.tscn",
 ]
 const HEADS: Array[String] = [
-	"res://creature/limbs/test_head.tscn",
+	#"res://creature/limbs/test_head.tscn", # this is just evil head but blue
 	"res://creature/limbs/evil_head.tscn",
 	"res://creature/limbs/cookie_head.tscn",
 	"res://creature/limbs/dopey_head.tscn",
@@ -33,12 +34,13 @@ const BACKS: Array[String] = [
 var sumo_level: SumoLevel
 var player: Creature
 var camera: MultitargetCamera2D
-var player_body_file: String = "uid://brbv6c4bk75mp" ## File path of the player's body.
+var player_body_file: String = "" ## File path of the player's body.
 var player_pieces: Array[String] ## Array of file paths of the player's limbs.
 var player_piece_keys: Array[String] ## Corresponding array of the player's limbs' associated key inputs.
 var loser_pieces: Array[String] ## Array of file paths of the body parts of the last loser.
 var limb_files: Array[String] ## Has everything in HEADS, ARMS, LEGS, TAILS, and BACKS.
-var picked_keys := ""
+var picked_keys := "" ## Keys that are already taken by currently existing limbs
+var just_started := true
 
 
 func _init() -> void:

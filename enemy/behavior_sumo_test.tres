@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_tjia1")
 id = "sumo_test"
-limb_relax_duration = [5.0, 1.5, 1.5, 0.5, 0.0]
+limb_relax_duration = [4.0, 1.5, 1.5, 0.5, 0.0]
 limb_contract_duration = [0.3, 0.5, 0.5, 0.3, 0.0]
-randomness = [0.0, 0.1, 0.1, 1.0, 0.0]
+randomness = [0.0, 0.01, 0.01, 1.0, 0.0]
 limb_start_delay = [0.0, 0.2, 0.0, 0.0, 0.0]
 metadata/_custom_type_script = "uid://b8tf2a06dmvjx"

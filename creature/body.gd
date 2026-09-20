@@ -6,7 +6,7 @@ const LEFT_BITS := [4, 3] # [(3), (1, 2)]
 
 @export var self_righting_torque := 150000.0
 @export_range(0.0, 180.0, 1.0, "prefer_slider", "radians_as_degrees") var self_righting_range := deg_to_rad(120.0)
-
+@export_range(-180.0, 0.0, 1.0, "prefer_slider", "radians_as_degrees") var key_display_offset := deg_to_rad(-10.0)
 
 var flipped := false
 var limbs: Array[Limb] = [null, null, null, null, null] ## [head, arm, leg, tail, back], from LimbStats.Slot enum.
@@ -39,6 +39,7 @@ func _physics_process(_delta: float) -> void:
 			-self_righting_torque,
 			self_righting_torque)
 	body.apply_torque(force)
+	#print(body.constant_torque)
 
 
 func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: LimbStats = null, bonus_stats: LimbStats = null) -> void:
@@ -49,6 +50,8 @@ func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: 
 	if not key.is_empty():
 		limb.limb_stats.key = key
 		if is_instance_valid(limb.bonus_stats): limb.bonus_stats.key = key
+	else:
+		limb.limb_stats.pick_random_key()
 	
 	var anchor_pos := positions[limb.limb_stats.slot].global_position
 	limb.limb_joint = joints[limb.limb_stats.slot]
@@ -58,7 +61,7 @@ func add_limb(limb_scene: PackedScene, key: String = "") -> void:#, limb_stats: 
 	limb.body = self
 	add_child(limb)
 	joints[limb.limb_stats.slot].global_position = anchor_pos
-	limb.rotation = body.rotation
+	limb.global_rotation = positions[limb.limb_stats.slot].global_rotation
 	limb.global_position = anchor_pos
 	
 	joints[limb.limb_stats.slot].node_b = joints[limb.limb_stats.slot].get_path_to(limb.limb)
